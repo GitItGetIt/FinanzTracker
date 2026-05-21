@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="de.fintracker.controller.MainController"
+      spacing="20">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="FinanzTracker"
+           style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+
+    <Button text="Income verwalten"
+            onAction="#openIncome"
+            prefWidth="200"/>
+
+    <Button text="Expenses verwalten"
+            onAction="#openExpense"
+            prefWidth="200"/>
+
+</VBox>
