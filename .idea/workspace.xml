@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
@@ -150,7 +150,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779439587249</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür">
+      <option name="closed" value="true" />
+      <created>1779446149406</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1779446149406</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,7 +178,8 @@
     <MESSAGE value="22.5. 9:25h - unter resources database ordner angelegt, worin die finanztracker.db automatisch per DBTest.java erfolgreich angelegt wurde. Ansonsten unter de.fintracker den ordner databse angelegt und DBConnector.java erstellt. zum nachvollziehen bitte auch ab 8:54 die änderungen nachvollziehen" />
     <MESSAGE value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
     <MESSAGE value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
+    <MESSAGE value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

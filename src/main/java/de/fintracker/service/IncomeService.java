@@ -56,5 +56,24 @@ public class IncomeService {
         return list;
     }
 
+    public static void updateIncome(Income income, int id) {
+        String sql = "UPDATE income SET amount = ?, category = ?, date = ?, note = ? WHERE id = ?";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDouble(1, income.getAmount());
+            stmt.setString(2, income.getCategory());
+            stmt.setString(3, income.getDate().toString());
+            stmt.setString(4, income.getNote());
+            stmt.setInt(5, id);
+
+            stmt.executeUpdate();
+            System.out.println("Einnahme aktualisiert!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

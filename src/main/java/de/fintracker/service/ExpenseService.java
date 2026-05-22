@@ -30,6 +30,7 @@ public class ExpenseService {
             e.printStackTrace();
         }
     }
+
     public static ObservableList<Expense> getAllExpense() {
         ObservableList<Expense> list = FXCollections.observableArrayList();
 
@@ -53,6 +54,26 @@ public class ExpenseService {
         }
 
         return list;
+    }
+
+    public static void updateExpense(Expense expense, int id) {
+        String sql = "UPDATE expense SET amount = ?, category = ?, date = ?, note = ? WHERE id = ?";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setDouble(1, expense.getAmount());
+            stmt.setString(2, expense.getCategory());
+            stmt.setString(3, expense.getDate().toString());
+            stmt.setString(4, expense.getNote());
+            stmt.setInt(5, id);
+
+            stmt.executeUpdate();
+            System.out.println("Ausgabe aktualisiert!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
