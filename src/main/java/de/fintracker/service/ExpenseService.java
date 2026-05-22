@@ -76,4 +76,21 @@ public class ExpenseService {
         }
     }
 
+    public static void deleteExpense(int id) {
+        String sql = "DELETE FROM expense WHERE id = ?";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            System.out.println("Ausgabe gelöscht!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

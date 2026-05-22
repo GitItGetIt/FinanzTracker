@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen">
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
     </list>
@@ -158,7 +157,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779446149406</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen">
+      <option name="closed" value="true" />
+      <created>1779449244219</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1779449244219</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -179,7 +186,8 @@
     <MESSAGE value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
     <MESSAGE value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
     <MESSAGE value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
+    <MESSAGE value="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen" />
+    <option name="LAST_COMMIT_MESSAGE" value="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

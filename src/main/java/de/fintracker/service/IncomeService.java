@@ -76,4 +76,21 @@ public class IncomeService {
         }
     }
 
+    public static void deleteIncome(int id) {
+        String sql = "DELETE FROM income WHERE id = ?";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+
+            System.out.println("Einnahme gelöscht!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
