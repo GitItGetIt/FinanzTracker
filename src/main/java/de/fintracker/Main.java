@@ -1,17 +1,20 @@
 package de.fintracker;
 
+import de.fintracker.database.DatabaseInitializer;
 import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class Main extends Application {
     @Override
-    public void start(Stage stage) {
-        Label label = new Label("FinanzTracker läuft!");
-        Scene scene = new Scene(label, 400, 200);
+    public void start(Stage stage) throws Exception {
+        DatabaseInitializer.initialize();
 
-        stage.setTitle("FinanzTracker");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
     }
