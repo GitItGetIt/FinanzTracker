@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,23 +142,21 @@
       <option name="project" value="LOCAL" />
       <updated>1779435785005</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben">
+      <option name="closed" value="true" />
+      <created>1779439587249</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1779439587249</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="de3571ff-2eef-4bf7-8fec-30fb95bc89ca" value="EDITOR" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-        <entry key="de3571ff-2eef-4bf7-8fec-30fb95bc89ca">
           <value>
             <State />
           </value>
@@ -171,7 +169,8 @@
     <MESSAGE value="kurz vor dem loslegen mit db - heute, 22.5. habe ich die versionen geklärt für pom - die dependencies korrekt gesetzt. und gerade &quot;nur&quot; die ordner und DBinitializer.java gesetzt und noch nichts reingeschrieben. dh jetzt gehts mit db - 22.4. ab 7:56 h" />
     <MESSAGE value="22.5. 9:25h - unter resources database ordner angelegt, worin die finanztracker.db automatisch per DBTest.java erfolgreich angelegt wurde. Ansonsten unter de.fintracker den ordner databse angelegt und DBConnector.java erstellt. zum nachvollziehen bitte auch ab 8:54 die änderungen nachvollziehen" />
     <MESSAGE value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
-    <option name="LAST_COMMIT_MESSAGE" value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
+    <MESSAGE value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
