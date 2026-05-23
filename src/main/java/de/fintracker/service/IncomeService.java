@@ -34,19 +34,20 @@ public class IncomeService {
     public static ObservableList<Income> getAllIncome() {
         ObservableList<Income> list = FXCollections.observableArrayList();
 
-        String sql = "SELECT amount, category, date, note FROM income";
+        String sql = "SELECT id, amount, category, date, note FROM income";
 
         try (Connection conn = DBConnector.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
+                int id = rs.getInt("id");
                 double amount = rs.getDouble("amount");
                 String category = rs.getString("category");
                 LocalDate date = LocalDate.parse(rs.getString("date"));
                 String note = rs.getString("note");
 
-                list.add(new Income(amount, category, date, note));
+                list.add(new Income(id,amount, category, date, note));
             }
 
         } catch (Exception e) {

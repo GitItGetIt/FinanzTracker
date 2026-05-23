@@ -47,6 +47,7 @@
 
     <TableView fx:id="incomeTable" prefHeight="250">
         <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
             <TableColumn fx:id="amountColumn" text="Betrag" prefWidth="100"/>
             <TableColumn fx:id="categoryColumn" text="Kategorie" prefWidth="150"/>
             <TableColumn fx:id="dateColumn" text="Datum" prefWidth="120"/>

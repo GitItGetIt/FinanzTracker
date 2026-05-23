@@ -1,6 +1,7 @@
 package de.fintracker.controller;
 
 import de.fintracker.model.Expense;
+import de.fintracker.model.Income;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +22,9 @@ public class ExpenseController implements Navigatable {
     public void setStage(Stage stage){
         this.stage = stage;
     }
+
+    @FXML
+    public TableColumn<Income, Number> idColumn;
 
     @FXML
     private TextField amountField;
@@ -59,6 +63,7 @@ public class ExpenseController implements Navigatable {
     }
 
     private void setupTable() {
+        idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
         categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
         dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());

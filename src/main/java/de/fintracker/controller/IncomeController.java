@@ -14,12 +14,16 @@ import java.time.LocalDate;
 
 public class IncomeController implements Navigatable {
 
+
     private Stage stage;
 
     @Override
     public void setStage(Stage stage){
         this.stage = stage;
     }
+
+    @FXML
+    public TableColumn<Income, Number> idColumn;
 
     @FXML
     private TextField amountField;
@@ -77,6 +81,7 @@ public class IncomeController implements Navigatable {
     }
 
     private void setupTable() {
+        idColumn.setCellValueFactory( cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
         categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
         dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());
