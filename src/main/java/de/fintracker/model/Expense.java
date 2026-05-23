@@ -12,6 +12,7 @@ public class Expense {
     private final StringProperty note = new SimpleStringProperty();
 
     public Expense(int id, double amount, String category, LocalDate date, String note) {
+        this.id.set(id);
         this.amount.set(amount);
         this.category.set(category);
         this.date.set(date);

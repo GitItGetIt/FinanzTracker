@@ -2,6 +2,7 @@ package de.fintracker.controller;
 
 import de.fintracker.model.Income;
 import de.fintracker.service.IncomeService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,7 +49,7 @@ public class IncomeController implements Navigatable {
     private TableColumn<Income, String> categoryColumn;
 
     @FXML
-    private TableColumn<Income, LocalDate> dateColumn;
+    private TableColumn<Income, String> dateColumn;
 
     @FXML
     private TableColumn<Income, String> noteColumn;
@@ -67,7 +68,8 @@ public class IncomeController implements Navigatable {
         idColumn.setCellValueFactory( cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
         categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
-        dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());
+        dateColumn.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getDate().toString()));
         noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
 
         incomeTable.setItems(incomeList);

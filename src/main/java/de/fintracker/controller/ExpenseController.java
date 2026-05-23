@@ -4,6 +4,7 @@ import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -50,7 +51,7 @@ public class ExpenseController implements Navigatable {
     private TableColumn<Expense, String> categoryColumn;
 
     @FXML
-    private TableColumn<Expense, LocalDate> dateColumn;
+    private TableColumn<Expense, String> dateColumn;
 
     @FXML
     private TableColumn<Expense, String> noteColumn;
@@ -68,7 +69,8 @@ public class ExpenseController implements Navigatable {
         idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
         categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
-        dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());
+        dateColumn.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getDate().toString()));
         noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
 
         expenseTable.setItems(expenseList);

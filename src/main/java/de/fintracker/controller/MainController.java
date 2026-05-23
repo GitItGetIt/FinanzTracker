@@ -14,16 +14,14 @@ public class MainController implements Navigatable {
         this.stage = stage;
     }
 
-    private void switchScene(String fxml) {
+    private void switchScene(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/" + fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/" + fxmlPath));
             Scene scene = new Scene(loader.load());
             stage.setScene(scene);
 
-            Object controller = loader.getController();
-            if (controller instanceof Navigatable nav) {
-                nav.setStage(stage);
-            }
+            Navigatable controller = loader.getController();
+            controller.setStage(stage);
 
         } catch (Exception e) {
             e.printStackTrace();
