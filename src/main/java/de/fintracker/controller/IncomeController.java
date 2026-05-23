@@ -1,6 +1,7 @@
 package de.fintracker.controller;
 
 import de.fintracker.model.Income;
+import de.fintracker.service.IncomeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,9 +24,6 @@ public class IncomeController implements Navigatable {
     }
 
     @FXML
-    public TableColumn<Income, Number> idColumn;
-
-    @FXML
     private TextField amountField;
 
     @FXML
@@ -39,6 +37,9 @@ public class IncomeController implements Navigatable {
 
     @FXML
     private TableView<Income> incomeTable;
+
+    @FXML
+    private TableColumn<Income, Number> idColumn;
 
     @FXML
     private TableColumn<Income, Double> amountColumn;
@@ -71,7 +72,10 @@ public class IncomeController implements Navigatable {
             String note = noteArea.getText();
 
             Income income = new Income(amount, category, date, note);
-            incomeList.add(income);
+
+            IncomeService.insertIncome(income);
+
+            loadIncomeList();
 
             clearFields();
 
@@ -95,9 +99,38 @@ public class IncomeController implements Navigatable {
     }
 
     private void loadIncomeList() {
-        // später: DB laden
-        // jetzt: leer lassen
+        incomeList.setAll(IncomeService.getAllIncome());
     }
+
+    @FXML
+    private void deleteIncome() {
+        Income selected = incomeTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("Bitte einen Eintrag aus.");
+            return;
+        };
+
+        IncomeService.deleteIncome(selected.getId());
+        loadIncomeList();
+    }
+
+    @FXML
+    private void updateIncome() {
+        Income selected = incomeTable.getSelectionModel().getSelectedItem();
+        if (selected == null) {
+            showError("Bitte wähle einen Eintrag aus.");
+            return;
+        }
+
+        selected.setAmount(Double.parseDouble(amountField.getText()));
+        selected.setCategory(categoryBox.getValue());
+        selected.setDate(datePicker.getValue());
+        selected.setNote(noteArea.getText());
+
+        IncomeService.updateIncome(selected, selected.getId());
+        loadIncomeList();
+    }
+
 
     private void clearFields() {
         amountField.clear();

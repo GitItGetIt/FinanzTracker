@@ -2,6 +2,8 @@ package de.fintracker.controller;
 
 import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
+import de.fintracker.service.ExpenseService;
+import de.fintracker.service.IncomeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -24,9 +26,6 @@ public class ExpenseController implements Navigatable {
     }
 
     @FXML
-    public TableColumn<Income, Number> idColumn;
-
-    @FXML
     private TextField amountField;
 
     @FXML
@@ -40,6 +39,9 @@ public class ExpenseController implements Navigatable {
 
     @FXML
     private TableView<Expense> expenseTable;
+
+    @FXML
+    private TableColumn<Expense, Number> idColumn;
 
     @FXML
     private TableColumn<Expense, Double> amountColumn;
@@ -85,7 +87,10 @@ public class ExpenseController implements Navigatable {
             String note = noteArea.getText();
 
             Expense expense = new Expense(amount, category, date, note);
-            expenseList.add(expense);
+
+            ExpenseService.insertExpense(expense);
+
+            loadExpenseList();
 
             clearFields();
 
@@ -95,8 +100,35 @@ public class ExpenseController implements Navigatable {
     }
 
     private void loadExpenseList() {
-        // später: DB laden
-        // jetzt: leer lassen
+        expenseList.setAll(ExpenseService.getAllExpense());
+    }
+
+    private void deleteExpense() {
+        Expense selected = expenseTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            showError("Bitte wähle einen Eintrag aus.");
+            return;
+        }
+
+        ExpenseService.deleteExpense(selected.getId());
+        loadExpenseList();
+    }
+
+    private void updateExpense() {
+        Expense selected = expenseTable.getSelectionModel().getSelectedItem();
+        if (selected == null){
+            showError("Bitte wähle einen Eintag aus");
+            return;
+        }
+
+        selected.setAmount(Double.parseDouble(amountField.getText()));
+        selected.setCategory(categoryBox.getValue());
+        selected.setDate(datePicker.getValue());
+        selected.setNote(noteArea.getText());
+
+        ExpenseService.updateExpense(selected, selected.getId());
+        loadExpenseList();
     }
 
     private void clearFields() {

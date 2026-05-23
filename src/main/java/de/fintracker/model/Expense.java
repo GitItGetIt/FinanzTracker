@@ -31,7 +31,7 @@ public class Expense {
     public LocalDate getDate() { return date.get(); }
     public String getNote() { return note.get(); }
 
-    public IntegerProperty idproperty() { return id; }
+    public IntegerProperty idProperty() { return id; }
     public DoubleProperty amountProperty() { return amount; }
     public StringProperty categoryProperty() { return category; }
     public ObjectProperty<LocalDate> dateProperty() { return date; }

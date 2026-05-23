@@ -42,8 +42,11 @@
 
     <HBox spacing="10">
         <Button text="Speichern" onAction="#saveExpense"/>
+        <Button text="Aktualisieren" onAction="#updateExpense"/>
+        <Button text="Löschen" onAction="#deleteExpense"/>
         <Button text="Zurück" onAction="#goToMain"/>
     </HBox>
+
 
     <TableView fx:id="expenseTable" prefHeight="250">
         <columns>
