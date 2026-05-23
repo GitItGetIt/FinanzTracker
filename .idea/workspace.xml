@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="23.5. 10:05 h mein Problem: muss ich im IncomeController hier auch meths f update und delete machen usw - nochmal genau überlegen und schauen">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes" comment="23.5. 17:20 komplettiert... aber s.meine Notizen v. 23.5. 10:16 Uhr - Nochmal auseinandergefriemelt was in UI-model-ctrlr-servs warum/wie geht">
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/model/Expense.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/model/Expense.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/income.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/income.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779523921491</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="23.5. 17:20 komplettiert... aber s.meine Notizen v. 23.5. 10:16 Uhr - Nochmal auseinandergefriemelt was in UI-model-ctrlr-servs warum/wie geht">
+      <option name="closed" value="true" />
+      <created>1779549839093</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1779549839093</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -209,7 +213,8 @@
     <MESSAGE value="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen" />
     <MESSAGE value="deletemeth erstellt" />
     <MESSAGE value="23.5. 10:05 h mein Problem: muss ich im IncomeController hier auch meths f update und delete machen usw - nochmal genau überlegen und schauen" />
-    <option name="LAST_COMMIT_MESSAGE" value="23.5. 10:05 h mein Problem: muss ich im IncomeController hier auch meths f update und delete machen usw - nochmal genau überlegen und schauen" />
+    <MESSAGE value="23.5. 17:20 komplettiert... aber s.meine Notizen v. 23.5. 10:16 Uhr - Nochmal auseinandergefriemelt was in UI-model-ctrlr-servs warum/wie geht" />
+    <option name="LAST_COMMIT_MESSAGE" value="23.5. 17:20 komplettiert... aber s.meine Notizen v. 23.5. 10:16 Uhr - Nochmal auseinandergefriemelt was in UI-model-ctrlr-servs warum/wie geht" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

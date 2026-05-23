@@ -103,6 +103,7 @@ public class ExpenseController implements Navigatable {
         expenseList.setAll(ExpenseService.getAllExpense());
     }
 
+    @FXML
     private void deleteExpense() {
         Expense selected = expenseTable.getSelectionModel().getSelectedItem();
 
@@ -115,6 +116,7 @@ public class ExpenseController implements Navigatable {
         loadExpenseList();
     }
 
+    @FXML
     private void updateExpense() {
         Expense selected = expenseTable.getSelectionModel().getSelectedItem();
         if (selected == null){

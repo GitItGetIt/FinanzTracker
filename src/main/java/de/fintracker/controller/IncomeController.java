@@ -63,6 +63,20 @@ public class IncomeController implements Navigatable {
         loadCategories();
     }
 
+    private void setupTable() {
+        idColumn.setCellValueFactory( cell -> cell.getValue().idProperty());
+        amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
+        categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
+        dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());
+        noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
+
+        incomeTable.setItems(incomeList);
+    }
+
+    private void loadCategories() {
+        categoryBox.getItems().addAll("Gehalt", "Bonus", "Geschenk", "Sonstiges");
+    }
+
     @FXML
     private void saveIncome() {
         try {
@@ -82,20 +96,6 @@ public class IncomeController implements Navigatable {
         } catch (Exception e) {
             showError("Bitte überprüfe deine Eingaben.");
         }
-    }
-
-    private void setupTable() {
-        idColumn.setCellValueFactory( cell -> cell.getValue().idProperty());
-        amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
-        categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
-        dateColumn.setCellValueFactory(cell -> cell.getValue().dateProperty());
-        noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
-
-        incomeTable.setItems(incomeList);
-    }
-
-    private void loadCategories() {
-        categoryBox.getItems().addAll("Gehalt", "Bonus", "Geschenk", "Sonstiges");
     }
 
     private void loadIncomeList() {
