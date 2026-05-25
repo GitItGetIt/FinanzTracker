@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ExpenseController implements Navigatable {
 
@@ -56,6 +58,12 @@ public class ExpenseController implements Navigatable {
     @FXML
     private TableColumn<Expense, String> noteColumn;
 
+    @FXML
+    private Pagination pagination;
+
+    private static final int ROWS_PER_PAGE = 20;
+
+
     private final ObservableList<Expense> expenseList = FXCollections.observableArrayList();
 
     @FXML
@@ -63,6 +71,13 @@ public class ExpenseController implements Navigatable {
         setupTable();
         loadExpenseList();
         loadCategories();
+
+        int total = IncomeService.countIncome();
+        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+
+        pagination.setPageCount(pageCount);
+
+        pagination.setPageFactory(this::createPage);
 
         expenseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -72,6 +87,17 @@ public class ExpenseController implements Navigatable {
                 noteArea.setText(newVal.getNote());
             }
         });
+    }
+
+    private Node createPage(int pageIndex) {
+        int offset = pageIndex * ROWS_PER_PAGE;
+
+        List<Expense> pageData = ExpenseService.getExpensePage(offset, ROWS_PER_PAGE);
+
+        ObservableList<Expense> data = FXCollections.observableArrayList(pageData);
+        expenseTable.setItems(data);
+
+        return expenseTable;
     }
 
     private void setupTable() {

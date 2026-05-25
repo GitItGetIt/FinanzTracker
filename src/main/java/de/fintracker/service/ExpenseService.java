@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExpenseService {
 
@@ -93,5 +95,50 @@ public class ExpenseService {
         }
     }
 
+    public static List<Expense>getExpensePage(int offset, int limit) {
+        List<Expense> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM expense ORDER BY date DESC LIMIT ? OFFSET ?";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, limit);
+            stmt.setInt(2, offset);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Expense(
+                        rs.getInt("id"),
+                        rs.getDouble("amount"),
+                        rs.getString("category"),
+                        LocalDate.parse(rs.getString("date")),
+                        rs.getString("note")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
+    public static int countExpense() {
+        String sql = "SELECT COUNT(*) FROM expense";
+
+        try (Connection conn = DBConnector.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            return rs.getInt(1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return 0;
+    }
 
 }

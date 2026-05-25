@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class IncomeController implements Navigatable {
 
@@ -54,6 +56,11 @@ public class IncomeController implements Navigatable {
     @FXML
     private TableColumn<Income, String> noteColumn;
 
+    @FXML
+    private Pagination pagination;
+
+    private static final int ROWS_PER_PAGE = 20;
+
 
     private ObservableList<Income> incomeList = FXCollections.observableArrayList();
 
@@ -63,6 +70,13 @@ public class IncomeController implements Navigatable {
         loadIncomeList();
         loadCategories();
 
+        int total = IncomeService.countIncome();
+        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+
+        pagination.setPageCount(pageCount);
+
+        pagination.setPageFactory(this::createPage);
+
         incomeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 amountField.setText(String.valueOf(newVal.getAmount()));
@@ -71,6 +85,17 @@ public class IncomeController implements Navigatable {
                 noteArea.setText(newVal.getNote());
             }
         });
+    }
+
+    private Node createPage(int pageIndex) {
+        int offset = pageIndex * ROWS_PER_PAGE;
+
+        List<Income> pageData = IncomeService.getIncomePage(offset, ROWS_PER_PAGE);
+
+        ObservableList<Income> data = FXCollections.observableArrayList(pageData);
+        incomeTable.setItems(data);
+
+        return incomeTable;
     }
 
     private void setupTable() {
@@ -142,7 +167,6 @@ public class IncomeController implements Navigatable {
         loadIncomeList();
     }
 
-
     private void clearFields() {
         amountField.clear();
         categoryBox.setValue(null);
@@ -159,7 +183,6 @@ public class IncomeController implements Navigatable {
 
     @FXML
     private void goToMain() {
-        // später Navigation einbauen
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
             Scene scene = new Scene(loader.load());

@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="update geht jetzt auch">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/income.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/income.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -230,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779694822473</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="update geht jetzt auch">
+      <option name="closed" value="true" />
+      <created>1779699503035</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1779699503035</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -259,7 +271,8 @@
     <MESSAGE value="23.5. 20:57 ich kann zwischen den tabellen korrekt navigieren... hatte ein Verlinkungsfehler, verschreiber... viel Zeit weggenommen" />
     <MESSAGE value="24.5. 10:25 - nur den gestrig erreichten stand anhand my 7-t plan. s my notizen: 10:11 h - kann hin und herklicken..." />
     <MESSAGE value="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht" />
-    <option name="LAST_COMMIT_MESSAGE" value="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht" />
+    <MESSAGE value="update geht jetzt auch" />
+    <option name="LAST_COMMIT_MESSAGE" value="update geht jetzt auch" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -57,5 +57,6 @@
             <TableColumn fx:id="noteColumn" text="Notiz" prefWidth="200"/>
         </columns>
     </TableView>
+    <Pagination fx:id="pagination" prefWidth="600" />
 
 </VBox>
