@@ -63,6 +63,15 @@ public class ExpenseController implements Navigatable {
         setupTable();
         loadExpenseList();
         loadCategories();
+
+        expenseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                amountField.setText(String.valueOf(newVal.getAmount()));
+                categoryBox.setValue(newVal.getCategory());
+                datePicker.setValue(newVal.getDate());
+                noteArea.setText(newVal.getNote());
+            }
+        });
     }
 
     private void setupTable() {

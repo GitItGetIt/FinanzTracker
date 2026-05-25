@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="24.5. 10:25 - nur den gestrig erreichten stand anhand my 7-t plan. s my notizen: 10:11 h - kann hin und herklicken...">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +222,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779611396063</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht">
+      <option name="closed" value="true" />
+      <created>1779694822473</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1779694822473</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,7 +258,8 @@
     <MESSAGE value="23.5. 17:40&#10;nun,built, müsste gehen...&#10;war kurz verirrt und hatte mich gefragt, warum &#10;private void loadExpenseList() &#10;{ &#10;expenseList.setAll(ExpenseService.getAllExpense()); &#10;} keine @FXML-Annotation hat - dabei klar warum nicht..." />
     <MESSAGE value="23.5. 20:57 ich kann zwischen den tabellen korrekt navigieren... hatte ein Verlinkungsfehler, verschreiber... viel Zeit weggenommen" />
     <MESSAGE value="24.5. 10:25 - nur den gestrig erreichten stand anhand my 7-t plan. s my notizen: 10:11 h - kann hin und herklicken..." />
-    <option name="LAST_COMMIT_MESSAGE" value="24.5. 10:25 - nur den gestrig erreichten stand anhand my 7-t plan. s my notizen: 10:11 h - kann hin und herklicken..." />
+    <MESSAGE value="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht" />
+    <option name="LAST_COMMIT_MESSAGE" value="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

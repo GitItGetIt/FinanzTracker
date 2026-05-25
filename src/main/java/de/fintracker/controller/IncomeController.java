@@ -62,6 +62,15 @@ public class IncomeController implements Navigatable {
         setupTable();
         loadIncomeList();
         loadCategories();
+
+        incomeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                amountField.setText(String.valueOf(newVal.getAmount()));
+                categoryBox.setValue(newVal.getCategory());
+                datePicker.setValue(newVal.getDate());
+                noteArea.setText(newVal.getNote());
+            }
+        });
     }
 
     private void setupTable() {
