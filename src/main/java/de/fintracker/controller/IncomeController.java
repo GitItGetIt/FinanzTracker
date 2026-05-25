@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -59,7 +60,7 @@ public class IncomeController implements Navigatable {
     @FXML
     private Pagination pagination;
 
-    private static final int ROWS_PER_PAGE = 20;
+    private static final int ROWS_PER_PAGE = 5;
 
 
     private ObservableList<Income> incomeList = FXCollections.observableArrayList();
@@ -67,12 +68,10 @@ public class IncomeController implements Navigatable {
     @FXML
     public void initialize() {
         setupTable();
-        loadIncomeList();
         loadCategories();
 
         int total = IncomeService.countIncome();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
-
         pagination.setPageCount(pageCount);
 
         pagination.setPageFactory(this::createPage);
@@ -95,7 +94,7 @@ public class IncomeController implements Navigatable {
         ObservableList<Income> data = FXCollections.observableArrayList(pageData);
         incomeTable.setItems(data);
 
-        return incomeTable;
+        return new VBox(incomeTable);
     }
 
     private void setupTable() {
@@ -105,8 +104,6 @@ public class IncomeController implements Navigatable {
         dateColumn.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getDate().toString()));
         noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
-
-        incomeTable.setItems(incomeList);
     }
 
     private void loadCategories() {
@@ -122,15 +119,21 @@ public class IncomeController implements Navigatable {
             String note = noteArea.getText();
 
             Income income = new Income(amount, category, date, note);
-
             IncomeService.insertIncome(income);
 
-            loadIncomeList();
+            // Pagintn aktualisiern
+            int total = IncomeService.countIncome();
+            int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+            pagination.setPageCount(pageCount);
+
+            int currentPage = pagination.getCurrentPageIndex();
+            pagination.setPageFactory(this::createPage);
+            pagination.setCurrentPageIndex(currentPage);
 
             clearFields();
 
         } catch (Exception e) {
-            showError("Bitte überprüfe deine Eingaben.");
+            showError("Bitte überprüfe deine Eingaben im Imcome.");
         }
     }
 
@@ -142,19 +145,26 @@ public class IncomeController implements Navigatable {
     private void deleteIncome() {
         Income selected = incomeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showError("Bitte einen Eintrag aus.");
+            showError("Bitte einen Eintrag aus von Incometbl.");
             return;
-        };
+        }
 
         IncomeService.deleteIncome(selected.getId());
-        loadIncomeList();
+
+        int total = IncomeService.countIncome();
+        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+
+        int currentPage = pagination.getCurrentPageIndex();
+        pagination.setPageFactory(this::createPage);
+        pagination.setCurrentPageIndex(currentPage);
     }
 
     @FXML
     private void updateIncome() {
         Income selected = incomeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showError("Bitte wähle einen Eintrag aus.");
+            showError("Bitte wähle einen Eintrag aus Income.....");
             return;
         }
 
@@ -164,7 +174,10 @@ public class IncomeController implements Navigatable {
         selected.setNote(noteArea.getText());
 
         IncomeService.updateIncome(selected, selected.getId());
-        loadIncomeList();
+
+        int currentPage = pagination.getCurrentPageIndex();
+        pagination.setPageFactory(this::createPage);
+        pagination.setCurrentPageIndex(currentPage);
     }
 
     private void clearFields() {
