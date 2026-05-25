@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Objects;
 
 public class Main extends Application {
     @Override
@@ -18,6 +19,12 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
         Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(
+                Objects.requireNonNull(
+                        getClass().getResource("/application.css")
+                ).toExternalForm());
+
+
         stage.setScene(scene);
         stage.setTitle("Finanztracker");
         stage.show();

@@ -40,6 +40,9 @@ public class IncomeController implements Navigatable {
     private TextArea noteArea;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private TableView<Income> incomeTable;
 
     @FXML
@@ -69,6 +72,18 @@ public class IncomeController implements Navigatable {
     public void initialize() {
         setupTable();
         loadCategories();
+
+        // Sortierung aktivieren
+        idColumn.setSortable(true);
+        amountColumn.setSortable(true);
+        categoryColumn.setSortable(true);
+        dateColumn.setSortable(true);
+        noteColumn.setSortable(true);
+
+        // Optional: Standard-Sortierung (z. B. nach Datum)
+        // incomeTable.getSortOrder().add(dateColumn);
+
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
 
         int total = IncomeService.countIncome();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
@@ -107,7 +122,7 @@ public class IncomeController implements Navigatable {
     }
 
     private void loadCategories() {
-        categoryBox.getItems().addAll("Gehalt", "Bonus", "Geschenk", "Sonstiges");
+        categoryBox.getItems().addAll("Bonus", "Gehalt", "Geschenk", "Sonstiges");
     }
 
     @FXML
@@ -180,6 +195,29 @@ public class IncomeController implements Navigatable {
         pagination.setCurrentPageIndex(currentPage);
     }
 
+    private void applyFilter(String filter) {
+        if (filter == null || filter.isEmpty()) {
+            pagination.setPageFactory(this::createPage);
+            return;
+        }
+
+        String f = filter.toLowerCase();
+
+        List<Income> all = IncomeService.getAllIncome();
+        List<Income> filtered = all.stream()
+                .filter(i ->
+                        String.valueOf(i.getId()).contains(f) ||
+                                String.valueOf(i.getAmount()).contains(f) ||
+                                i.getCategory().toLowerCase().contains(f) ||
+                                i.getDate().toString().contains(f) ||
+                                i.getNote().toLowerCase().contains(f)
+                )
+                .toList();
+
+        incomeTable.setItems(FXCollections.observableArrayList(filtered));
+    }
+
+
     private void clearFields() {
         amountField.clear();
         categoryBox.setValue(null);
@@ -199,6 +237,8 @@ public class IncomeController implements Navigatable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+
             stage.setScene(scene);
 
             MainController controller = loader.getController();

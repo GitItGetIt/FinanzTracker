@@ -42,6 +42,9 @@ public class ExpenseController implements Navigatable {
     private TextArea noteArea;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
     private TableView<Expense> expenseTable;
 
     @FXML
@@ -72,11 +75,24 @@ public class ExpenseController implements Navigatable {
         setupTable();
         loadCategories();
 
+        // Sortierung aktivieren
+        idColumn.setSortable(true);
+        amountColumn.setSortable(true);
+        categoryColumn.setSortable(true);
+        dateColumn.setSortable(true);
+        noteColumn.setSortable(true);
+
+        // Optional: Standard-Sortierung (z. B. nach Datum)
+        // incomeTable.getSortOrder().add(dateColumn);
+
         int total = IncomeService.countIncome();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
         pagination.setPageCount(pageCount);
 
         pagination.setPageFactory(this::createPage);
+
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
+
 
         expenseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -109,7 +125,7 @@ public class ExpenseController implements Navigatable {
     }
 
     private void loadCategories() {
-        categoryBox.getItems().addAll("Miete", "Essen", "Transport", "Freizeit", "Sonstiges");
+        categoryBox.getItems().addAll("Essen", "Freizeit", "Miete", "Sonstiges", "Transport");
     }
 
     @FXML
@@ -182,6 +198,29 @@ public class ExpenseController implements Navigatable {
         pagination.setCurrentPageIndex(currentPage);
     }
 
+    private void applyFilter(String filter) {
+        if (filter == null || filter.isEmpty()) {
+            pagination.setPageFactory(this::createPage);
+            return;
+        }
+
+        String f = filter.toLowerCase();
+
+        List<Expense> all = ExpenseService.getAllExpense();
+        List<Expense> filtered = all.stream()
+                .filter(i ->
+                        String.valueOf(i.getId()).contains(f) ||
+                                String.valueOf(i.getAmount()).contains(f) ||
+                                i.getCategory().toLowerCase().contains(f) ||
+                                i.getDate().toString().contains(f) ||
+                                i.getNote().toLowerCase().contains(f)
+                )
+                .toList();
+
+        expenseTable.setItems(FXCollections.observableArrayList(filtered));
+    }
+
+
     private void clearFields() {
         amountField.clear();
         categoryBox.setValue(null);
@@ -201,6 +240,7 @@ public class ExpenseController implements Navigatable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
             stage.setScene(scene);
 
             MainController controller = loader.getController();

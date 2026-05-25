@@ -16,7 +16,7 @@
     </padding>
 
     <!-- Überschrift -->
-    <Label text="Ausgaben" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+    <Label text="Ausgaben" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" />
 
     <!-- Eingabebereich -->
     <GridPane hgap="10" vgap="10">
@@ -41,12 +41,15 @@
     </GridPane>
 
     <HBox spacing="10">
-        <Button text="Speichern" onAction="#saveExpense"/>
-        <Button text="Aktualisieren" onAction="#updateExpense"/>
-        <Button text="Löschen" onAction="#deleteExpense"/>
-        <Button text="Zurück" onAction="#goToMain"/>
+        <Button text="Speichern" onAction="#saveExpense" prefWidth="120" styleClass="action-button"/>
+        <Button text="Aktualisieren" onAction="#updateExpense" prefWidth="120" styleClass="action-button"/>
+        <Button text="Löschen" onAction="#deleteExpense" prefWidth="120" styleClass="action-button"/>
+        <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
     </HBox>
 
+    <TextField fx:id="searchField"
+               promptText="Suchen..."
+               style="-fx-background-radius: 6; -fx-padding: 6;" />
 
     <TableView fx:id="expenseTable" prefHeight="250">
         <columns>

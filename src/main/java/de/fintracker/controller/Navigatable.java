@@ -2,6 +2,6 @@ package de.fintracker.controller;
 
 import javafx.stage.Stage;
 
-public interface Navigatable {
+interface Navigatable {
     void setStage(Stage stage);
 }

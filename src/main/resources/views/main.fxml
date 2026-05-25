@@ -18,10 +18,10 @@
 
     <Button text="Income verwalten"
             onAction="#openIncome"
-            prefWidth="200"/>
+            prefWidth="200" styleClass="action-button"/>
 
     <Button text="Expenses verwalten"
-            onAction="#openExpense"
+            onAction="#openExpense" styleClass="action-button"
             prefWidth="200"/>
 
 </VBox>

@@ -1,0 +1,37 @@
+.table-row-cell {
+    -fx-cell-size: 28px; /* größere Zeilen */
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #e6f2ff; /* leichtes Blau beim Hover */
+}
+
+/* Grundstil für alle Buttons */
+.action-button {
+    -fx-font-weight: bold;                 /* Text fett */
+    -fx-background-color:
+        linear-gradient(#f2f2f2, #d6d6d6), /* leichter Glanz */
+        linear-gradient(#ffffff, #e6e6e6);
+    -fx-background-radius: 6;
+    -fx-background-insets: 0, 1;
+    -fx-padding: 8 15 8 15;
+    -fx-text-fill: #333;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 6, 0.2, 0, 2); /* 3D-Schatten */
+}
+
+/* Hover-Effekt: leicht grünlich */
+.action-button:hover {
+    -fx-background-color:
+        linear-gradient(#eaffea, #c8f7c5),
+        linear-gradient(#eaffea, #d6ffd3);
+    -fx-effect: dropshadow(gaussian, rgba(0,150,0,0.4), 10, 0.3, 0, 3);
+}
+
+/* Klick-Effekt */
+.action-button:pressed {
+    -fx-background-color:
+        linear-gradient(#c8f7c5, #a6e3a3),
+        linear-gradient(#c8f7c5, #b8f0b2);
+    -fx-effect: dropshadow(gaussian, rgba(0,100,0,0.4), 6, 0.2, 0, 1);
+    -fx-translate-y: 1; /* leichter Druckeffekt */
+}

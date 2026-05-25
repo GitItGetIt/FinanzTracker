@@ -18,6 +18,8 @@ public class MainController implements Navigatable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/" + fxmlPath));
             Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+
             stage.setScene(scene);
 
             Navigatable controller = loader.getController();
