@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -61,7 +62,7 @@ public class ExpenseController implements Navigatable {
     @FXML
     private Pagination pagination;
 
-    private static final int ROWS_PER_PAGE = 20;
+    private static final int ROWS_PER_PAGE = 5;
 
 
     private final ObservableList<Expense> expenseList = FXCollections.observableArrayList();
@@ -69,12 +70,10 @@ public class ExpenseController implements Navigatable {
     @FXML
     public void initialize() {
         setupTable();
-        loadExpenseList();
         loadCategories();
 
         int total = IncomeService.countIncome();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
-
         pagination.setPageCount(pageCount);
 
         pagination.setPageFactory(this::createPage);
@@ -97,7 +96,7 @@ public class ExpenseController implements Navigatable {
         ObservableList<Expense> data = FXCollections.observableArrayList(pageData);
         expenseTable.setItems(data);
 
-        return expenseTable;
+        return new VBox(expenseTable);
     }
 
     private void setupTable() {
@@ -107,8 +106,6 @@ public class ExpenseController implements Navigatable {
         dateColumn.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getDate().toString()));
         noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
-
-        expenseTable.setItems(expenseList);
     }
 
     private void loadCategories() {
@@ -124,15 +121,21 @@ public class ExpenseController implements Navigatable {
             String note = noteArea.getText();
 
             Expense expense = new Expense(amount, category, date, note);
-
             ExpenseService.insertExpense(expense);
 
-            loadExpenseList();
+            //pagi aktualisiern
+            int total = IncomeService.countIncome();
+            int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+            pagination.setPageCount(pageCount);
+
+            int currentPage = pagination.getCurrentPageIndex();
+            pagination.setPageFactory(this::createPage);
+            pagination.setCurrentPageIndex(currentPage);
 
             clearFields();
 
         } catch (Exception e) {
-            showError("Bitte überprüfe deine Eingaben.");
+            showError("Bitte überprüfe deine Eingaben beim Expense.");
         }
     }
 
@@ -143,14 +146,20 @@ public class ExpenseController implements Navigatable {
     @FXML
     private void deleteExpense() {
         Expense selected = expenseTable.getSelectionModel().getSelectedItem();
-
         if (selected == null) {
             showError("Bitte wähle einen Eintrag aus.");
             return;
         }
 
         ExpenseService.deleteExpense(selected.getId());
-        loadExpenseList();
+
+        int total = ExpenseService.countExpense();
+        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
+        pagination.setPageCount(pageCount);
+
+        int currentPage = pagination.getCurrentPageIndex();
+        pagination.setPageFactory(this::createPage);
+        pagination.setCurrentPageIndex(currentPage);
     }
 
     @FXML
@@ -167,7 +176,10 @@ public class ExpenseController implements Navigatable {
         selected.setNote(noteArea.getText());
 
         ExpenseService.updateExpense(selected, selected.getId());
-        loadExpenseList();
+
+        int currentPage = pagination.getCurrentPageIndex();
+        pagination.setPageFactory(this::createPage);
+        pagination.setCurrentPageIndex(currentPage);
     }
 
     private void clearFields() {
