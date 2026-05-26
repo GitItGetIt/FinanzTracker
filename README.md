@@ -3,7 +3,7 @@
 Ein moderner Desktop‑Finanzmanager zur Verwaltung von **Einnahmen** und **Ausgaben**.  
 Erstellt mit **Java 17**, **JavaFX 21**, **SQLite** und einer klaren **MVC‑Struktur**.
 
-Die App bietet eine intuitive Oberfläche, modernes UI‑Styling, Pagination, Sortierung und eine saubere Code‑Architektur – ideal als Lernprojekt und Portfolio‑Referenz.
+Die App bietet eine intuitive Oberfläche, modernes UI‑Styling, Pagination, Sortierung und eine Clean Code‑Architektur – als Lernprojekt und Portfolio‑Referenz bzw. Codebeispiel.
 
 ---
 
@@ -60,7 +60,7 @@ src/main/java/de.fintracker
  ├── service        # Geschäftslogik
  └── util           # Hilfsklassen
 ```
-
+---
 
 ## ▶️ Starten
 
@@ -68,31 +68,35 @@ src/main/java/de.fintracker
 ```bash
 mvn clean install
 mvn javafx:run
-
-
+```
+### IntelliJ:
 Oder direkt in IntelliJ:
 Main.java starten
 
 JavaFX SDK muss korrekt eingebunden sein
 
-🗄️ Datenbank
+---
+
+### 🗄️ Datenbank
 Die App nutzt eine lokale SQLite‑Datenbank.
 Die Datei liegt unter:
 
-Code
+---
+
 src/main/resources/database/finanztracker.db
 Sie wird automatisch erstellt, falls sie nicht existiert.
-
+---
 🚀 Geplante Erweiterungen
 Filter nach Zeitraum / Kategorie
-
+---
 Diagramme (Einnahmen/Ausgaben‑Übersicht)
-
+---
 Export als CSV oder PDF
-
+---
 Dark Mode
-
+---
 🧾 Wichtige Punkte aus der Entwicklung
+---
 Klare MVC‑Struktur aufgebaut
 
 JavaFX‑UI mit CSS modernisiert
