@@ -86,6 +86,7 @@ Die Datei liegt unter:
 Sie wird automatisch erstellt, falls sie nicht existiert.
 
 ---
+
 ## 🚀 Geplante Erweiterungen
 
 Filter nach Zeitraum / Kategorie
@@ -96,7 +97,9 @@ Export als CSV oder PDF
 
 Dark Mode
 
-### 🧾 Wichtige Punkte aus der Entwicklung
+---
+
+## 🧾 Wichtige Punkte aus der Entwicklung
 
 Klare MVC‑Struktur aufgebaut
 
@@ -110,10 +113,15 @@ Saubere Navigation zwischen allen Screens
 
 Screenshots und README für GitHub erstellt
 
-## 👤 Autor
+---
+
+## 👩 Autorin
 Gülcan  
 Java & .NET Developer (Junior)
+
 Projekt für Portfolio & Bewerbungen
+
+---
 
 ## 📄 Lizenz
 Dieses Projekt ist frei nutzbar für Lern‑ und Demonstrationszwecke.
