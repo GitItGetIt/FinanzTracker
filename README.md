@@ -71,32 +71,33 @@ mvn javafx:run
 ```
 ### IntelliJ:
 Oder direkt in IntelliJ:
-Main.java starten
+```Main.java``` starten
 
-JavaFX SDK muss korrekt eingebunden sein
+```JavaFX SDK``` muss korrekt eingebunden sein
 
 ---
 
-### 🗄️ Datenbank
+## 🗄️ Datenbank
 Die App nutzt eine lokale SQLite‑Datenbank.
 Die Datei liegt unter:
 
----
+```src/main/resources/database/finanztracker.db```
 
-src/main/resources/database/finanztracker.db
 Sie wird automatisch erstellt, falls sie nicht existiert.
+
 ---
-🚀 Geplante Erweiterungen
+## 🚀 Geplante Erweiterungen
+
 Filter nach Zeitraum / Kategorie
----
+
 Diagramme (Einnahmen/Ausgaben‑Übersicht)
----
+
 Export als CSV oder PDF
----
+
 Dark Mode
----
-🧾 Wichtige Punkte aus der Entwicklung
----
+
+### 🧾 Wichtige Punkte aus der Entwicklung
+
 Klare MVC‑Struktur aufgebaut
 
 JavaFX‑UI mit CSS modernisiert
@@ -109,10 +110,10 @@ Saubere Navigation zwischen allen Screens
 
 Screenshots und README für GitHub erstellt
 
-👤 Autor
+## 👤 Autor
 Gülcan  
 Java & .NET Developer (Junior)
 Projekt für Portfolio & Bewerbungen
 
-📄 Lizenz
+## 📄 Lizenz
 Dieses Projekt ist frei nutzbar für Lern‑ und Demonstrationszwecke.
