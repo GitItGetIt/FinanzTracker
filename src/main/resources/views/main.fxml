@@ -4,24 +4,48 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.fintracker.controller.MainController"
-      spacing="20">
+<?import javafx.scene.Group?>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.fintracker.controller.MainController"
+            fitToWidth="true">
+        <content>
+            <Group>
+                    <VBox fx:id="root" spacing="20">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
 
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+                        <Label text="FinanzTracker" style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
 
-    <Label text="FinanzTracker"
-           style="-fx-font-size: 26px; -fx-font-weight: bold;"/>
+                        <GridPane hgap="20" vgap="15">
 
-    <Button text="Income verwalten"
-            onAction="#openIncome"
-            prefWidth="200" styleClass="action-button"/>
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="150"/>
+                                <ColumnConstraints halignment="LEFT" minWidth="200"/>
+                            </columnConstraints>
 
-    <Button text="Expenses verwalten"
-            onAction="#openExpense" styleClass="action-button"
-            prefWidth="200"/>
+                            <Label text="Einnahmen:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <Label fx:id="totalIncomeLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-</VBox>
+                            <Label text="Ausgaben:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <Label fx:id="totalExpenseLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="Saldo:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <Label fx:id="balanceLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                            <Label text="Anzahl Einträge:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                            <Label fx:id="entryCountLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        </GridPane>
+
+                        <Button text="Einnahmen verwalten"
+                                onAction="#openIncome"
+                                prefWidth="200" styleClass="action-button"/>
+
+                        <Button text="Ausgaben verwalten"
+                                onAction="#openExpense" styleClass="action-button"
+                                prefWidth="200"/>
+                    </VBox>
+            </Group>
+        </content>
+</ScrollPane>
