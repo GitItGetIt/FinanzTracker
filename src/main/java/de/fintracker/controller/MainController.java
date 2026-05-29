@@ -8,12 +8,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainController implements Navigatable {
 
     private Stage stage;
+
+    private double lastMouseX;
+    private double lastMouseY;
 
     @FXML
     private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
@@ -23,6 +27,10 @@ public class MainController implements Navigatable {
 
     @FXML
     private VBox root;
+
+    @FXML
+    private ScrollPane scrollPane;
+
 
     @Override
     public void setStage(Stage stage) {
@@ -45,7 +53,29 @@ public class MainController implements Navigatable {
         }
     }
 
+    private void enablePanning(ScrollPane scrollPane) {
 
+        scrollPane.setOnMousePressed(event -> {
+            if (event.isMiddleButtonDown()) {
+                lastMouseX = event.getSceneX();
+                lastMouseY = event.getSceneY();
+            }
+        });
+
+        scrollPane.setOnMouseDragged(event -> {
+            if (event.isMiddleButtonDown()) {
+
+                double deltaX = lastMouseX - event.getSceneX();
+                double deltaY = lastMouseY - event.getSceneY();
+
+                scrollPane.setHvalue(scrollPane.getHvalue() + deltaX / scrollPane.getContent().getBoundsInLocal().getWidth());
+                scrollPane.setVvalue(scrollPane.getVvalue() + deltaY / scrollPane.getContent().getBoundsInLocal().getHeight());
+
+                lastMouseX = event.getSceneX();
+                lastMouseY = event.getSceneY();
+            }
+        });
+    }
 
     @FXML
     private void openIncome() {
@@ -61,6 +91,7 @@ public class MainController implements Navigatable {
     public void initialize() {
         updateDashboard();
         enableZoom();
+        enablePanning(scrollPane);
     }
 
     private void enableZoom() {

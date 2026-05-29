@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="ZOOM-bar und main angepasst, aktualisiert">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/main.fxml" afterDir="false" />
@@ -303,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780043663316</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ZOOM-bar und main angepasst, aktualisiert">
+      <option name="closed" value="true" />
+      <created>1780052302615</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1780052302615</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -338,7 +346,8 @@
     <MESSAGE value="funzende version mit aufgehübschten dyn buttons" />
     <MESSAGE value="Add screenshots for README" />
     <MESSAGE value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
-    <option name="LAST_COMMIT_MESSAGE" value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
+    <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
+    <option name="LAST_COMMIT_MESSAGE" value="ZOOM-bar und main angepasst, aktualisiert" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

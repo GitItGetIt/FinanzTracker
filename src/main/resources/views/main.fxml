@@ -5,9 +5,12 @@
 <?import javafx.geometry.Insets?>
 
 <?import javafx.scene.Group?>
+
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.fintracker.controller.MainController"
+            fx:id="scrollPane"
+            pannable="true"
             fitToWidth="true">
         <content>
             <Group>
