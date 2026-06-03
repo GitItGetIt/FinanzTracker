@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="ZOOM-bar und main angepasst, aktualisiert">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/BaseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/util/UiZoomAndPanUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/Navigatable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/OverviewController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/income.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/income.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/overview.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -311,7 +320,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780052302615</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne">
+      <option name="closed" value="true" />
+      <created>1780056595283</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1780056595283</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -347,7 +364,8 @@
     <MESSAGE value="Add screenshots for README" />
     <MESSAGE value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
     <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="ZOOM-bar und main angepasst, aktualisiert" />
+    <MESSAGE value="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne" />
+    <option name="LAST_COMMIT_MESSAGE" value="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

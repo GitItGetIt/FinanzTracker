@@ -19,20 +19,15 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
         Scene scene = new Scene(loader.load());
-        scene.getStylesheets().add(
-                Objects.requireNonNull(
-                        getClass().getResource("/application.css")
-                ).toExternalForm());
-
-
         stage.setScene(scene);
         stage.setTitle("Finanztracker");
         stage.show();
 
         MainController controller = loader.getController();
         controller.setStage(stage);
-    }
 
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/application.css")).toExternalForm());
+    }
 
     public static void main (String[] args) {
         launch();

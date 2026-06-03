@@ -7,60 +7,66 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx"
-      xmlns:fx="http://javafx.com/fxml"
-      fx:controller="de.fintracker.controller.IncomeController"
-      spacing="15">
-    <padding>
-        <Insets top="20" right="20" bottom="20" left="20"/>
-    </padding>
+<?import javafx.scene.Group?>
 
-    <!-- Überschrift -->
-    <Label text="Einnahmen" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" />
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.fintracker.controller.IncomeController"
+            fx:id="scrollPane"
+            pannable="true"
+            fitToWidth="true">
+        <Group>
+            <VBox fx:id="root" spacing="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
 
-    <!-- Eingabebereich -->
-    <GridPane hgap="10" vgap="10">
-        <columnConstraints>
-            <ColumnConstraints halignment="RIGHT"  minWidth="120"/>
-            <ColumnConstraints hgrow="ALWAYS" />
-        </columnConstraints>
+                <!-- Überschrift -->
+                <Label text="Einnahmen" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" />
 
-        <children>
-        <Label text="Betrag:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="amountField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <!-- Eingabebereich -->
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT"  minWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
 
-        <Label text="Kategorie:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <ComboBox fx:id="categoryBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    <Label text="Betrag:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="amountField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <Label text="Datum:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-        <DatePicker fx:id="datePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    <Label text="Kategorie:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <ComboBox fx:id="categoryBox" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Notiz:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
-        <TextArea fx:id="noteArea" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-        </children>
-    </GridPane>
+                    <Label text="Datum:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="datePicker" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-    <HBox spacing="10">
-        <Button text="Speichern" onAction="#saveIncome" prefWidth="120" styleClass="action-button"/>
-        <Button text="Aktualisieren" onAction="#updateIncome" prefWidth="120" styleClass="action-button"/>
-        <Button text="Löschen" onAction="#deleteIncome" prefWidth="120" styleClass="action-button"/>
-        <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
-    </HBox>
+                    <Label text="Notiz:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
+                    <TextArea fx:id="noteArea" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                </GridPane>
 
-    <TextField fx:id="searchField"
-               promptText="Suchen..."
-               style="-fx-background-radius: 6; -fx-padding: 6;"  />
+                <HBox spacing="10">
+                    <Button text="Speichern" onAction="#saveIncome" prefWidth="120" styleClass="action-button"/>
+                    <Button text="Aktualisieren" onAction="#updateIncome" prefWidth="120" styleClass="action-button"/>
+                    <Button text="Löschen" onAction="#deleteIncome" prefWidth="120" styleClass="action-button"/>
+                    <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
+                </HBox>
 
-    <TableView fx:id="incomeTable" prefHeight="250">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
-            <TableColumn fx:id="amountColumn" text="Betrag" prefWidth="100"/>
-            <TableColumn fx:id="categoryColumn" text="Kategorie" prefWidth="150"/>
-            <TableColumn fx:id="dateColumn" text="Datum" prefWidth="120"/>
-            <TableColumn fx:id="noteColumn" text="Notiz" prefWidth="200"/>
-        </columns>
-    </TableView>
-    <Pagination fx:id="pagination" prefWidth="600" />
+                <TextField fx:id="searchField"
+                           promptText="Suchen..."
+                           style="-fx-background-radius: 6; -fx-padding: 6;"  />
 
-</VBox>
+                <TableView fx:id="incomeTable" prefHeight="250">
+                    <columns>
+                        <TableColumn fx:id="idColumn" text="ID" prefWidth="50" />
+                        <TableColumn fx:id="amountColumn" text="Betrag" prefWidth="100"/>
+                        <TableColumn fx:id="categoryColumn" text="Kategorie" prefWidth="150"/>
+                        <TableColumn fx:id="dateColumn" text="Datum" prefWidth="120"/>
+                        <TableColumn fx:id="noteColumn" text="Notiz" prefWidth="200"/>
+                    </columns>
+                </TableView>
+                <Pagination fx:id="pagination" prefWidth="600" />
+
+            </VBox>
+        </Group>
+</ScrollPane>
 

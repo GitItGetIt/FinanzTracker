@@ -4,6 +4,7 @@ import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
+import de.fintracker.util.UiZoomAndPanUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,14 +21,13 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ExpenseController implements Navigatable {
+public class ExpenseController extends BaseController {
 
-    private Stage stage;
+    @FXML
+    private VBox root;
 
-    @Override
-    public void setStage(Stage stage){
-        this.stage = stage;
-    }
+    @FXML
+    private ScrollPane scrollPane;
 
     @FXML
     private TextField amountField;
@@ -72,8 +72,14 @@ public class ExpenseController implements Navigatable {
 
     @FXML
     public void initialize() {
+
+        super.initialize();
+
         setupTable();
         loadCategories();
+
+//        UiZoomAndPanUtil.enableZoom(root);
+//        UiZoomAndPanUtil.enablePanning(scrollPane);
 
         // Sortierung aktivieren
         idColumn.setSortable(true);
@@ -82,17 +88,13 @@ public class ExpenseController implements Navigatable {
         dateColumn.setSortable(true);
         noteColumn.setSortable(true);
 
-        // Optional: Standard-Sortierung (z. B. nach Datum)
-        // incomeTable.getSortOrder().add(dateColumn);
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
 
         int total = IncomeService.countIncome();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
         pagination.setPageCount(pageCount);
 
         pagination.setPageFactory(this::createPage);
-
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
-
 
         expenseTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
@@ -112,7 +114,7 @@ public class ExpenseController implements Navigatable {
         ObservableList<Expense> data = FXCollections.observableArrayList(pageData);
         expenseTable.setItems(data);
 
-        return new VBox(expenseTable);
+        return expenseTable;
     }
 
     private void setupTable() {
@@ -237,17 +239,6 @@ public class ExpenseController implements Navigatable {
 
     @FXML
     private void goToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
-            stage.setScene(scene);
-
-            MainController controller = loader.getController();
-            controller.setStage(stage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        switchScene("/views/main.fxml");
     }
 }

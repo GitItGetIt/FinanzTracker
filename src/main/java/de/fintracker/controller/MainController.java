@@ -4,6 +4,7 @@ import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
+import de.fintracker.util.UiZoomAndPanUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,124 +13,62 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class MainController implements Navigatable {
-
-    private Stage stage;
+public class MainController extends BaseController {
 
     private double lastMouseX;
     private double lastMouseY;
-
-    @FXML
-    private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
 
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
 
     @FXML
-    private VBox root;
-
-    @FXML
-    private ScrollPane scrollPane;
-
+    private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
 
     @Override
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    private void switchScene(String fxmlPath) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/" + fxmlPath));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
-
-            stage.setScene(scene);
-
-            Navigatable controller = loader.getController();
-            controller.setStage(stage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void enablePanning(ScrollPane scrollPane) {
-
-        scrollPane.setOnMousePressed(event -> {
-            if (event.isMiddleButtonDown()) {
-                lastMouseX = event.getSceneX();
-                lastMouseY = event.getSceneY();
-            }
-        });
-
-        scrollPane.setOnMouseDragged(event -> {
-            if (event.isMiddleButtonDown()) {
-
-                double deltaX = lastMouseX - event.getSceneX();
-                double deltaY = lastMouseY - event.getSceneY();
-
-                scrollPane.setHvalue(scrollPane.getHvalue() + deltaX / scrollPane.getContent().getBoundsInLocal().getWidth());
-                scrollPane.setVvalue(scrollPane.getVvalue() + deltaY / scrollPane.getContent().getBoundsInLocal().getHeight());
-
-                lastMouseX = event.getSceneX();
-                lastMouseY = event.getSceneY();
-            }
-        });
+    protected void initialize() {
+        super.initialize();
+        updateDashboard();
     }
 
     @FXML
     private void openIncome() {
-        switchScene("income.fxml");
+        switchScene("/views/income.fxml");
     }
 
     @FXML
     private void openExpense() {
-        switchScene("expense.fxml");
+        switchScene("/views/expense.fxml");
     }
-
-    @FXML
-    public void initialize() {
-        updateDashboard();
-        enableZoom();
-        enablePanning(scrollPane);
-    }
-
-    private void enableZoom() {
-        root.setOnScroll(event -> {
-            if (event.isControlDown()) {
-                double zoomFactor = 1.05;
-
-                if (event.getDeltaY() < 0) {
-                    zoomFactor = 1 / zoomFactor;
-                }
-
-                root.setScaleX(root.getScaleX() * zoomFactor);
-                root.setScaleY(root.getScaleY() * zoomFactor);
-
-                root.layout();
-                event.consume();
-            }
-        });
-    }
-
 
     private void updateDashboard() {
+        // Einnahmen berechnen
         double totalIncome = incomeService.getAllIncome().stream()
                 .mapToDouble(Income::getAmount)
                 .sum();
 
+        // Ausgaben berechnen
         double totalExpense = expenseService.getAllExpense().stream()
                 .mapToDouble(Expense::getAmount)
                 .sum();
 
+        // Anzahl Einträge
         int entryCount = incomeService.getAllIncome().size()
                 + expenseService.getAllExpense().size();
 
+        // Saldo
         double balance = totalIncome - totalExpense;
 
+        // Labels setzen
         totalIncomeLabel.setText(String.format("%.2f €", totalIncome));
         totalExpenseLabel.setText(String.format("%.2f €", totalExpense));
         balanceLabel.setText(String.format("%.2f €", balance));
         entryCountLabel.setText(String.valueOf(entryCount));
+
+        // Saldo farblich hervorheben
+        if (balance < 0) {
+            balanceLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
+        } else {
+            balanceLabel.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
+        }
     }
 }
