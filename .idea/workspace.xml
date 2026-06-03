@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="3.6. 12:30 Die navi geht wieder - zurückbtn&#10;&#10;aber immer noch ein problem mit duplicte children - bei update (auch wenn er das update macht.. )">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war...">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
@@ -327,7 +327,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780483874056</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war...">
+      <option name="closed" value="true" />
+      <created>1780485361831</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1780485361831</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -365,7 +373,8 @@
     <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
     <MESSAGE value="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne" />
     <MESSAGE value="3.6. 12:30 Die navi geht wieder - zurückbtn&#10;&#10;aber immer noch ein problem mit duplicte children - bei update (auch wenn er das update macht.. )" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.6. 12:30 Die navi geht wieder - zurückbtn&#10;&#10;aber immer noch ein problem mit duplicte children - bei update (auch wenn er das update macht.. )" />
+    <MESSAGE value="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war..." />
+    <option name="LAST_COMMIT_MESSAGE" value="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war..." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

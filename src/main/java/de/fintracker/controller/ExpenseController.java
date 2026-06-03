@@ -90,7 +90,8 @@ public class ExpenseController extends BaseController {
 
         searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
 
-        int total = IncomeService.countIncome();
+        int total = ExpenseService.countExpense();
+
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
         pagination.setPageCount(pageCount);
 
@@ -141,12 +142,12 @@ public class ExpenseController extends BaseController {
             ExpenseService.insertExpense(expense);
 
             //pagi aktualisiern
-            int total = IncomeService.countIncome();
+            int total = ExpenseService.countExpense();
             int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
             pagination.setPageCount(pageCount);
 
             int currentPage = pagination.getCurrentPageIndex();
-            pagination.setPageFactory(this::createPage);
+            //pagination.setPageFactory(this::createPage);
             pagination.setCurrentPageIndex(currentPage);
 
             clearFields();
@@ -175,7 +176,7 @@ public class ExpenseController extends BaseController {
         pagination.setPageCount(pageCount);
 
         int currentPage = pagination.getCurrentPageIndex();
-        pagination.setPageFactory(this::createPage);
+        //pagination.setPageFactory(this::createPage);
         pagination.setCurrentPageIndex(currentPage);
     }
 
@@ -200,7 +201,7 @@ public class ExpenseController extends BaseController {
 
     private void applyFilter(String filter) {
         if (filter == null || filter.isEmpty()) {
-            pagination.setPageFactory(this::createPage);
+            //pagination.setPageFactory(this::createPage);
             return;
         }
 
