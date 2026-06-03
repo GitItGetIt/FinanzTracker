@@ -111,10 +111,9 @@ public class ExpenseController extends BaseController {
 
         List<Expense> pageData = ExpenseService.getExpensePage(offset, ROWS_PER_PAGE);
 
-        ObservableList<Expense> data = FXCollections.observableArrayList(pageData);
-        expenseTable.setItems(data);
+        expenseTable.setItems(FXCollections.observableArrayList(pageData));
 
-        return expenseTable;
+        return new Label("");
     }
 
     private void setupTable() {
@@ -196,7 +195,6 @@ public class ExpenseController extends BaseController {
         ExpenseService.updateExpense(selected, selected.getId());
 
         int currentPage = pagination.getCurrentPageIndex();
-        pagination.setPageFactory(this::createPage);
         pagination.setCurrentPageIndex(currentPage);
     }
 
