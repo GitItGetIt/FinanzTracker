@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,8 +14,6 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
     @FXML private TableView<Expense> expenseTable;
     @FXML private Pagination pagination;
-    @FXML private VBox root;
-    @FXML private ScrollPane scrollPane;
 
     @FXML private TableColumn<Expense, Number> idColumn;
     @FXML private TableColumn<Expense, Double> amountColumn;
@@ -30,12 +27,21 @@ public class ExpenseController extends AbstractTableController<Expense> {
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
 
+    @FXML
+    protected void initialize(){
+        //später sout wieder rausnehmen: will nur kurz überprüfen:
+        System.out.println("INIT OK: ExpenseController");
 
+        super.initialize();
+
+        setupTable();
+        setupPagination(pagination, expenseTable);
+        setupSelectionListener();
+        setupFilter();
+    }
 
     @Override
     protected void setupTable() {
-        this.table = expenseTable;
-        this.pagination = pagination;
 
         idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
@@ -73,7 +79,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
     protected void setupFilter() {
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal == null || newVal.isEmpty()) {
-                pagination.setPageFactory(this::createPage);
+                pagination.setPageFactory(pageIndex -> createPage(pageIndex, expenseTable));
                 return;
             }
 
@@ -89,7 +95,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
                     )
                     .toList();
 
-            table.setItems(FXCollections.observableArrayList(filtered));
+            expenseTable.setItems(FXCollections.observableArrayList(filtered));
         });
     }
 
@@ -104,8 +110,8 @@ public class ExpenseController extends AbstractTableController<Expense> {
             Expense expense = new Expense(amount, category, date, note);
             ExpenseService.insertExpense(expense);
 
-            updatePageCount();
-            refreshCurrentPage();
+            updatePageCount(pagination);
+            refreshCurrentPage(pagination);
             clearFields();
 
         } catch (Exception e) {
@@ -123,8 +129,8 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
         ExpenseService.deleteExpense(selected.getId());
 
-        updatePageCount();
-        refreshCurrentPage();
+        updatePageCount(pagination);
+        refreshCurrentPage(pagination);
     }
 
     @FXML
@@ -142,7 +148,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
         ExpenseService.updateExpense(selected, selected.getId());
 
-        refreshCurrentPage();
+        refreshCurrentPage(pagination);
     }
 
     @FXML

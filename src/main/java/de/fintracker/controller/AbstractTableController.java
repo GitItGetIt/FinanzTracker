@@ -1,7 +1,6 @@
 package de.fintracker.controller;
 
 import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
@@ -10,39 +9,25 @@ import java.util.List;
 
 public abstract class AbstractTableController<T> extends BaseController{
 
-    protected Pagination pagination;
-    protected TableView<T> table;
     protected int ROWS_PER_PAGE = 5;
 
-    @FXML
-    protected void initialize(){
-        //später sout wieder rausnehmen: will nur kurz überprüfen:
-        System.out.println("INIT OK: " + this.getClass().getSimpleName());
-
-        super.initialize();
-        setupTable();
-        setupPagination();
-        setupSelectionListener();
-        setupFilter();
+    protected void setupPagination(Pagination pagination, TableView<T> table) {
+        pagination.setPageFactory(pageIndex -> createPage(pageIndex, table));
+        updatePageCount(pagination);
     }
 
-    private void setupPagination() {
-        pagination.setPageFactory(this::createPage);
-        updatePageCount();
-    }
-
-    protected void updatePageCount() {
+    protected void updatePageCount(Pagination pagination) {
         int total = getTotalItemCount();
         int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
         pagination.setPageCount(pageCount);
     }
 
-    protected void refreshCurrentPage() {
+    protected void refreshCurrentPage(Pagination pagination) {
         int current = pagination.getCurrentPageIndex();
         pagination.setCurrentPageIndex(current);
     }
 
-    protected Node createPage(int pageIndex) {
+    protected Node createPage(int pageIndex, TableView<T> table) {
         int offset = pageIndex * ROWS_PER_PAGE;
         List<T> pageData = loadPageData(offset, ROWS_PER_PAGE);
         table.setItems(FXCollections.observableArrayList(pageData));

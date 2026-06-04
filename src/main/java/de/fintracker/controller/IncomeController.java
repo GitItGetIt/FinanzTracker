@@ -6,7 +6,6 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,9 +14,6 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @FXML private TableView<Income> incomeTable;
     @FXML private Pagination pagination;
-    @FXML private VBox root;
-    @FXML private ScrollPane scrollPane;
-
 
     @FXML private TableColumn<Income, Number> idColumn;
     @FXML private TableColumn<Income, Double> amountColumn;
@@ -31,12 +27,21 @@ public class IncomeController extends AbstractTableController<Income> {
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
 
+    @FXML
+    protected void initialize(){
+        //später sout wieder rausnehmen: will nur kurz überprüfen:
+        System.out.println("INIT OK: IncomeController");
 
+        super.initialize();
+
+        setupTable();
+        setupPagination(pagination, incomeTable);
+        setupSelectionListener();
+        setupFilter();
+    }
 
     @Override
     protected void setupTable() {
-        this.table = incomeTable;
-        this.pagination = pagination;
 
         idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
         amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
@@ -73,7 +78,7 @@ public class IncomeController extends AbstractTableController<Income> {
     protected void setupFilter() {
         searchField.textProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal == null || newVal.isEmpty()) {
-                pagination.setPageFactory(this::createPage);
+                pagination.setPageFactory(pageIndex -> createPage(pageIndex, incomeTable));
                 return;
             }
 
@@ -89,7 +94,7 @@ public class IncomeController extends AbstractTableController<Income> {
                     )
                     .toList();
 
-            table.setItems(FXCollections.observableArrayList(filtered));
+            incomeTable.setItems(FXCollections.observableArrayList(filtered));
         });
     }
 
@@ -104,8 +109,8 @@ public class IncomeController extends AbstractTableController<Income> {
             Income income = new Income(amount, category, date, note);
             IncomeService.insertIncome(income);
 
-            updatePageCount();
-            refreshCurrentPage();
+            updatePageCount(pagination);
+            refreshCurrentPage(pagination);
             clearFields();
 
         } catch (Exception e) {
@@ -123,8 +128,8 @@ public class IncomeController extends AbstractTableController<Income> {
 
         IncomeService.deleteIncome(selected.getId());
 
-        updatePageCount();
-        refreshCurrentPage();
+        updatePageCount(pagination);
+        refreshCurrentPage(pagination);
     }
 
     @FXML
@@ -142,7 +147,7 @@ public class IncomeController extends AbstractTableController<Income> {
 
         IncomeService.updateIncome(selected, selected.getId());
 
-        refreshCurrentPage();
+        refreshCurrentPage(pagination);
     }
 
     @FXML

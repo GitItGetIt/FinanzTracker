@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/AbstractTableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/AbstractTableController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -351,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780577273571</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)">
+      <option name="closed" value="true" />
+      <created>1780583682277</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1780583682277</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -366,7 +376,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="kurz vor dem loslegen mit db - heute, 22.5. habe ich die versionen geklärt für pom - die dependencies korrekt gesetzt. und gerade &quot;nur&quot; die ordner und DBinitializer.java gesetzt und noch nichts reingeschrieben. dh jetzt gehts mit db - 22.4. ab 7:56 h" />
     <MESSAGE value="22.5. 9:25h - unter resources database ordner angelegt, worin die finanztracker.db automatisch per DBTest.java erfolgreich angelegt wurde. Ansonsten unter de.fintracker den ordner databse angelegt und DBConnector.java erstellt. zum nachvollziehen bitte auch ab 8:54 die änderungen nachvollziehen" />
     <MESSAGE value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
     <MESSAGE value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
@@ -391,7 +400,8 @@
     <MESSAGE value="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war..." />
     <MESSAGE value="3.6. 14:39 Alles Bestens. Fehler gefunden... ich hatte beim ExpenseController bei int total vergessen in ExpenseService.countExpense() zu machen (war IncomeService.countExpense()..." />
     <MESSAGE value="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit" />
+    <MESSAGE value="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

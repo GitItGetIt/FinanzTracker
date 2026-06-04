@@ -1,18 +1,14 @@
 package de.fintracker.controller;
 
-import de.fintracker.util.UiZoomAndPanUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
+
 import javafx.stage.Stage;
 
 public abstract class BaseController {
 
     protected Stage stage;
-
-
 
     public void setStage(Stage stage) {
         this.stage = stage;
