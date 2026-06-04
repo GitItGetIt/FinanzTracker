@@ -4,93 +4,59 @@ import de.fintracker.model.Income;
 import de.fintracker.service.IncomeService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class IncomeController implements Navigatable {
+public class IncomeController extends AbstractTableController<Income> {
+
+    @FXML private TableView<Income> incomeTable;
+    @FXML private Pagination pagination;
+    @FXML private VBox root;
+    @FXML private ScrollPane scrollPane;
 
 
-    private Stage stage;
+    @FXML private TableColumn<Income, Number> idColumn;
+    @FXML private TableColumn<Income, Double> amountColumn;
+    @FXML private TableColumn<Income, String> categoryColumn;
+    @FXML private TableColumn<Income, String> dateColumn;
+    @FXML private TableColumn<Income, String> noteColumn;
+
+    @FXML private TextField amountField;
+    @FXML private ComboBox<String> categoryBox;
+    @FXML private DatePicker datePicker;
+    @FXML private TextArea noteArea;
+    @FXML private TextField searchField;
 
     @Override
-    public void setStage(Stage stage){
-        this.stage = stage;
+    protected void setupTable() {
+        this.table = incomeTable;
+        this.pagination = pagination;
+
+        idColumn.setCellValueFactory(cell -> cell.getValue().idProperty());
+        amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
+        categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
+        dateColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().getDate().toString()));
+        noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
+
+        categoryBox.getItems().addAll("Gehalt", "Bonus", "Geschenk", "Sonstiges");
     }
 
-    @FXML
-    private TextField amountField;
+    @Override
+    protected List<Income> loadPageData(int offset, int limit) {
+        return IncomeService.getIncomePage(offset, limit);
+    }
 
-    @FXML
-    private ComboBox<String> categoryBox;
+    @Override
+    protected int getTotalItemCount() {
+        return IncomeService.countIncome();
+    }
 
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private TextArea noteArea;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private TableView<Income> incomeTable;
-
-    @FXML
-    private TableColumn<Income, Number> idColumn;
-
-    @FXML
-    private TableColumn<Income, Double> amountColumn;
-
-    @FXML
-    private TableColumn<Income, String> categoryColumn;
-
-    @FXML
-    private TableColumn<Income, String> dateColumn;
-
-    @FXML
-    private TableColumn<Income, String> noteColumn;
-
-    @FXML
-    private Pagination pagination;
-
-    private static final int ROWS_PER_PAGE = 5;
-
-
-    private ObservableList<Income> incomeList = FXCollections.observableArrayList();
-
-    @FXML
-    public void initialize() {
-        setupTable();
-        loadCategories();
-
-        // Sortierung aktivieren
-        idColumn.setSortable(true);
-        amountColumn.setSortable(true);
-        categoryColumn.setSortable(true);
-        dateColumn.setSortable(true);
-        noteColumn.setSortable(true);
-
-        // Optional: Standard-Sortierung (z. B. nach Datum)
-        // incomeTable.getSortOrder().add(dateColumn);
-
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> applyFilter(newVal));
-
-        int total = IncomeService.countIncome();
-        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
-        pagination.setPageCount(pageCount);
-
-        pagination.setPageFactory(this::createPage);
-
+    @Override
+    protected void setupSelectionListener() {
         incomeTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 amountField.setText(String.valueOf(newVal.getAmount()));
@@ -101,28 +67,28 @@ public class IncomeController implements Navigatable {
         });
     }
 
-    private Node createPage(int pageIndex) {
-        int offset = pageIndex * ROWS_PER_PAGE;
+    @Override
+    protected void setupFilter() {
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal == null || newVal.isEmpty()) {
+                pagination.setPageFactory(this::createPage);
+                return;
+            }
 
-        List<Income> pageData = IncomeService.getIncomePage(offset, ROWS_PER_PAGE);
+            String f = newVal.toLowerCase();
 
-        ObservableList<Income> data = FXCollections.observableArrayList(pageData);
-        incomeTable.setItems(data);
+            List<Income> filtered = IncomeService.getAllIncome().stream()
+                    .filter(i ->
+                            String.valueOf(i.getId()).contains(f) ||
+                            String.valueOf(i.getAmount()).contains(f) ||
+                            i.getCategory().toLowerCase().contains(f) ||
+                            i.getDate().toString().contains(f) ||
+                            i.getNote().toLowerCase().contains(f)
+                    )
+                    .toList();
 
-        return new VBox(incomeTable);
-    }
-
-    private void setupTable() {
-        idColumn.setCellValueFactory( cell -> cell.getValue().idProperty());
-        amountColumn.setCellValueFactory(cell -> cell.getValue().amountProperty().asObject());
-        categoryColumn.setCellValueFactory(cell -> cell.getValue().categoryProperty());
-        dateColumn.setCellValueFactory(cell ->
-                new SimpleStringProperty(cell.getValue().getDate().toString()));
-        noteColumn.setCellValueFactory(cell -> cell.getValue().noteProperty());
-    }
-
-    private void loadCategories() {
-        categoryBox.getItems().addAll("Bonus", "Gehalt", "Geschenk", "Sonstiges");
+            table.setItems(FXCollections.observableArrayList(filtered));
+        });
     }
 
     @FXML
@@ -136,50 +102,34 @@ public class IncomeController implements Navigatable {
             Income income = new Income(amount, category, date, note);
             IncomeService.insertIncome(income);
 
-            // Pagintn aktualisiern
-            int total = IncomeService.countIncome();
-            int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
-            pagination.setPageCount(pageCount);
-
-            int currentPage = pagination.getCurrentPageIndex();
-            pagination.setPageFactory(this::createPage);
-            pagination.setCurrentPageIndex(currentPage);
-
+            updatePageCount();
+            refreshCurrentPage();
             clearFields();
 
         } catch (Exception e) {
-            showError("Bitte überprüfe deine Eingaben im Imcome.");
+            showError("Bitte überprüfe deine Eingaben.");
         }
-    }
-
-    private void loadIncomeList() {
-        incomeList.setAll(IncomeService.getAllIncome());
     }
 
     @FXML
     private void deleteIncome() {
         Income selected = incomeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showError("Bitte einen Eintrag aus von Incometbl.");
+            showError("Bitte wähle einen Eintrag aus.");
             return;
         }
 
         IncomeService.deleteIncome(selected.getId());
 
-        int total = IncomeService.countIncome();
-        int pageCount = (int) Math.ceil((double) total / ROWS_PER_PAGE);
-        pagination.setPageCount(pageCount);
-
-        int currentPage = pagination.getCurrentPageIndex();
-        pagination.setPageFactory(this::createPage);
-        pagination.setCurrentPageIndex(currentPage);
+        updatePageCount();
+        refreshCurrentPage();
     }
 
     @FXML
     private void updateIncome() {
         Income selected = incomeTable.getSelectionModel().getSelectedItem();
         if (selected == null) {
-            showError("Bitte wähle einen Eintrag aus Income.....");
+            showError("Bitte wähle einen Eintrag aus.");
             return;
         }
 
@@ -190,31 +140,12 @@ public class IncomeController implements Navigatable {
 
         IncomeService.updateIncome(selected, selected.getId());
 
-        int currentPage = pagination.getCurrentPageIndex();
-        pagination.setPageFactory(this::createPage);
-        pagination.setCurrentPageIndex(currentPage);
+        refreshCurrentPage();
     }
 
-    private void applyFilter(String filter) {
-        if (filter == null || filter.isEmpty()) {
-            pagination.setPageFactory(this::createPage);
-            return;
-        }
-
-        String f = filter.toLowerCase();
-
-        List<Income> all = IncomeService.getAllIncome();
-        List<Income> filtered = all.stream()
-                .filter(i ->
-                        String.valueOf(i.getId()).contains(f) ||
-                                String.valueOf(i.getAmount()).contains(f) ||
-                                i.getCategory().toLowerCase().contains(f) ||
-                                i.getDate().toString().contains(f) ||
-                                i.getNote().toLowerCase().contains(f)
-                )
-                .toList();
-
-        incomeTable.setItems(FXCollections.observableArrayList(filtered));
+    @FXML
+    private void goToMain() {
+        switchScene("/views/main.fxml");
     }
 
 
@@ -230,22 +161,5 @@ public class IncomeController implements Navigatable {
         alert.setHeaderText("Fehler");
         alert.setContentText(msg);
         alert.showAndWait();
-    }
-
-    @FXML
-    private void goToMain() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main.fxml"));
-            Scene scene = new Scene(loader.load());
-            scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
-
-            stage.setScene(scene);
-
-            MainController controller = loader.getController();
-            controller.setStage(stage);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }

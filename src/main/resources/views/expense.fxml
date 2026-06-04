@@ -13,7 +13,7 @@
             fx:id="scrollPane"
             pannable="true"
             fitToWidth="true">
-        <Group>
+
             <VBox fx:id="root" spacing="20">
                 <padding>
                     <Insets top="20" right="20" bottom="20" left="20"/>
@@ -66,5 +66,5 @@
                 </TableView>
                 <Pagination fx:id="pagination" prefWidth="600" />
             </VBox>
-        </Group>
+
 </ScrollPane>
