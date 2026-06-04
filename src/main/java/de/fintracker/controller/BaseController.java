@@ -12,11 +12,7 @@ public abstract class BaseController {
 
     protected Stage stage;
 
-    @FXML
-    protected VBox root;
 
-    @FXML
-    protected ScrollPane scrollPane;
 
     public void setStage(Stage stage) {
         this.stage = stage;
@@ -40,7 +36,7 @@ public abstract class BaseController {
 
     @FXML
     protected void initialize() {
-        UiZoomAndPanUtil.enableZoom(root);
-        UiZoomAndPanUtil.enablePanning(scrollPane);
+//        UiZoomAndPanUtil.enableZoom(root);
+//        UiZoomAndPanUtil.enablePanning(scrollPane);
     }
 }

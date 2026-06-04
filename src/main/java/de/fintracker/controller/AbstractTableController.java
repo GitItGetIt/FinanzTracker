@@ -15,7 +15,7 @@ public abstract class AbstractTableController<T> extends BaseController{
     protected int ROWS_PER_PAGE = 5;
 
     @FXML
-    protected void intialize(){
+    protected void initialize(){
         //später sout wieder rausnehmen: will nur kurz überprüfen:
         System.out.println("INIT OK: " + this.getClass().getSimpleName());
 

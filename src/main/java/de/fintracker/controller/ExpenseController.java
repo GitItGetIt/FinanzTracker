@@ -30,6 +30,8 @@ public class ExpenseController extends AbstractTableController<Expense> {
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
 
+
+
     @Override
     protected void setupTable() {
         this.table = expenseTable;

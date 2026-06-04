@@ -31,6 +31,8 @@ public class IncomeController extends AbstractTableController<Income> {
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
 
+
+
     @Override
     protected void setupTable() {
         this.table = incomeTable;
