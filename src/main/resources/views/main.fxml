@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-
+<!-- Probleme wegen content-tag gehabt und in Probleme bei zoom und pan gehabt! wenn ich zeit finde noch nachholen -->
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.fintracker.controller.MainController"
