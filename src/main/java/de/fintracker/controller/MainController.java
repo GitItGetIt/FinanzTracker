@@ -4,22 +4,21 @@ import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
-import de.fintracker.util.UiZoomAndPanUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainController extends BaseController {
 
-    private double lastMouseX;
-    private double lastMouseY;
-
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
+
+
+//    @FXML private ScrollPane scrollPane;
 
     @FXML
     private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
@@ -28,16 +27,6 @@ public class MainController extends BaseController {
     protected void initialize() {
         super.initialize();
         updateDashboard();
-    }
-
-    @FXML
-    private void openIncome() {
-        switchScene("/views/income.fxml");
-    }
-
-    @FXML
-    private void openExpense() {
-        switchScene("/views/expense.fxml");
     }
 
     private void updateDashboard() {
@@ -71,4 +60,19 @@ public class MainController extends BaseController {
             balanceLabel.setStyle("-fx-text-fill: green; -fx-font-weight: bold;");
         }
     }
+
+    @FXML
+    private void openIncome() {
+        switchScene("/views/income.fxml");
+    }
+
+    @FXML
+    private void openExpense() {
+        switchScene("/views/expense.fxml");
+    }
+
+    public void openCharts() throws IOException {
+        switchScene("/views/charts.fxml");
+    }
+
 }

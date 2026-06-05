@@ -66,5 +66,4 @@
                 </TableView>
                 <Pagination fx:id="pagination" prefWidth="600" />
             </VBox>
-
 </ScrollPane>

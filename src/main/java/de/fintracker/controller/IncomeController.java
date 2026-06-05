@@ -155,7 +155,6 @@ public class IncomeController extends AbstractTableController<Income> {
         switchScene("/views/main.fxml");
     }
 
-
     private void clearFields() {
         amountField.clear();
         categoryBox.setValue(null);
