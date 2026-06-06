@@ -31,6 +31,8 @@ public class IncomeController extends AbstractTableController<Income> {
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
 
+    private final IncomeService incomeService = new IncomeService();
+
     @FXML
     protected void initialize(){
         //später sout wieder rausnehmen: will nur kurz überprüfen:
@@ -58,12 +60,12 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @Override
     protected List<Income> loadPageData(int offset, int limit) {
-        return IncomeService.getIncomePage(offset, limit);
+        return incomeService.getIncomePage(offset, limit);
     }
 
     @Override
     protected int getTotalItemCount() {
-        return IncomeService.countIncome();
+        return incomeService.countIncome();
     }
 
     @Override
@@ -88,7 +90,7 @@ public class IncomeController extends AbstractTableController<Income> {
 
             String f = newVal.toLowerCase();
 
-            List<Income> filtered = IncomeService.getAllIncome().stream()
+            List<Income> filtered = incomeService.getAllIncome().stream()
                     .filter(i ->
                             String.valueOf(i.getId()).contains(f) ||
                             String.valueOf(i.getAmount()).contains(f) ||
@@ -112,7 +114,7 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Income> allIncome = IncomeService.getAllIncome();
+        List<Income> allIncome = incomeService.getAllIncome();
 
         CSVService service = new CSVService();
         service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
@@ -127,7 +129,7 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Income> allIncome = IncomeService.getAllIncome();
+        List<Income> allIncome = incomeService.getAllIncome();
 
         XLSService service = new XLSService();
         service.exportIncomeXLS(file.getAbsolutePath(), allIncome);
@@ -150,9 +152,8 @@ public class IncomeController extends AbstractTableController<Income> {
         }
 
         // Tabelle aktualisieren
-        loadIncomeData();
+        incomeTable.setItems(incomeService.getAllIncome());
     }
-
 
     @FXML
     private void saveIncome() {
@@ -163,7 +164,7 @@ public class IncomeController extends AbstractTableController<Income> {
             String note = noteArea.getText();
 
             Income income = new Income(amount, category, date, note);
-            IncomeService.insertIncome(income);
+            incomeService.insertIncome(income);
 
             updatePageCount(pagination);
             refreshCurrentPage(pagination);
@@ -182,7 +183,7 @@ public class IncomeController extends AbstractTableController<Income> {
             return;
         }
 
-        IncomeService.deleteIncome(selected.getId());
+        incomeService.deleteIncome(selected.getId());
 
         updatePageCount(pagination);
         refreshCurrentPage(pagination);
@@ -201,7 +202,7 @@ public class IncomeController extends AbstractTableController<Income> {
         selected.setDate(datePicker.getValue());
         selected.setNote(noteArea.getText());
 
-        IncomeService.updateIncome(selected, selected.getId());
+        incomeService.updateIncome(selected, selected.getId());
 
         refreshCurrentPage(pagination);
     }

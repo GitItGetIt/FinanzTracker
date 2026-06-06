@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import org.apache.commons.math3.analysis.function.Exp;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -32,6 +33,8 @@ public class ExpenseController extends AbstractTableController<Expense> {
     @FXML private DatePicker datePicker;
     @FXML private TextArea noteArea;
     @FXML private TextField searchField;
+
+    private final ExpenseService expenseService = new ExpenseService();
 
     @FXML
     protected void initialize(){
@@ -61,12 +64,12 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
     @Override
     protected List<Expense> loadPageData(int offset, int limit) {
-        return ExpenseService.getExpensePage(offset, limit);
+        return expenseService.getExpensePage(offset, limit);
     }
 
     @Override
     protected int getTotalItemCount() {
-        return ExpenseService.countExpense();
+        return expenseService.countExpense();
     }
 
     @Override
@@ -91,7 +94,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
             String f = newVal.toLowerCase();
 
-            List<Expense> filtered = ExpenseService.getAllExpense().stream()
+            List<Expense> filtered = expenseService.getAllExpense().stream()
                     .filter(i ->
                             String.valueOf(i.getId()).contains(f) ||
                                     String.valueOf(i.getAmount()).contains(f) ||
@@ -115,7 +118,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Expense> allExpense = ExpenseService.getAllExpense();
+        List<Expense> allExpense = expenseService.getAllExpense();
 
         CSVService service = new CSVService();
         service.exportExpenseCSV(file.getAbsolutePath(), allExpense);
@@ -130,10 +133,30 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Expense> allExpense = ExpenseService.getAllExpense();
+        List<Expense> allExpense = expenseService.getAllExpense();
 
         XLSService service = new XLSService();
         service.exportExpenseXLS(file.getAbsolutePath(), allExpense);
+    }
+
+    @FXML
+    private void onImportXLS() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
+
+        File file = chooser.showOpenDialog(null);
+        if (file == null) return;
+
+        XLSService service = new XLSService();
+        List<Expense> imported = service.importExpenseXLS(file.getAbsolutePath());
+
+        // In DB speichern
+        for (Expense i : imported) {
+            expenseService.insertExpense(i);
+        }
+
+        // Tabelle aktualisieren
+        expenseTable.setItems(expenseService.getAllExpense());
     }
 
     @FXML
@@ -145,7 +168,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
             String note = noteArea.getText();
 
             Expense expense = new Expense(amount, category, date, note);
-            ExpenseService.insertExpense(expense);
+            expenseService.insertExpense(expense);
 
             updatePageCount(pagination);
             refreshCurrentPage(pagination);
@@ -164,7 +187,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
             return;
         }
 
-        ExpenseService.deleteExpense(selected.getId());
+        expenseService.deleteExpense(selected.getId());
 
         updatePageCount(pagination);
         refreshCurrentPage(pagination);
@@ -183,7 +206,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
         selected.setDate(datePicker.getValue());
         selected.setNote(noteArea.getText());
 
-        ExpenseService.updateExpense(selected, selected.getId());
+        expenseService.updateExpense(selected, selected.getId());
 
         refreshCurrentPage(pagination);
     }
@@ -192,7 +215,6 @@ public class ExpenseController extends AbstractTableController<Expense> {
     private void goToMain() {
         switchScene("/views/main.fxml");
     }
-
 
     private void clearFields() {
         amountField.clear();

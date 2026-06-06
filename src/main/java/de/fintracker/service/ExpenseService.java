@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ExpenseService {
 
-    public static void insertExpense(Expense expense) {
+    public void insertExpense(Expense expense) {
         String sql = "INSERT INTO expense (amount, category, date, note) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnector.getConnection();
@@ -33,7 +33,7 @@ public class ExpenseService {
         }
     }
 
-    public static ObservableList<Expense> getAllExpense() {
+    public ObservableList<Expense> getAllExpense() {
         ObservableList<Expense> list = FXCollections.observableArrayList();
 
         String sql = "SELECT id, amount, category, date, note FROM expense";
@@ -59,7 +59,7 @@ public class ExpenseService {
         return list;
     }
 
-    public static void updateExpense(Expense expense, int id) {
+    public void updateExpense(Expense expense, int id) {
         String sql = "UPDATE expense SET amount = ?, category = ?, date = ?, note = ? WHERE id = ?";
 
         try (Connection conn = DBConnector.getConnection();
@@ -79,7 +79,7 @@ public class ExpenseService {
         }
     }
 
-    public static void deleteExpense(int id) {
+    public void deleteExpense(int id) {
         String sql = "DELETE FROM expense WHERE id = ?";
 
         try (Connection conn = DBConnector.getConnection();
@@ -95,7 +95,7 @@ public class ExpenseService {
         }
     }
 
-    public static List<Expense>getExpensePage(int offset, int limit) {
+    public List<Expense>getExpensePage(int offset, int limit) {
         List<Expense> list = new ArrayList<>();
 
         String sql = "SELECT * FROM expense ORDER BY date DESC LIMIT ? OFFSET ?";
@@ -125,7 +125,7 @@ public class ExpenseService {
         return list;
     }
 
-    public static int countExpense() {
+    public int countExpense() {
         String sql = "SELECT COUNT(*) FROM expense";
 
         try (Connection conn = DBConnector.getConnection();

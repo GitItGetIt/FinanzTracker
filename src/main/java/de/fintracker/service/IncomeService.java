@@ -14,7 +14,7 @@ import java.util.List;
 
 public class IncomeService {
 
-    public static void insertIncome(Income income) {
+    public void insertIncome(Income income) {
         String sql = "INSERT INTO income (amount, category, date, note) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnector.getConnection();
@@ -33,7 +33,7 @@ public class IncomeService {
         }
     }
 
-    public static ObservableList<Income> getAllIncome() {
+    public ObservableList<Income> getAllIncome() {
         ObservableList<Income> list = FXCollections.observableArrayList();
 
         String sql = "SELECT id, amount, category, date, note FROM income";
@@ -59,7 +59,7 @@ public class IncomeService {
         return list;
     }
 
-    public static void updateIncome(Income income, int id) {
+    public void updateIncome(Income income, int id) {
         String sql = "UPDATE income SET amount = ?, category = ?, date = ?, note = ? WHERE id = ?";
 
         try (Connection conn = DBConnector.getConnection();
@@ -79,7 +79,7 @@ public class IncomeService {
         }
     }
 
-    public static void deleteIncome(int id) {
+    public void deleteIncome(int id) {
         String sql = "DELETE FROM income WHERE id = ?";
 
         try (Connection conn = DBConnector.getConnection();
@@ -95,7 +95,7 @@ public class IncomeService {
         }
     }
 
-    public static List<Income> getIncomePage(int offset, int limit) {
+    public List<Income> getIncomePage(int offset, int limit) {
         List<Income> list = new ArrayList<>();
 
         String sql = "SELECT * FROM income ORDER BY date DESC LIMIT ? OFFSET ?";
@@ -124,7 +124,7 @@ public class IncomeService {
         return list;
     }
 
-    public static int countIncome() {
+    public int countIncome() {
         String sql = "SELECT COUNT(*) FROM income";
 
         try (Connection conn = DBConnector.getConnection();

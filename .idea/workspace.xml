@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="6.juni 12:50 funzt. nun xlsexport mit allen datensätzen">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="6.juni 13:31 bei onImportXLS() im IncomeController istt mir aufgefallen, dass ich in Inc/ExpServices die Methoden alle STATIC habe. Ich werde jetzt erstmal diese von STATIC säubern, den gesamten Code dara anpassen und erst dann anschließend die xls-sachen weitermachen!!!">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/ExpenseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/IncomeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/XLSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/XLSService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -408,7 +412,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780743037155</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="6.juni 13:31 bei onImportXLS() im IncomeController istt mir aufgefallen, dass ich in Inc/ExpServices die Methoden alle STATIC habe. Ich werde jetzt erstmal diese von STATIC säubern, den gesamten Code dara anpassen und erst dann anschließend die xls-sachen weitermachen!!!">
+      <option name="closed" value="true" />
+      <created>1780745637909</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1780745637909</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -423,7 +435,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="23.5. 10:05 h mein Problem: muss ich im IncomeController hier auch meths f update und delete machen usw - nochmal genau überlegen und schauen" />
     <MESSAGE value="23.5. 17:20 komplettiert... aber s.meine Notizen v. 23.5. 10:16 Uhr - Nochmal auseinandergefriemelt was in UI-model-ctrlr-servs warum/wie geht" />
     <MESSAGE value="23.5. 17:40&#10;nun,built, müsste gehen...&#10;war kurz verirrt und hatte mich gefragt, warum &#10;private void loadExpenseList() &#10;{ &#10;expenseList.setAll(ExpenseService.getAllExpense()); &#10;} keine @FXML-Annotation hat - dabei klar warum nicht..." />
     <MESSAGE value="23.5. 20:57 ich kann zwischen den tabellen korrekt navigieren... hatte ein Verlinkungsfehler, verschreiber... viel Zeit weggenommen" />
@@ -448,7 +459,8 @@
     <MESSAGE value="6.juni 11:15 jetzt mache ich export bzw downloadmöglichkeiten f csv und xls - hier schonmal funzende csv - allerdings nur mit den daten der nur 1.seite v Incometable runtergeladen - das will ich als nächstes ausweiten auf alle" />
     <MESSAGE value="6.juni 11:35 funzt. nun csv-export mit allen datensätzen&#10;Als next: xls" />
     <MESSAGE value="6.juni 12:50 funzt. nun xlsexport mit allen datensätzen" />
-    <option name="LAST_COMMIT_MESSAGE" value="6.juni 12:50 funzt. nun xlsexport mit allen datensätzen" />
+    <MESSAGE value="6.juni 13:31 bei onImportXLS() im IncomeController istt mir aufgefallen, dass ich in Inc/ExpServices die Methoden alle STATIC habe. Ich werde jetzt erstmal diese von STATIC säubern, den gesamten Code dara anpassen und erst dann anschließend die xls-sachen weitermachen!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="6.juni 13:31 bei onImportXLS() im IncomeController istt mir aufgefallen, dass ich in Inc/ExpServices die Methoden alle STATIC habe. Ich werde jetzt erstmal diese von STATIC säubern, den gesamten Code dara anpassen und erst dann anschließend die xls-sachen weitermachen!!!" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

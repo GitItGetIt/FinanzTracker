@@ -83,7 +83,6 @@ public class XLSService {
         return list;
     }
 
-
     public void exportExpenseXLS(String filePath, List<Expense> list) {
         try (Workbook workbook = new XSSFWorkbook()) {
 
@@ -119,5 +118,38 @@ public class XLSService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Expense> importExpenseXLS(String filePath) {
+        List<Expense> list = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            Sheet sheet = workbook.getSheetAt(0);
+
+            // Header überspringen
+            int rowIndex = 1;
+
+            while (rowIndex <= sheet.getLastRowNum()) {
+                Row row = sheet.getRow(rowIndex++);
+
+                if (row == null) continue;
+
+                int id = (int) row.getCell(0).getNumericCellValue();
+                double amount = row.getCell(1).getNumericCellValue();
+                String category = row.getCell(2).getStringCellValue();
+                LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
+                String note = row.getCell(4).getStringCellValue();
+
+                Expense expense = new Expense(id, amount, category, date, note);
+                list.add(expense);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
     }
 }

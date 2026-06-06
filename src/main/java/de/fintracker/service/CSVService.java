@@ -13,6 +13,24 @@ import java.util.List;
 
 public class CSVService {
 
+    public void exportIncomeCSV(String filePath, List<Income> list) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
+
+            pw.println("id;amount;category;date;note");
+
+            for (Income i : list) {
+                pw.println(i.getId() + ";" +
+                        i.getAmount() + ";" +
+                        i.getCategory() + ";" +
+                        i.getDate() + ";" +
+                        i.getNote());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public List<Income> importIncomeCSV(String filePath) {
         List<Income> list = new ArrayList<>();
 
@@ -42,12 +60,13 @@ public class CSVService {
         return list;
     }
 
-    public void exportIncomeCSV(String filePath, List<Income> list) {
+
+    public void exportExpenseCSV(String filePath, List<Expense> list) {
         try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
 
             pw.println("id;amount;category;date;note");
 
-            for (Income i : list) {
+            for (Expense i : list) {
                 pw.println(i.getId() + ";" +
                         i.getAmount() + ";" +
                         i.getCategory() + ";" +
@@ -59,8 +78,6 @@ public class CSVService {
             e.printStackTrace();
         }
     }
-
-
 
     public List<Expense> importExpenseCSV(String filePath) {
         List<Expense> list = new ArrayList<>();
@@ -89,23 +106,4 @@ public class CSVService {
 
         return list;
     }
-
-    public void exportExpenseCSV(String filePath, List<Expense> list) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filePath))) {
-
-            pw.println("id;amount;category;date;note");
-
-            for (Expense i : list) {
-                pw.println(i.getId() + ";" +
-                        i.getAmount() + ";" +
-                        i.getCategory() + ";" +
-                        i.getDate() + ";" +
-                        i.getNote());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
