@@ -1,12 +1,15 @@
 package de.fintracker.controller;
 
 import de.fintracker.model.Expense;
+import de.fintracker.service.CSVService;
 import de.fintracker.service.ExpenseService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -97,6 +100,20 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
             expenseTable.setItems(FXCollections.observableArrayList(filtered));
         });
+    }
+
+    //filechooser f export
+    @FXML
+    private void onExportCSV() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+        chooser.setInitialFileName("expense_export.csv");
+
+        File file = chooser.showSaveDialog(null);
+        if (file == null) return;
+
+        CSVService service = new CSVService();
+        service.exportExpenseCSV(file.getAbsolutePath(), expenseTable.getItems());
     }
 
     @FXML

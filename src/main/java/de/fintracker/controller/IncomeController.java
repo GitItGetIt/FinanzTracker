@@ -1,12 +1,15 @@
 package de.fintracker.controller;
 
 import de.fintracker.model.Income;
+import de.fintracker.service.CSVService;
 import de.fintracker.service.IncomeService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -97,6 +100,22 @@ public class IncomeController extends AbstractTableController<Income> {
             incomeTable.setItems(FXCollections.observableArrayList(filtered));
         });
     }
+
+    //filechooser f export
+    @FXML
+    private void onExportCSV() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+        chooser.setInitialFileName("income_export.csv");
+
+        File file = chooser.showSaveDialog(null);
+        if (file == null) return;
+
+        CSVService service = new CSVService();
+        service.exportIncomeCSV(file.getAbsolutePath(), incomeTable.getItems());
+    }
+
+
 
     @FXML
     private void saveIncome() {

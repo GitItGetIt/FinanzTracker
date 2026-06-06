@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ChartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/charts.fxml" afterDir="false" />
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore">
+      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/income.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/income.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -374,7 +371,23 @@
       <option name="project" value="LOCAL" />
       <updated>1780589294130</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="5.6. Freitg 18:35 funzt! am ende habe ich auch diagrammseite von basecontroller extended...">
+      <option name="closed" value="true" />
+      <created>1780677565737</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1780677565737</updated>
+    </task>
+    <task id="LOCAL-00031" summary="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore">
+      <option name="closed" value="true" />
+      <created>1780677810201</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1780677810201</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,8 +402,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)" />
-    <MESSAGE value="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben" />
     <MESSAGE value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
     <MESSAGE value="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen" />
     <MESSAGE value="deletemeth erstellt" />
@@ -414,7 +425,9 @@
     <MESSAGE value="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit" />
     <MESSAGE value="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)" />
     <MESSAGE value="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts." />
-    <option name="LAST_COMMIT_MESSAGE" value="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts." />
+    <MESSAGE value="5.6. Freitg 18:35 funzt! am ende habe ich auch diagrammseite von basecontroller extended..." />
+    <MESSAGE value="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -20,7 +20,8 @@
         </padding>
 
         <!-- Überschrift -->
-        <Label text="Einnahmen" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
+        <Label text="Einnahmen"
+               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
 
         <!-- Eingabebereich -->
         <GridPane hgap="10" vgap="10">
@@ -42,6 +43,7 @@
             <TextArea fx:id="noteArea" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
         </GridPane>
 
+        <!-- CRUD Buttons -->
         <HBox spacing="10">
             <Button text="Speichern" onAction="#saveIncome" prefWidth="120" styleClass="action-button"/>
             <Button text="Aktualisieren" onAction="#updateIncome" prefWidth="120" styleClass="action-button"/>
@@ -49,10 +51,23 @@
             <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
         </HBox>
 
+        <!-- Suchfeld -->
         <TextField fx:id="searchField"
                    promptText="Suchen..."
                    style="-fx-background-radius: 6; -fx-padding: 6;"/>
 
+        <!-- EXPORT-BUTTONS -->
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Download CSV"
+                    onAction="#onExportCSV"
+                    styleClass="action-button"/>
+
+            <Button text="Download XLS"/>
+                    <!-- onAction="#onExportXLS"
+                    styleClass="action-button" -->
+        </HBox>
+
+        <!-- Tabelle -->
         <TableView fx:id="incomeTable" prefHeight="250">
             <columns>
                 <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
@@ -62,6 +77,8 @@
                 <TableColumn fx:id="noteColumn" text="Notiz" prefWidth="200"/>
             </columns>
         </TableView>
+
+        <!-- Pagination -->
         <Pagination fx:id="pagination" prefWidth="600"/>
 
     </VBox>
