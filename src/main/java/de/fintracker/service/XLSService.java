@@ -5,7 +5,10 @@ import de.fintracker.model.Income;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class XLSService {
@@ -46,6 +49,40 @@ public class XLSService {
             e.printStackTrace();
         }
     }
+
+    public List<Income> importIncomeXLS(String filePath) {
+        List<Income> list = new ArrayList<>();
+
+        try (FileInputStream fis = new FileInputStream(filePath);
+             Workbook workbook = new XSSFWorkbook(fis)) {
+
+            Sheet sheet = workbook.getSheetAt(0);
+
+            // Header überspringen
+            int rowIndex = 1;
+
+            while (rowIndex <= sheet.getLastRowNum()) {
+                Row row = sheet.getRow(rowIndex++);
+
+                if (row == null) continue;
+
+                int id = (int) row.getCell(0).getNumericCellValue();
+                double amount = row.getCell(1).getNumericCellValue();
+                String category = row.getCell(2).getStringCellValue();
+                LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
+                String note = row.getCell(4).getStringCellValue();
+
+                Income income = new Income(id, amount, category, date, note);
+                list.add(income);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 
     public void exportExpenseXLS(String filePath, List<Expense> list) {
         try (Workbook workbook = new XSSFWorkbook()) {

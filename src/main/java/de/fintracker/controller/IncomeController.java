@@ -134,6 +134,27 @@ public class IncomeController extends AbstractTableController<Income> {
     }
 
     @FXML
+    private void onImportXLS() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
+
+        File file = chooser.showOpenDialog(null);
+        if (file == null) return;
+
+        XLSService service = new XLSService();
+        List<Income> imported = service.importIncomeXLS(file.getAbsolutePath());
+
+        // In DB speichern
+        for (Income i : imported) {
+            incomeService.insertIncome(i);
+        }
+
+        // Tabelle aktualisieren
+        loadIncomeData();
+    }
+
+
+    @FXML
     private void saveIncome() {
         try {
             double amount = Double.parseDouble(amountField.getText());
