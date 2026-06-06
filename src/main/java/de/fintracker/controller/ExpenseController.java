@@ -112,8 +112,10 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
+        List<Expense> allExpense = ExpenseService.getAllExpense();
+
         CSVService service = new CSVService();
-        service.exportExpenseCSV(file.getAbsolutePath(), expenseTable.getItems());
+        service.exportExpenseCSV(file.getAbsolutePath(), allExpense);
     }
 
     @FXML

@@ -111,8 +111,10 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
+        List<Income> allIncome = IncomeService.getAllIncome();
+
         CSVService service = new CSVService();
-        service.exportIncomeCSV(file.getAbsolutePath(), incomeTable.getItems());
+        service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
     }
 
 

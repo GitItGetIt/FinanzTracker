@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore">
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" afterDir="false" />
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="6.juni 11:15 jetzt mache ich export bzw downloadmöglichkeiten f csv und xls - hier schonmal funzende csv - allerdings nur mit den daten der nur 1.seite v Incometable runtergeladen - das will ich als nächstes ausweiten auf alle">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/ExpenseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/controller/IncomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/expense.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/income.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/income.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +384,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780677810201</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="6.juni 11:15 jetzt mache ich export bzw downloadmöglichkeiten f csv und xls - hier schonmal funzende csv - allerdings nur mit den daten der nur 1.seite v Incometable runtergeladen - das will ich als nächstes ausweiten auf alle">
+      <option name="closed" value="true" />
+      <created>1780737499922</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1780737499922</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -402,7 +407,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="22.5. 12:33 crud select erledigt - in die IncomeService.java und expServ eingefügt di meths dafür" />
     <MESSAGE value="nun stehen die select, insert, update. nun kommt noch delete. denk dran, später im controller die getselected()... f d tblView einzubauen" />
     <MESSAGE value="deletemeth erstellt" />
     <MESSAGE value="23.5. 10:05 h mein Problem: muss ich im IncomeController hier auch meths f update und delete machen usw - nochmal genau überlegen und schauen" />
@@ -427,7 +431,8 @@
     <MESSAGE value="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts." />
     <MESSAGE value="5.6. Freitg 18:35 funzt! am ende habe ich auch diagrammseite von basecontroller extended..." />
     <MESSAGE value="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.6. Freitg 18:40 funzt! am ende habe ich auch diagrammseite von basecontroller extended...&#10;&#10;Nicht vergessen: zoom and pan wegen content-tag verworfen, da es zerrissen war --&gt; somit auf GIT-VERSION von 4.6. von 17:45 zurückgestellt bzw restore" />
+    <MESSAGE value="6.juni 11:15 jetzt mache ich export bzw downloadmöglichkeiten f csv und xls - hier schonmal funzende csv - allerdings nur mit den daten der nur 1.seite v Incometable runtergeladen - das will ich als nächstes ausweiten auf alle" />
+    <option name="LAST_COMMIT_MESSAGE" value="6.juni 11:15 jetzt mache ich export bzw downloadmöglichkeiten f csv und xls - hier schonmal funzende csv - allerdings nur mit den daten der nur 1.seite v Incometable runtergeladen - das will ich als nächstes ausweiten auf alle" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
