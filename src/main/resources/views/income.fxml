@@ -62,9 +62,9 @@
                     onAction="#onExportCSV"
                     styleClass="action-button"/>
 
-            <Button text="Download XLS"/>
-                    <!-- onAction="#onExportXLS"
-                    styleClass="action-button" -->
+            <Button text="Download XLS"
+                    onAction="#onExportXLS"
+                    styleClass="action-button"/>
         </HBox>
 
         <!-- Tabelle -->

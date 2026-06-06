@@ -1,0 +1,86 @@
+package de.fintracker.service;
+
+import de.fintracker.model.Expense;
+import de.fintracker.model.Income;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileOutputStream;
+import java.util.List;
+
+public class XLSService {
+
+    public void exportIncomeXLS(String filePath, List<Income> list) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+
+            Sheet sheet = workbook.createSheet("Income");
+
+            // Header
+            Row header = sheet.createRow(0);
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("Amount");
+            header.createCell(2).setCellValue("Category");
+            header.createCell(3).setCellValue("Date");
+            header.createCell(4).setCellValue("Note");
+
+            // Data rows
+            int rowIndex = 1;
+            for (Income i : list) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(i.getId());
+                row.createCell(1).setCellValue(i.getAmount());
+                row.createCell(2).setCellValue(i.getCategory());
+                row.createCell(3).setCellValue(i.getDate().toString());
+                row.createCell(4).setCellValue(i.getNote());
+            }
+
+            // Autosize columns
+            for (int col = 0; col < 5; col++) {
+                sheet.autoSizeColumn(col);
+            }
+
+            FileOutputStream fos = new FileOutputStream(filePath);
+            workbook.write(fos);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exportExpenseXLS(String filePath, List<Expense> list) {
+        try (Workbook workbook = new XSSFWorkbook()) {
+
+            Sheet sheet = workbook.createSheet("Expense");
+
+            // Header
+            Row header = sheet.createRow(0);
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("Amount");
+            header.createCell(2).setCellValue("Category");
+            header.createCell(3).setCellValue("Date");
+            header.createCell(4).setCellValue("Note");
+
+            // Data rows
+            int rowIndex = 1;
+            for (Expense i : list) {
+                Row row = sheet.createRow(rowIndex++);
+                row.createCell(0).setCellValue(i.getId());
+                row.createCell(1).setCellValue(i.getAmount());
+                row.createCell(2).setCellValue(i.getCategory());
+                row.createCell(3).setCellValue(i.getDate().toString());
+                row.createCell(4).setCellValue(i.getNote());
+            }
+
+            // Autosize columns
+            for (int col = 0; col < 5; col++) {
+                sheet.autoSizeColumn(col);
+            }
+
+            FileOutputStream fos = new FileOutputStream(filePath);
+            workbook.write(fos);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}

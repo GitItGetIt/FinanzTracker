@@ -3,6 +3,7 @@ package de.fintracker.controller;
 import de.fintracker.model.Income;
 import de.fintracker.service.CSVService;
 import de.fintracker.service.IncomeService;
+import de.fintracker.service.XLSService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -117,7 +118,20 @@ public class IncomeController extends AbstractTableController<Income> {
         service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
     }
 
+    @FXML
+    private void onExportXLS() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
+        chooser.setInitialFileName("income_export.xlsx");
 
+        File file = chooser.showSaveDialog(null);
+        if (file == null) return;
+
+        List<Income> allIncome = IncomeService.getAllIncome();
+
+        XLSService service = new XLSService();
+        service.exportIncomeXLS(file.getAbsolutePath(), allIncome);
+    }
 
     @FXML
     private void saveIncome() {

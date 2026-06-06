@@ -61,9 +61,9 @@
                             onAction="#onExportCSV"
                             styleClass="action-button"/>
 
-                    <Button text="Download XLS"/>
-                    <!-- onAction="#onExportXLS"
-                    styleClass="action-button" -->
+                    <Button text="Download XLS"
+                    onAction="#onExportXLS"
+                    styleClass="action-button"/>
                 </HBox>
 
                 <TableView fx:id="expenseTable" prefHeight="250">
