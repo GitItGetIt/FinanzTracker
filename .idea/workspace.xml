@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="8.juni 09:06 alle buttons funzen: down- und uploads je csv und xls">
+    <list default="true" id="2ad6d169-4172-4894-b58e-e4a51118f979" name="Changes_funztVrsn" comment="8.juni 11:42 alle buttons funzen: aber ein RUN-Fehler beim IMPORT CSV nun korrigiert (es gab NumberFormatException...) und die id´s wurden überschrieben. ja klar werden die überschrieben, da id db-gehörig!!!&#10;nun vorerst nur die IMPORT CSV korrigiert - as next: Import CLS checken, ob korrekt funzt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/CSVService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/fintracker/service/XLSService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/fintracker/service/XLSService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -431,7 +431,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780905219056</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="8.juni 11:42 alle buttons funzen: aber ein RUN-Fehler beim IMPORT CSV nun korrigiert (es gab NumberFormatException...) und die id´s wurden überschrieben. ja klar werden die überschrieben, da id db-gehörig!!!&#10;nun vorerst nur die IMPORT CSV korrigiert - as next: Import CLS checken, ob korrekt funzt">
+      <option name="closed" value="true" />
+      <created>1780913062568</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1780913062568</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -446,7 +454,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="23.5. 20:57 ich kann zwischen den tabellen korrekt navigieren... hatte ein Verlinkungsfehler, verschreiber... viel Zeit weggenommen" />
     <MESSAGE value="24.5. 10:25 - nur den gestrig erreichten stand anhand my 7-t plan. s my notizen: 10:11 h - kann hin und herklicken..." />
     <MESSAGE value="25.5. bspl-einträge in beide tabellen je vorgenommen, ds SPEICHERN, LÖSCHEN, geht. aberkann noch keinen datensatz aktualisieren UPDATE nicht" />
     <MESSAGE value="update geht jetzt auch" />
@@ -471,7 +478,8 @@
     <MESSAGE value="6.juni 13:31 bei onImportXLS() im IncomeController istt mir aufgefallen, dass ich in Inc/ExpServices die Methoden alle STATIC habe. Ich werde jetzt erstmal diese von STATIC säubern, den gesamten Code dara anpassen und erst dann anschließend die xls-sachen weitermachen!!!" />
     <MESSAGE value="6.juni 15:06 so alles gesäubert - die STATIC ist draußen und überall instanz einfefügt... &#10;Stand der Dinge:&#10;1a. XLSService hat:          export/importIncomeXLS sowie export/importExpenseXLS&#10;1b. CSVService hat:         export/importIncomeCSV sowie export/importExpenseCSV&#10;1c. IncomeCtrlr hat:        &#10;    @FXML    private void onExportCSV() { ... }&#10;    @FXML    private void onExportXLS() { ... }&#10;    @FXML    private void onImportXLS() { ... }&#10;1d. ExpenseCtrolr hat:    &#10;    @FXML    private void onExportCSV() { ... }&#10;    @FXML    private void onExportXLS() { ... }&#10;    @FXML    private void onImportXLS() { ... }&#10;&#10;demnach fehlt mir noch je ein import csv" />
     <MESSAGE value="8.juni 09:06 alle buttons funzen: down- und uploads je csv und xls" />
-    <option name="LAST_COMMIT_MESSAGE" value="8.juni 09:06 alle buttons funzen: down- und uploads je csv und xls" />
+    <MESSAGE value="8.juni 11:42 alle buttons funzen: aber ein RUN-Fehler beim IMPORT CSV nun korrigiert (es gab NumberFormatException...) und die id´s wurden überschrieben. ja klar werden die überschrieben, da id db-gehörig!!!&#10;nun vorerst nur die IMPORT CSV korrigiert - as next: Import CLS checken, ob korrekt funzt" />
+    <option name="LAST_COMMIT_MESSAGE" value="8.juni 11:42 alle buttons funzen: aber ein RUN-Fehler beim IMPORT CSV nun korrigiert (es gab NumberFormatException...) und die id´s wurden überschrieben. ja klar werden die überschrieben, da id db-gehörig!!!&#10;nun vorerst nur die IMPORT CSV korrigiert - as next: Import CLS checken, ob korrekt funzt" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

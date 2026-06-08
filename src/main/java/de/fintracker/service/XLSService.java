@@ -72,7 +72,7 @@ public class XLSService {
                 LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
                 String note = row.getCell(4).getStringCellValue();
 
-                Income income = new Income(id, amount, category, date, note);
+                Income income = new Income(amount, category, date, note);
                 list.add(income);
             }
 
@@ -142,7 +142,7 @@ public class XLSService {
                 LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
                 String note = row.getCell(4).getStringCellValue();
 
-                Expense expense = new Expense(id, amount, category, date, note);
+                Expense expense = new Expense(amount, category, date, note);
                 list.add(expense);
             }
 
