@@ -41,7 +41,14 @@ public class CSVService {
             br.readLine();
 
             while ((line = br.readLine()) != null) {
+
+                if (line.trim().isEmpty())
+                    continue; //leere Zeilen überspring
+
                 String[] parts = line.split(";");
+
+                if (parts.length < 5)
+                    continue; //unvollständige Zeilen überspring
 
                 int id = Integer.parseInt(parts[0]);
                 double amount = Double.parseDouble(parts[1]);
@@ -49,7 +56,7 @@ public class CSVService {
                 LocalDate date = LocalDate.parse(parts[3]);
                 String note = parts[4];
 
-                Income income = new Income(id, amount, category, date, note);
+                Income income = new Income(amount, category, date, note);
                 list.add(income);
             }
 
@@ -88,7 +95,14 @@ public class CSVService {
             br.readLine(); // Header überspringen
 
             while ((line = br.readLine()) != null) {
+
+                if (line.trim().isEmpty())
+                    continue; //leere Zeilen überspring
+
                 String[] parts = line.split(";");
+
+                if (parts.length < 5)
+                    continue; //unvollständige Zeilen überspring
 
                 int id = Integer.parseInt(parts[0]);
                 double amount = Double.parseDouble(parts[1]);
@@ -96,7 +110,7 @@ public class CSVService {
                 LocalDate date = LocalDate.parse(parts[3]);
                 String note = parts[4];
 
-                Expense expense = new Expense(id, amount, category, date, note);
+                Expense expense = new Expense(amount, category, date, note);
                 list.add(expense);
             }
 
