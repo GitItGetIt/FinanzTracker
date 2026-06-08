@@ -121,6 +121,25 @@ public class IncomeController extends AbstractTableController<Income> {
     }
 
     @FXML
+    private void onImportCSV() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+
+        File file = chooser.showOpenDialog(null);
+        if (file == null) return;
+
+        CSVService service = new CSVService();
+        List<Income> imported = service.importIncomeCSV(file.getAbsolutePath());
+
+        for (Income i : imported) {
+            incomeService.insertIncome(i);
+        }
+
+        incomeTable.setItems(incomeService.getAllIncome());
+    }
+
+
+    @FXML
     private void onExportXLS() {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));

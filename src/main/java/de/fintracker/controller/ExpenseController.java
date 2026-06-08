@@ -125,6 +125,25 @@ public class ExpenseController extends AbstractTableController<Expense> {
     }
 
     @FXML
+    private void onImportCSV() {
+        FileChooser chooser = new FileChooser();
+        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+
+        File file = chooser.showOpenDialog(null);
+        if (file == null) return;
+
+        CSVService service = new CSVService();
+        List<Expense> imported = service.importExpenseCSV(file.getAbsolutePath());
+
+        for (Expense i : imported) {
+            expenseService.insertExpense(i);
+        }
+
+        expenseTable.setItems(expenseService.getAllExpense());
+    }
+
+
+    @FXML
     private void onExportXLS() {
         FileChooser chooser = new FileChooser();
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));

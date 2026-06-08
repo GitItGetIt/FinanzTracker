@@ -55,8 +55,9 @@
                            promptText="Suchen..."
                            style="-fx-background-radius: 6; -fx-padding: 6;" />
 
-                <!-- Downloadbereich -->
+                <!-- Download- / Uploadbereich -->
                 <HBox spacing="10" alignment="CENTER_RIGHT">
+
                     <Button text="Download CSV"
                             onAction="#onExportCSV"
                             styleClass="action-button"/>
@@ -64,6 +65,16 @@
                     <Button text="Download XLS"
                     onAction="#onExportXLS"
                     styleClass="action-button"/>
+
+                    <Button text="Upload CSV"
+                            onAction="#onImportCSV"
+                            styleClass="action-button"/>
+
+                    <Button text="Upload XLS"
+                            onAction="#onImportXLS"
+                            styleClass="action-button"/>
+
+
                 </HBox>
 
                 <TableView fx:id="expenseTable" prefHeight="250">
