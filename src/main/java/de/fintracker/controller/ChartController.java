@@ -10,7 +10,10 @@ import de.fintracker.service.IncomeService;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.model.Income;
 import de.fintracker.model.Expense;
+import de.fintracker.util.ZoomAndPanUtil;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -19,17 +22,21 @@ import java.util.stream.Collectors;
 
 public class ChartController extends BaseController{
 
-    @FXML private PieChart expensePieChart;
-    @FXML private BarChart<String, Number> monthlyBarChart;
-
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
 
-    @FXML
-    private CategoryAxis monthlyBarChartXAxis;
+    @FXML private PieChart expensePieChart;
+    @FXML private BarChart<String, Number> monthlyBarChart;
 
-    @FXML
-    private NumberAxis monthlyBarChartYAxis;
+    @FXML private CategoryAxis monthlyBarChartXAxis;
+
+    @FXML private NumberAxis monthlyBarChartYAxis;
+
+    @FXML private ScrollPane scrollPane;
+
+    @FXML private Pane wrapperPane;
+
+    @FXML private VBox rootContent;
 
     @FXML
     @Override
@@ -37,6 +44,7 @@ public class ChartController extends BaseController{
         super.initialize();
         loadPieChart();
         loadBarChart();
+        ZoomAndPanUtil.enableZoomAndPan(scrollPane, wrapperPane, rootContent);
     }
 
     private void loadPieChart() {

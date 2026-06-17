@@ -464,7 +464,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781692451459</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil">
+      <option name="closed" value="true" />
+      <created>1781705975046</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1781705975046</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -485,30 +493,32 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="HEAD" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update geht jetzt auch" />
     <MESSAGE value="cruds gehen, pagination geht" />
     <MESSAGE value="also die pagination fundt jetzt auch... hatte probleme, dass die seitenanzhl und anzeige nicht gut funktionierten..." />
     <MESSAGE value="funzende version mit aufgehübschten dyn buttons" />
@@ -533,7 +543,18 @@
     <MESSAGE value="8.juni 11:42 alle buttons funzen: aber ein RUN-Fehler beim IMPORT CSV nun korrigiert (es gab NumberFormatException...) und die id´s wurden überschrieben. ja klar werden die überschrieben, da id db-gehörig!!!&#10;nun vorerst nur die IMPORT CSV korrigiert - as next: Import CLS checken, ob korrekt funzt" />
     <MESSAGE value="8.juni 12:25 bei import XLS kann der Run-Fehler nicht passieren, da xls nie eine leere zeile hat! (während csv schon!) daher bruachte ich es hier nicht umändern... FUNZT! da habe ich in der servicedatei nur die id rausgenommen so dass es ab amount die daten auflistet" />
     <MESSAGE value="17.juni 12:20 das vom 8.juni 12.25 war die letzte funzende version... (längere Pause da heftig erkältet war...) nun mache ich mit ordner 05 weiter, da ich mich schonmal an zoom and pan gemacht hatte (zwar fehlerhft- aber wgn prioSetzg jetz nochmal neu) dh auf github jetzt nochmal diese funzende version committe und mit der Ansage was jetzt als nxt passiern wird: zoomPan - ordner 05" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.juni 12:20 das vom 8.juni 12.25 war die letzte funzende version... (längere Pause da heftig erkältet war...) nun mache ich mit ordner 05 weiter, da ich mich schonmal an zoom and pan gemacht hatte (zwar fehlerhft- aber wgn prioSetzg jetz nochmal neu) dh auf github jetzt nochmal diese funzende version committe und mit der Ansage was jetzt als nxt passiern wird: zoomPan - ordner 05" />
+    <MESSAGE value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

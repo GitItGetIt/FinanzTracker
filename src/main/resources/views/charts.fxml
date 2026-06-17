@@ -9,38 +9,47 @@
 <?import javafx.geometry.Insets?>
 
 <BorderPane xmlns="http://javafx.com/javafx"
-        xmlns:fx="http://javafx.com/fxml"
-        fx:controller="de.fintracker.controller.ChartController">
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="de.fintracker.controller.ChartController">
 
     <top>
         <HBox spacing="20">
             <padding>
-                    <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
             <Button text="Zurück" onAction="#goToMain" styleClass="action-button"/>
         </HBox>
     </top>
 
     <center>
-        <VBox spacing="40">
-            <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
-            </padding>
+        <!-- ScrollPane f Zoom & Pan -->
+        <ScrollPane fx:id="scrollPane" pannable="false">
+            <content>
+                <Pane fx:id="wrapperPane">
 
-            <!-- PieChart: Ausgaben nach Kategorie -->
-            <PieChart fx:id="expensePieChart" title="Ausgaben nach Kategorie"/>
+                    <!-- Nun der eigentliche Inhalt (innnerhlb zoom/Pane) -->
+                    <VBox fx:id="rootContent" spacing="40">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20"/>
+                        </padding>
 
-            <!-- BarChart: Einnahmen/Ausgaben pro Monat -->
-            <BarChart fx:id="monthlyBarChart">
-                <xAxis>
-                    <CategoryAxis label="Monat"/>
-                </xAxis>
-                <yAxis>
-                    <NumberAxis label="Betrag (€)"/>
-                </yAxis>
-            </BarChart>
+                        <!-- PieChart: Ausgaben nach Kategorie -->
+                        <PieChart fx:id="expensePieChart" title="Ausgaben nach Kategorie"/>
 
-        </VBox>
+                        <!-- BarChart: Einnahmen/Ausgaben pro Monat -->
+                        <BarChart fx:id="monthlyBarChart">
+                            <xAxis>
+                                <CategoryAxis label="Monat"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis label="Betrag (€)"/>
+                            </yAxis>
+                        </BarChart>
+
+                    </VBox>
+                </Pane>
+            </content>
+        </ScrollPane>
     </center>
 
 </BorderPane>

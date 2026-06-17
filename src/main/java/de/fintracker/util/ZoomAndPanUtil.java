@@ -1,52 +1,58 @@
 package de.fintracker.util;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
 
 public class ZoomAndPanUtil {
-    private static double lastX;
-    private static double lastY;
 
-    public static void enableZoom(VBox root) {
-        root.setOnScroll(event -> {
+    private static final double SCALE_DELTA = 1.1;
+
+    public static void enableZoomAndPan(ScrollPane scrollPane, Pane wrapper, Node content) {
+
+        // Zoom (mit STRG + Scroll)
+        content.setOnScroll(event -> {
             if (event.isControlDown()) {
-                double zoomFactor = 1.05;
+                double scale = content.getScaleX();
 
-                if (event.getDeltaY() < 0) {
-                    zoomFactor = 1 / zoomFactor;
+                if (event.getDeltaY() > 0) {
+                    scale *= SCALE_DELTA;
+                } else {
+                    scale /= SCALE_DELTA;
                 }
 
-                root.setScaleX(root.getScaleX() * zoomFactor);
-                root.setScaleY(root.getScaleY() * zoomFactor);
+                content.setScaleX(scale);
+                content.setScaleY(scale);
 
-                root.layout();
+                // Wrapper neu berechnen
+                wrapper.setPrefWidth(content.getBoundsInParent().getWidth());
+                wrapper.setPrefHeight(content.getBoundsInParent().getHeight());
+
                 event.consume();
             }
         });
-    }
 
-    public static void enablePanning(ScrollPane scrollPane) {
-        scrollPane.setOnMousePressed(event -> {
+        // Pan (mittlere Maustaste gedrückt halten)
+        final ObjectProperty<Point2D> lastMouse = new SimpleObjectProperty<>();
+
+        content.setOnMousePressed(event -> {
             if (event.isMiddleButtonDown()) {
-                lastX = event.getSceneX();
-                lastY = event.getSceneY();
+                lastMouse.set(new Point2D(event.getSceneX(), event.getSceneY()));
             }
         });
 
-        scrollPane.setOnMouseDragged(event -> {
+        content.setOnMouseDragged(event -> {
             if (event.isMiddleButtonDown()) {
+                double deltaX = event.getSceneX() - lastMouse.get().getX();
+                double deltaY = event.getSceneY() - lastMouse.get().getY();
 
-                double deltaX = lastX - event.getSceneX();
-                double deltaY = lastY - event.getSceneY();
+                scrollPane.setHvalue(scrollPane.getHvalue() - deltaX / wrapper.getWidth());
+                scrollPane.setVvalue(scrollPane.getVvalue() - deltaY / wrapper.getHeight());
 
-                double width = scrollPane.getContent().getBoundsInLocal().getWidth();
-                double height = scrollPane.getContent().getBoundsInLocal().getHeight();
-
-                scrollPane.setHvalue(scrollPane.getHvalue() + deltaX / width);
-                scrollPane.setVvalue(scrollPane.getVvalue() + deltaY / height);
-
-                lastX = event.getSceneX();
-                lastY = event.getSceneY();
+                lastMouse.set(new Point2D(event.getSceneX(), event.getSceneY()));
             }
         });
     }
