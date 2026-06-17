@@ -3,7 +3,7 @@ package de.fintracker.util;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 
-public class UiZoomAndPanUtil {
+public class ZoomAndPanUtil {
     private static double lastX;
     private static double lastY;
 
