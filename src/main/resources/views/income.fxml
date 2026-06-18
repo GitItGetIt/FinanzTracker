@@ -11,18 +11,20 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.fintracker.controller.IncomeController"
             fx:id="scrollPane"
-            pannable="true"
-            fitToWidth="true">
+            pannable="true">
+<content>
+    <!-- Group f zoom/pan -->
+    <Group fx:id="zoomGroup">
+        <!-- eigentliche Fläche des zoom/pan -->
+        <StackPane fx:id="zoomPane">
 
-    <VBox fx:id="root" spacing="20">
+    <VBox fx:id="rootContent" spacing="20">
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
 
         <!-- Überschrift -->
-        <Label text="Einnahmen"
-               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
-
+        <Label text="Einnahmen" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
         <!-- Eingabebereich -->
         <GridPane hgap="10" vgap="10">
             <columnConstraints>
@@ -51,7 +53,6 @@
             <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
         </HBox>
 
-        <!-- Suchfeld -->
         <TextField fx:id="searchField"
                    promptText="Suchen..."
                    style="-fx-background-radius: 6; -fx-padding: 6;"/>
@@ -87,5 +88,7 @@
         <Pagination fx:id="pagination" prefWidth="600"/>
 
     </VBox>
+        </StackPane>
+    </Group>
+</content>
 </ScrollPane>
-

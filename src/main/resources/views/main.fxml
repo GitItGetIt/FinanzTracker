@@ -4,13 +4,18 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <!-- Probleme wegen content-tag gehabt und in Probleme bei zoom und pan gehabt! wenn ich zeit finde noch nachholen -->
+<?import javafx.scene.Group?>
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.fintracker.controller.MainController"
-            fx:id="scrollPane"
-            pannable="true"
-            fitToWidth="true" prefViewportHeight="500">
-                    <VBox fx:id="root" spacing="20">
+            fx:id="scrollPane" pannable="true">
+    <content>
+    <!-- Group f zoom/pan -->
+    <Group fx:id="zoomGroup">
+    <!-- eigentliche Fläche des zoom/pan -->
+    <StackPane fx:id="zoomPane">
+
+    <VBox fx:id="rootContent" spacing="20">
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20"/>
                         </padding>
@@ -47,4 +52,7 @@
                         <Button text="Diagramme anzeigen" onAction="#openCharts" styleClass="action-button" prefWidth="200"/>
 
                     </VBox>
+    </StackPane>
+    </Group>
+    </content>
 </ScrollPane>

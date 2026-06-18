@@ -479,7 +479,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781707002196</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom">
+      <option name="closed" value="true" />
+      <created>1781793436970</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1781793436970</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -526,7 +534,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="also die pagination fundt jetzt auch... hatte probleme, dass die seitenanzhl und anzeige nicht gut funktionierten..." />
     <MESSAGE value="funzende version mit aufgehübschten dyn buttons" />
     <MESSAGE value="Add screenshots for README" />
     <MESSAGE value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
@@ -551,7 +558,8 @@
     <MESSAGE value="17.juni 12:20 das vom 8.juni 12.25 war die letzte funzende version... (längere Pause da heftig erkältet war...) nun mache ich mit ordner 05 weiter, da ich mich schonmal an zoom and pan gemacht hatte (zwar fehlerhft- aber wgn prioSetzg jetz nochmal neu) dh auf github jetzt nochmal diese funzende version committe und mit der Ansage was jetzt als nxt passiern wird: zoomPan - ordner 05" />
     <MESSAGE value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
     <MESSAGE value="17.juni 16:34 zoom and pan nur in diagramme" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.juni 16:34 zoom and pan nur in diagramme" />
+    <MESSAGE value="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom" />
+    <option name="LAST_COMMIT_MESSAGE" value="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

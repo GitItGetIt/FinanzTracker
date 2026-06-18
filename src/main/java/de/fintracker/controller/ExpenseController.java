@@ -6,10 +6,15 @@ import de.fintracker.service.CSVService;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
 import de.fintracker.service.XLSService;
+import de.fintracker.util.ZoomAndPanUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import org.apache.commons.math3.analysis.function.Exp;
 
@@ -18,6 +23,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class ExpenseController extends AbstractTableController<Expense> {
+
+    @FXML private ScrollPane scrollPane;
+    @FXML private Group zoomGroup;
+    @FXML private StackPane zoomPane;
+    @FXML private VBox rootContent;
 
     @FXML private TableView<Expense> expenseTable;
     @FXML private Pagination pagination;
@@ -47,6 +57,11 @@ public class ExpenseController extends AbstractTableController<Expense> {
         setupPagination(pagination, expenseTable);
         setupSelectionListener();
         setupFilter();
+
+        rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        rootContent.setPrefSize(800, 800);
+
+        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     @Override

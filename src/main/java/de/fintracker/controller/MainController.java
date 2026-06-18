@@ -1,14 +1,19 @@
 package de.fintracker.controller;
 
+import de.fintracker.util.ZoomAndPanUtil;
 import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.service.IncomeService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -17,8 +22,10 @@ public class MainController extends BaseController {
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
 
-
-//    @FXML private ScrollPane scrollPane;
+    @FXML private ScrollPane scrollPane;
+    @FXML private Group zoomGroup;
+    @FXML private StackPane zoomPane;
+    @FXML private VBox rootContent;
 
     @FXML
     private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
@@ -27,6 +34,11 @@ public class MainController extends BaseController {
     protected void initialize() {
         super.initialize();
         updateDashboard();
+
+        rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        rootContent.setPrefSize(400, 400);
+
+        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     private void updateDashboard() {

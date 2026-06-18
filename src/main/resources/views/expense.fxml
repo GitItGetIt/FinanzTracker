@@ -11,17 +11,20 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="de.fintracker.controller.ExpenseController"
             fx:id="scrollPane"
-            pannable="true"
-            fitToWidth="true">
+            pannable="true">
+    <content>
+        <!-- Group f zoom/pan -->
+        <Group fx:id="zoomGroup">
+        <!-- eigentliche Fläche des zoom/pan -->
+        <StackPane fx:id="zoomPane">
 
-            <VBox fx:id="root" spacing="20">
+        <VBox fx:id="rootContent" spacing="20">
                 <padding>
                     <Insets top="20" right="20" bottom="20" left="20"/>
                 </padding>
 
                 <!-- Überschrift -->
                 <Label text="Ausgaben" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;" />
-
                 <!-- Eingabebereich -->
                 <GridPane hgap="10" vgap="10">
                     <columnConstraints>
@@ -29,7 +32,6 @@
                         <ColumnConstraints hgrow="ALWAYS" />
                     </columnConstraints>
 
-                    <children>
                     <Label text="Betrag:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                     <TextField fx:id="amountField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -41,7 +43,6 @@
 
                     <Label text="Notiz:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
                     <TextArea fx:id="noteArea" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
-                    </children>
                 </GridPane>
 
                 <HBox spacing="10">
@@ -88,4 +89,7 @@
                 </TableView>
                 <Pagination fx:id="pagination" prefWidth="600" />
             </VBox>
+        </StackPane>
+        </Group>
+</content>
 </ScrollPane>
