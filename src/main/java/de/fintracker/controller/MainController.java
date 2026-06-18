@@ -71,8 +71,11 @@ public class MainController extends BaseController {
         switchScene("/views/expense.fxml");
     }
 
-    public void openCharts() throws IOException {
-        switchScene("/views/charts.fxml");
+    public void openCharts() {
+        try {
+            switchScene("/views/charts.fxml");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
 }

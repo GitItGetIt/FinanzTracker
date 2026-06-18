@@ -3,56 +3,53 @@ package de.fintracker.util;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class ZoomAndPanUtil {
 
     private static final double SCALE_DELTA = 1.1;
 
-    public static void enableZoomAndPan(ScrollPane scrollPane, Pane wrapper, Node content) {
+    public static void enableZoomAndPan(ScrollPane scrollPane, Node zoomPane) {
 
-        // Zoom (mit STRG + Scroll)
-        content.setOnScroll(event -> {
+        // Zoom
+        zoomPane.setOnScroll(event -> {
             if (event.isControlDown()) {
-                double scale = content.getScaleX();
 
-                if (event.getDeltaY() > 0) {
-                    scale *= SCALE_DELTA;
-                } else {
-                    scale /= SCALE_DELTA;
-                }
+                double scale = zoomPane.getScaleX();
+                scale *= (event.getDeltaY() > 0) ? SCALE_DELTA : 1/SCALE_DELTA;
 
-                content.setScaleX(scale);
-                content.setScaleY(scale);
-
-                // Wrapper neu berechnen
-                wrapper.setPrefWidth(content.getBoundsInParent().getWidth());
-                wrapper.setPrefHeight(content.getBoundsInParent().getHeight());
+                zoomPane.setScaleX(scale);
+                zoomPane.setScaleY(scale);
 
                 event.consume();
             }
         });
 
-        // Pan (mittlere Maustaste gedrückt halten)
+        // Pan
         final ObjectProperty<Point2D> lastMouse = new SimpleObjectProperty<>();
+        final ObjectProperty<Point2D> lastTranslate = new SimpleObjectProperty<>();
 
-        content.setOnMousePressed(event -> {
-            if (event.isMiddleButtonDown()) {
+        zoomPane.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.isControlDown()) {
                 lastMouse.set(new Point2D(event.getSceneX(), event.getSceneY()));
+                lastTranslate.set(new Point2D(zoomPane.getTranslateX(),zoomPane.getTranslateY()));
+                event.consume();
             }
         });
 
-        content.setOnMouseDragged(event -> {
-            if (event.isMiddleButtonDown()) {
+        zoomPane.setOnMouseDragged(event -> {
+            if (event.isPrimaryButtonDown() && event.isControlDown()) {
                 double deltaX = event.getSceneX() - lastMouse.get().getX();
                 double deltaY = event.getSceneY() - lastMouse.get().getY();
 
-                scrollPane.setHvalue(scrollPane.getHvalue() - deltaX / wrapper.getWidth());
-                scrollPane.setVvalue(scrollPane.getVvalue() - deltaY / wrapper.getHeight());
+                zoomPane.setTranslateX(lastTranslate.get().getX() + deltaX);
+                zoomPane.setTranslateY(lastTranslate.get().getY() + deltaY);
 
-                lastMouse.set(new Point2D(event.getSceneX(), event.getSceneY()));
+                event.consume();
             }
         });
     }

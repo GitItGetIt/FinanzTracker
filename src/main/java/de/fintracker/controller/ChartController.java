@@ -1,21 +1,18 @@
 package de.fintracker.controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Group;
 import javafx.scene.chart.*;
-import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
 import de.fintracker.service.IncomeService;
 import de.fintracker.service.ExpenseService;
 import de.fintracker.model.Income;
 import de.fintracker.model.Expense;
 import de.fintracker.util.ZoomAndPanUtil;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,24 +24,26 @@ public class ChartController extends BaseController{
 
     @FXML private PieChart expensePieChart;
     @FXML private BarChart<String, Number> monthlyBarChart;
-
-    @FXML private CategoryAxis monthlyBarChartXAxis;
-
-    @FXML private NumberAxis monthlyBarChartYAxis;
+//    @FXML private CategoryAxis monthlyBarChartXAxis;
+//    @FXML private NumberAxis monthlyBarChartYAxis;
 
     @FXML private ScrollPane scrollPane;
-
-    @FXML private Pane wrapperPane;
-
+    @FXML private Group zoomGroup;
+    @FXML private StackPane zoomPane;
     @FXML private VBox rootContent;
 
     @FXML
     @Override
     public void initialize() {
+
         super.initialize();
         loadPieChart();
         loadBarChart();
-        ZoomAndPanUtil.enableZoomAndPan(scrollPane, wrapperPane, rootContent);
+
+        rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
+        rootContent.setPrefSize(800,800);
+
+        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     private void loadPieChart() {

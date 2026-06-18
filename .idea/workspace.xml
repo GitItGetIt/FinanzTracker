@@ -56,30 +56,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.DBTest.executor": "Run",
-    "Maven.FinTracker (Maven).executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/AAA___IT/A___Ref_Projekte/JavaProjs/FinanzTracker/FinTracker/screenshots",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DBTest.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.FinTracker (Maven).executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AAA___IT/A___Ref_Projekte/JavaProjs/FinanzTracker/FinTracker/screenshots&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   },
-  "keyToStringList": {
-    "GitStage.ChangesTree.GroupingKeys": [
-      "directory",
-      "module",
-      "repository"
+  &quot;keyToStringList&quot;: {
+    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;,
+      &quot;module&quot;,
+      &quot;repository&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AAA___IT\A___Ref_Projekte\JavaProjs\FinanzTracker\FinTracker\screenshots" />
@@ -138,7 +138,6 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="" name="Changes" comment="" />
       <created>1779182805704</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -472,7 +471,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781705975046</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="17.juni 16:34 zoom and pan nur in diagramme">
+      <option name="closed" value="true" />
+      <created>1781707002196</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1781707002196</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -519,7 +526,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cruds gehen, pagination geht" />
     <MESSAGE value="also die pagination fundt jetzt auch... hatte probleme, dass die seitenanzhl und anzeige nicht gut funktionierten..." />
     <MESSAGE value="funzende version mit aufgehübschten dyn buttons" />
     <MESSAGE value="Add screenshots for README" />
@@ -544,7 +550,8 @@
     <MESSAGE value="8.juni 12:25 bei import XLS kann der Run-Fehler nicht passieren, da xls nie eine leere zeile hat! (während csv schon!) daher bruachte ich es hier nicht umändern... FUNZT! da habe ich in der servicedatei nur die id rausgenommen so dass es ab amount die daten auflistet" />
     <MESSAGE value="17.juni 12:20 das vom 8.juni 12.25 war die letzte funzende version... (längere Pause da heftig erkältet war...) nun mache ich mit ordner 05 weiter, da ich mich schonmal an zoom and pan gemacht hatte (zwar fehlerhft- aber wgn prioSetzg jetz nochmal neu) dh auf github jetzt nochmal diese funzende version committe und mit der Ansage was jetzt als nxt passiern wird: zoomPan - ordner 05" />
     <MESSAGE value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
-    <option name="LAST_COMMIT_MESSAGE" value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
+    <MESSAGE value="17.juni 16:34 zoom and pan nur in diagramme" />
+    <option name="LAST_COMMIT_MESSAGE" value="17.juni 16:34 zoom and pan nur in diagramme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
