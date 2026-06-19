@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 
 public class ZoomAndPanUtil {
 
+    // nxt Aggregation 19.6.
     private static final double SCALE_DELTA = 1.1;
 
     public static void enableZoomAndPan(ScrollPane scrollPane, Node zoomPane) {
