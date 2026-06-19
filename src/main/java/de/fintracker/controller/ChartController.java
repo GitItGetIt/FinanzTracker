@@ -21,6 +21,7 @@ public class ChartController extends BaseController{
 
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
+    private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
     @FXML private PieChart expensePieChart;
     @FXML private BarChart<String, Number> monthlyBarChart;
@@ -43,7 +44,7 @@ public class ChartController extends BaseController{
         rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         rootContent.setPrefSize(800,800);
 
-        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
+        zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     private void loadPieChart() {

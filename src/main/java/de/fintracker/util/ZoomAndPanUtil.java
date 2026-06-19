@@ -1,57 +1,92 @@
 package de.fintracker.util;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.geometry.Point2D;
-import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.ScrollEvent;
+
+/**
+ * A reusable service that adds zoom and pan functionality to any ScrollPane
+ * containing a zoomable content node.
+ *
+ * <p>This class is designed for aggregation: controllers do not own this
+ * service but simply use it. The service is stateless and can be reused
+ * across multiple projects.</p>
+ *
+ * <p>Features:</p>
+ * <ul>
+ *     <li>CTRL + Scroll = Zoom</li>
+ *     <li>Middle Mouse Drag = Pan</li>
+ *     <li>Automatic scaling of the content node</li>
+ *     <li>No project-specific dependencies</li>
+ * </ul>
+ */
 
 public class ZoomAndPanUtil {
 
-    // nxt Aggregation 19.6.
-    private static final double SCALE_DELTA = 1.1;
+    private double lastMouseX;
+    private double lastMouseY;
 
-    public static void enableZoomAndPan(ScrollPane scrollPane, Node zoomPane) {
+    /**
+     * Enables zoom and pan functionality on the given ScrollPane.
+     *
+     * @param scrollPane the ScrollPane that should support zoom and pan
+     * @param content the Node inside the ScrollPane that should be zoomable
+     */
+    public void enableZoomAndPan(ScrollPane scrollPane, Node content) {
+        enableZoom(scrollPane, content);
+        enablePanning(scrollPane);
+    }
 
-        // Zoom
-        zoomPane.setOnScroll(event -> {
-            if (event.isControlDown()) {
+    /**
+     * Adds zooming via CTRL + mouse wheel.
+     */
+    private void enableZoom(ScrollPane scrollPane, Node content) {
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
+            if (!event.isControlDown()) {
+                return;
+            }
 
-                double scale = zoomPane.getScaleX();
-                scale *= (event.getDeltaY() > 0) ? SCALE_DELTA : 1/SCALE_DELTA;
+            double zoomFactor = 1.05;
 
-                zoomPane.setScaleX(scale);
-                zoomPane.setScaleY(scale);
+            if (event.getDeltaY() < 0) {
+                zoomFactor = 1 / zoomFactor;
+            }
 
-                event.consume();
+            content.setScaleX(content.getScaleX() * zoomFactor);
+            content.setScaleY(content.getScaleY() * zoomFactor);
+
+            event.consume();
+        });
+    }
+
+    /**
+     * Adds panning via middle mouse button drag.
+     */
+    private void enablePanning(ScrollPane scrollPane) {
+
+        scrollPane.setOnMousePressed(event -> {
+            if (event.isMiddleButtonDown()) {
+                lastMouseX = event.getSceneX();
+                lastMouseY = event.getSceneY();
             }
         });
 
-        // Pan
-        final ObjectProperty<Point2D> lastMouse = new SimpleObjectProperty<>();
-        final ObjectProperty<Point2D> lastTranslate = new SimpleObjectProperty<>();
+        scrollPane.setOnMouseDragged(event -> {
+            if (event.isMiddleButtonDown()) {
 
-        zoomPane.setOnMousePressed(event -> {
-            if (event.isPrimaryButtonDown() && event.isControlDown()) {
-                lastMouse.set(new Point2D(event.getSceneX(), event.getSceneY()));
-                lastTranslate.set(new Point2D(zoomPane.getTranslateX(),zoomPane.getTranslateY()));
-                event.consume();
-            }
-        });
+                double deltaX = lastMouseX - event.getSceneX();
+                double deltaY = lastMouseY - event.getSceneY();
 
-        zoomPane.setOnMouseDragged(event -> {
-            if (event.isPrimaryButtonDown() && event.isControlDown()) {
-                double deltaX = event.getSceneX() - lastMouse.get().getX();
-                double deltaY = event.getSceneY() - lastMouse.get().getY();
+                double width = scrollPane.getContent().getBoundsInLocal().getWidth();
+                double height = scrollPane.getContent().getBoundsInLocal().getHeight();
 
-                zoomPane.setTranslateX(lastTranslate.get().getX() + deltaX);
-                zoomPane.setTranslateY(lastTranslate.get().getY() + deltaY);
+                scrollPane.setHvalue(scrollPane.getHvalue() + deltaX / width);
+                scrollPane.setVvalue(scrollPane.getVvalue() + deltaY / height);
 
-                event.consume();
+                lastMouseX = event.getSceneX();
+                lastMouseY = event.getSceneY();
             }
         });
     }
+
 }

@@ -21,6 +21,7 @@ public class MainController extends BaseController {
 
     private final IncomeService incomeService = new IncomeService();
     private final ExpenseService expenseService = new ExpenseService();
+    private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
     @FXML private ScrollPane scrollPane;
     @FXML private Group zoomGroup;
@@ -38,7 +39,7 @@ public class MainController extends BaseController {
         rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         rootContent.setPrefSize(400, 400);
 
-        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
+        zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     private void updateDashboard() {

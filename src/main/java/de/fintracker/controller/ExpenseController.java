@@ -45,6 +45,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
     @FXML private TextField searchField;
 
     private final ExpenseService expenseService = new ExpenseService();
+    private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
     @FXML
     protected void initialize(){
@@ -61,7 +62,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
         rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         rootContent.setPrefSize(800, 800);
 
-        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
+        zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     @Override

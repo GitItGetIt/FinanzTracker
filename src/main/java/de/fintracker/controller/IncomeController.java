@@ -42,6 +42,7 @@ public class IncomeController extends AbstractTableController<Income> {
     @FXML private TextField searchField;
 
     private final IncomeService incomeService = new IncomeService();
+    private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
     @FXML
     protected void initialize(){
@@ -58,7 +59,7 @@ public class IncomeController extends AbstractTableController<Income> {
         rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
         rootContent.setPrefSize(800, 800);
 
-        ZoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
+        zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
 
     @Override
