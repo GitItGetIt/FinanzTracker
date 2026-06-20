@@ -495,7 +495,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781867623280</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="20.06.2026 – 12:37 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;bei zu extremem und schnellen zoomen crasht es = javafx bug&#10;- deswegen zoomPanUtil verbessert dass die GPU nicht in die Knie geht&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)">
+      <option name="closed" value="true" />
+      <created>1781953676328</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1781953676328</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -542,7 +550,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add screenshots for README" />
     <MESSAGE value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
     <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
     <MESSAGE value="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne" />
@@ -567,7 +574,8 @@
     <MESSAGE value="17.juni 16:34 zoom and pan nur in diagramme" />
     <MESSAGE value="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom" />
     <MESSAGE value="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
-    <option name="LAST_COMMIT_MESSAGE" value="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
+    <MESSAGE value="20.06.2026 – 12:37 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;bei zu extremem und schnellen zoomen crasht es = javafx bug&#10;- deswegen zoomPanUtil verbessert dass die GPU nicht in die Knie geht&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="20.06.2026 – 12:37 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;bei zu extremem und schnellen zoomen crasht es = javafx bug&#10;- deswegen zoomPanUtil verbessert dass die GPU nicht in die Knie geht&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
