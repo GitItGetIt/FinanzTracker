@@ -56,30 +56,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DBTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.FinTracker (Maven).executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/AAA___IT/A___Ref_Projekte/JavaProjs/FinanzTracker/FinTracker/screenshots&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DBTest.executor": "Run",
+    "Maven.FinTracker (Maven).executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/AAA___IT/A___Ref_Projekte/JavaProjs/AggregTestZoomPan",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;GitStage.ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;,
-      &quot;module&quot;,
-      &quot;repository&quot;
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AAA___IT\A___Ref_Projekte\JavaProjs\FinanzTracker\FinTracker\screenshots" />
@@ -487,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781793436970</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)">
+      <option name="closed" value="true" />
+      <created>1781867623280</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1781867623280</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -534,7 +542,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="funzende version mit aufgehübschten dyn buttons" />
     <MESSAGE value="Add screenshots for README" />
     <MESSAGE value="29.5. 10:30 h - funzende Vers - nxt step ab jetzt Dashboard mit mntl.income/expns - diagramm - xls und pdf-export, VALidrg" />
     <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
@@ -559,7 +566,8 @@
     <MESSAGE value="17.juni 16:01 zoom and pan (die klasse ZoomAndPan und ChartController und charts.fxml bearbeitet) - doch wollte zoomen/p nicht funzen - zudem gab es einen fehler wenn ich auf diagramme geklickt habe: es lag am doppelten child adden &#10;Nxt: Fehler beheben in ZoomAndPaneUtil" />
     <MESSAGE value="17.juni 16:34 zoom and pan nur in diagramme" />
     <MESSAGE value="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom" />
-    <option name="LAST_COMMIT_MESSAGE" value="18.juni 16:33 zoom and pan nur in diagramme-fenster&#10;nun FUNZT es endlich!!! ich habe die fxml umgestellt auf Scrollpane und pannable true gesetzt und translate gemacht, dann gings. &#10;NXT: auch die income und expense pan+zoom" />
+    <MESSAGE value="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
+    <option name="LAST_COMMIT_MESSAGE" value="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,12 +1,16 @@
 package de.fintracker.util;
 
+import javafx.scene.CacheHint;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 
 /**
  * A reusable service that adds zoom and pan functionality to any ScrollPane
  * containing a zoomable content node.
+ *
+ * Safe against GPU crashes (max zoom limit).
  *
  * <p>This class is designed for aggregation: controllers do not own this
  * service but simply use it. The service is stateless and can be reused
@@ -23,6 +27,9 @@ import javafx.scene.input.ScrollEvent;
 
 public class ZoomAndPanUtil {
 
+    private static final double MAX_SCALE = 10.0;   // verhindert GPU crash
+    private static final double MIN_SCALE = 0.1;
+
     private double lastMouseX;
     private double lastMouseY;
 
@@ -33,6 +40,11 @@ public class ZoomAndPanUtil {
      * @param content the Node inside the ScrollPane that should be zoomable
      */
     public void enableZoomAndPan(ScrollPane scrollPane, Node content) {
+
+        // setzt das Cashing außer Kraft um D3DTexture crash zu verhindert
+        content.setCache(false);
+        content.setCacheHint(CacheHint.DEFAULT);
+
         enableZoom(scrollPane, content);
         enablePanning(scrollPane);
     }
@@ -41,6 +53,7 @@ public class ZoomAndPanUtil {
      * Adds zooming via CTRL + mouse wheel.
      */
     private void enableZoom(ScrollPane scrollPane, Node content) {
+
         scrollPane.addEventFilter(ScrollEvent.SCROLL, event -> {
             if (!event.isControlDown()) {
                 return;
@@ -52,8 +65,14 @@ public class ZoomAndPanUtil {
                 zoomFactor = 1 / zoomFactor;
             }
 
-            content.setScaleX(content.getScaleX() * zoomFactor);
-            content.setScaleY(content.getScaleY() * zoomFactor);
+            double newScale = content.getScaleX() * zoomFactor;
+
+            // die min/max limits anwenden:
+            if (newScale < MIN_SCALE) newScale = MIN_SCALE;
+            if (newScale > MAX_SCALE) newScale = MAX_SCALE;
+
+            content.setScaleX(newScale);
+            content.setScaleY(newScale);
 
             event.consume();
         });
@@ -64,14 +83,14 @@ public class ZoomAndPanUtil {
      */
     private void enablePanning(ScrollPane scrollPane) {
 
-        scrollPane.setOnMousePressed(event -> {
+        scrollPane.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
             if (event.isMiddleButtonDown()) {
                 lastMouseX = event.getSceneX();
                 lastMouseY = event.getSceneY();
             }
         });
 
-        scrollPane.setOnMouseDragged(event -> {
+        scrollPane.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
             if (event.isMiddleButtonDown()) {
 
                 double deltaX = lastMouseX - event.getSceneX();
