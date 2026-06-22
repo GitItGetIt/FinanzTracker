@@ -46,10 +46,6 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @FXML
     protected void initialize(){
-        //später sout wieder rausnehmen: will nur kurz überprüfen:
-        System.out.println("INIT OK: IncomeController");
-
-        super.initialize();
 
         setupTable();
         setupPagination(pagination, incomeTable);
@@ -60,6 +56,40 @@ public class IncomeController extends AbstractTableController<Income> {
         rootContent.setPrefSize(800, 800);
 
         zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
+    }
+
+    private boolean validateIncomeInput() {
+        String amountText = amountField.getText();
+        String category = categoryBox.getValue();
+        LocalDate date = datePicker.getValue();
+
+        if (amountText == null || amountText.isBlank()) {
+            showError("Bitte gib einen Betrag ein.");
+            return false;
+        }
+
+        double amount;
+        try {
+            amount = Double.parseDouble(amountText);
+            if (amount <= 0){
+                showError("Der Betrag muss größer als 0 sein");
+                return false;
+            }
+        } catch (NumberFormatException d) {
+            showError("Der Betrag muss eine gültige Zahl sein, z.B. mit Punkt getrennt statt Komma");
+            return false;
+        }
+
+        if (category == null || category.isBlank()) {
+            showError("Bitte eine Kategorie auswählen");
+            return false;
+        }
+
+        if (date == null) {
+            showError("Bitte Datum auswählen");
+            return false;
+        }
+        return true;
     }
 
     @Override
@@ -130,10 +160,14 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Income> allIncome = incomeService.getAllIncome();
+        try {
+            List<Income> allIncome = incomeService.getAllIncome();
 
-        CSVService service = new CSVService();
-        service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
+            CSVService service = new CSVService();
+            service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
+        } catch (RuntimeException e) {
+            showError("CSV-Datei konnte nicht runtergeladen werden.");
+        }
     }
 
     @FXML
@@ -144,16 +178,19 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showOpenDialog(null);
         if (file == null) return;
 
-        CSVService service = new CSVService();
-        List<Income> imported = service.importIncomeCSV(file.getAbsolutePath());
+        try {
+            CSVService service = new CSVService();
+            List<Income> imported = service.importIncomeCSV(file.getAbsolutePath());
 
-        for (Income i : imported) {
-            incomeService.insertIncome(i);
+            for (Income i : imported) {
+                incomeService.insertIncome(i);
+            }
+
+            incomeTable.setItems(incomeService.getAllIncome());
+        } catch (RuntimeException e) {
+            showError("Die CSV-Datei konnte nicht hochheladen werden");
         }
-
-        incomeTable.setItems(incomeService.getAllIncome());
     }
-
 
     @FXML
     private void onExportXLS() {
@@ -164,10 +201,14 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Income> allIncome = incomeService.getAllIncome();
+        try {
+            List<Income> allIncome = incomeService.getAllIncome();
 
-        XLSService service = new XLSService();
-        service.exportIncomeXLS(file.getAbsolutePath(), allIncome);
+            XLSService service = new XLSService();
+            service.exportIncomeXLS(file.getAbsolutePath(), allIncome);
+        } catch (RuntimeException e) {
+            showError("Excel-Datei konnte nicht runtergeladen werden");
+        }
     }
 
     @FXML
@@ -178,20 +219,28 @@ public class IncomeController extends AbstractTableController<Income> {
         File file = chooser.showOpenDialog(null);
         if (file == null) return;
 
-        XLSService service = new XLSService();
-        List<Income> imported = service.importIncomeXLS(file.getAbsolutePath());
+        try {
+            XLSService service = new XLSService();
+            List<Income> imported = service.importIncomeXLS(file.getAbsolutePath());
 
-        // In DB speichern
-        for (Income i : imported) {
-            incomeService.insertIncome(i);
+            // In DB speichern
+            for (Income i : imported) {
+                incomeService.insertIncome(i);
+            }
+
+            // Tabelle aktualisieren
+            incomeTable.setItems(incomeService.getAllIncome());
+        } catch (RuntimeException e) {
+            showError("Excel-Datei konnte nicht hochgeladen werden.");
         }
-
-        // Tabelle aktualisieren
-        incomeTable.setItems(incomeService.getAllIncome());
     }
 
     @FXML
     private void saveIncome() {
+
+        if (!validateIncomeInput())
+            return;
+
         try {
             double amount = Double.parseDouble(amountField.getText());
             String category = categoryBox.getValue();
@@ -205,8 +254,8 @@ public class IncomeController extends AbstractTableController<Income> {
             refreshCurrentPage(pagination);
             clearFields();
 
-        } catch (Exception e) {
-            showError("Bitte überprüfe deine Eingaben.");
+        } catch (RuntimeException e) {
+            showError("Ein unerwarteter Fehler bei Einnahmen aufgetreten - konnte nicht gespeichert werden");
         }
     }
 
@@ -218,10 +267,14 @@ public class IncomeController extends AbstractTableController<Income> {
             return;
         }
 
-        incomeService.deleteIncome(selected.getId());
+        try {
+            incomeService.deleteIncome(selected.getId());
 
-        updatePageCount(pagination);
-        refreshCurrentPage(pagination);
+            updatePageCount(pagination);
+            refreshCurrentPage(pagination);
+        } catch (RuntimeException e) {
+            showError("Die Ausgabe konnte nicht gelöscht werden");
+        }
     }
 
     @FXML
@@ -232,14 +285,18 @@ public class IncomeController extends AbstractTableController<Income> {
             return;
         }
 
-        selected.setAmount(Double.parseDouble(amountField.getText()));
-        selected.setCategory(categoryBox.getValue());
-        selected.setDate(datePicker.getValue());
-        selected.setNote(noteArea.getText());
+        try {
+            selected.setAmount(Double.parseDouble(amountField.getText()));
+            selected.setCategory(categoryBox.getValue());
+            selected.setDate(datePicker.getValue());
+            selected.setNote(noteArea.getText());
 
-        incomeService.updateIncome(selected, selected.getId());
+            incomeService.updateIncome(selected, selected.getId());
 
-        refreshCurrentPage(pagination);
+            refreshCurrentPage(pagination);
+        } catch (RuntimeException e) {
+            showError("Die Ausgabe konnte nicht aktualisiert werden");
+        }
     }
 
     @FXML
@@ -256,7 +313,8 @@ public class IncomeController extends AbstractTableController<Income> {
 
     private void showError(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("Fehler");
+        alert.setTitle("Fehlertitel");
+        alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
     }

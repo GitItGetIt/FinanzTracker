@@ -33,10 +33,4 @@ public abstract class BaseController {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    protected void initialize() {
-//        UiZoomAndPanUtil.enableZoom(root);
-//        UiZoomAndPanUtil.enablePanning(scrollPane);
-    }
 }

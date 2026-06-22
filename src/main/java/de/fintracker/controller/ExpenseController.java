@@ -49,10 +49,6 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
     @FXML
     protected void initialize(){
-        //später sout wieder rausnehmen: will nur kurz überprüfen:
-        System.out.println("INIT OK: ExpenseController");
-
-        super.initialize();
 
         setupTable();
         setupPagination(pagination, expenseTable);
@@ -64,6 +60,42 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
         zoomAndPanUtil.enableZoomAndPan(scrollPane, zoomPane);
     }
+
+    private boolean validateExpenseInput() {
+        String amountText = amountField.getText();
+        String category = categoryBox.getValue();
+        LocalDate date = datePicker.getValue();
+
+        if (amountText == null || amountText.isBlank()) {
+            showError("Bitte gib einen Betrag ein.");
+            return false;
+        }
+
+        double amount;
+        try {
+            amount = Double.parseDouble(amountText);
+            if (amount <= 0) {
+                showError("Der Betrag muss größer als 0 sein.");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showError("Der Betrag muss eine gültige Zahl sein z.B. ohne Komma aber Punkt.");
+            return false;
+        }
+
+        if (category == null || category.isBlank()) {
+            showError("Bitte wähle eine Kategorie aus.");
+            return false;
+        }
+
+        if (date == null) {
+            showError("Bitte wähle ein Datum aus.");
+            return false;
+        }
+
+        return true;
+    }
+
 
     @Override
     protected void setupTable() {
@@ -134,10 +166,15 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
 
-        List<Expense> allExpense = expenseService.getAllExpense();
+        try {
+            List<Expense> allExpense = expenseService.getAllExpense();
 
-        CSVService service = new CSVService();
-        service.exportExpenseCSV(file.getAbsolutePath(), allExpense);
+            CSVService service = new CSVService();
+            service.exportExpenseCSV(file.getAbsolutePath(), allExpense);
+        } catch (RuntimeException e) {
+            showError("CSV-Datei konnte nicht runtergeladen werden");
+        }
+
     }
 
     @FXML
@@ -148,16 +185,20 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showOpenDialog(null);
         if (file == null) return;
 
-        CSVService service = new CSVService();
-        List<Expense> imported = service.importExpenseCSV(file.getAbsolutePath());
+        try {
+            CSVService service = new CSVService();
+            List<Expense> imported = service.importExpenseCSV(file.getAbsolutePath());
 
-        for (Expense i : imported) {
-            expenseService.insertExpense(i);
+            for (Expense i : imported) {
+                expenseService.insertExpense(i);
+            }
+
+            expenseTable.setItems(expenseService.getAllExpense());
+        } catch (RuntimeException e) {
+            showError("CSV-Datei konnte nicht hochgeladen werden");
         }
 
-        expenseTable.setItems(expenseService.getAllExpense());
     }
-
 
     @FXML
     private void onExportXLS() {
@@ -167,11 +208,16 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
         File file = chooser.showSaveDialog(null);
         if (file == null) return;
+        try {
+            List<Expense> allExpense = expenseService.getAllExpense();
 
-        List<Expense> allExpense = expenseService.getAllExpense();
+            XLSService service = new XLSService();
+            service.exportExpenseXLS(file.getAbsolutePath(), allExpense);
+        } catch (RuntimeException e) {
+            showError("Excel-Datei konnte nicht runtergeladen werden");
+        }
 
-        XLSService service = new XLSService();
-        service.exportExpenseXLS(file.getAbsolutePath(), allExpense);
+
     }
 
     @FXML
@@ -182,20 +228,28 @@ public class ExpenseController extends AbstractTableController<Expense> {
         File file = chooser.showOpenDialog(null);
         if (file == null) return;
 
-        XLSService service = new XLSService();
-        List<Expense> imported = service.importExpenseXLS(file.getAbsolutePath());
+        try {
+            XLSService service = new XLSService();
+            List<Expense> imported = service.importExpenseXLS(file.getAbsolutePath());
 
-        // In DB speichern
-        for (Expense i : imported) {
-            expenseService.insertExpense(i);
+            // In DB speichern
+            for (Expense i : imported) {
+                expenseService.insertExpense(i);
+            }
+
+            // Tabelle aktualisieren
+            expenseTable.setItems(expenseService.getAllExpense());
+        } catch (RuntimeException e) {
+            showError("Excel-Datei konnte nicht hochgeladen werden");
         }
-
-        // Tabelle aktualisieren
-        expenseTable.setItems(expenseService.getAllExpense());
     }
 
     @FXML
     private void saveExpense() {
+
+        if (!validateExpenseInput())
+            return;
+
         try {
             double amount = Double.parseDouble(amountField.getText());
             String category = categoryBox.getValue();
@@ -209,8 +263,8 @@ public class ExpenseController extends AbstractTableController<Expense> {
             refreshCurrentPage(pagination);
             clearFields();
 
-        } catch (Exception e) {
-            showError("Bitte überprüfe deine Eingabedaten bzgl. Ausgaben.");
+        } catch (RuntimeException e) {
+            showError("Es ist ein unerwarteter Fehler bei Ausgaben aufgetreten - Die Ausgabe konnte nicht gespeichert werden.");
         }
     }
 
@@ -221,11 +275,15 @@ public class ExpenseController extends AbstractTableController<Expense> {
             showError("Bitte wähle einen Eintrag aus.");
             return;
         }
+        try {
+            expenseService.deleteExpense(selected.getId());
 
-        expenseService.deleteExpense(selected.getId());
+            updatePageCount(pagination);
+            refreshCurrentPage(pagination);
 
-        updatePageCount(pagination);
-        refreshCurrentPage(pagination);
+        } catch (RuntimeException e) {
+            showError("Die Ausgabe konnte nicht gelöscht werden");
+        }
     }
 
     @FXML
@@ -235,15 +293,19 @@ public class ExpenseController extends AbstractTableController<Expense> {
             showError("Bitte wähle einen Eintrag aus.");
             return;
         }
+        try {
+            selected.setAmount(Double.parseDouble(amountField.getText()));
+            selected.setCategory(categoryBox.getValue());
+            selected.setDate(datePicker.getValue());
+            selected.setNote(noteArea.getText());
 
-        selected.setAmount(Double.parseDouble(amountField.getText()));
-        selected.setCategory(categoryBox.getValue());
-        selected.setDate(datePicker.getValue());
-        selected.setNote(noteArea.getText());
+            expenseService.updateExpense(selected, selected.getId());
 
-        expenseService.updateExpense(selected, selected.getId());
+            refreshCurrentPage(pagination);
 
-        refreshCurrentPage(pagination);
+        } catch (RuntimeException e) {
+            showError("Die Ausgabe konnte nicht aktualisiert werden.");
+        }
     }
 
     @FXML
@@ -260,6 +322,7 @@ public class ExpenseController extends AbstractTableController<Expense> {
 
     private void showError(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Fehlertitel");
         alert.setHeaderText("Fehler");
         alert.setContentText(msg);
         alert.showAndWait();

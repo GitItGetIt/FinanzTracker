@@ -34,10 +34,8 @@ public class ChartController extends BaseController{
     @FXML private VBox rootContent;
 
     @FXML
-    @Override
     public void initialize() {
 
-        super.initialize();
         loadPieChart();
         loadBarChart();
 

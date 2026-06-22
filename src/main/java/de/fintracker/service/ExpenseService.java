@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,10 @@ public class ExpenseService {
             stmt.setString(4, expense.getNote());
 
             stmt.executeUpdate();
-            System.out.println("Ausgabe gespeichert!");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("DB-Fehler in insertExpense(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Speichern der Ausgaben", e);
         }
     }
 
@@ -72,10 +73,10 @@ public class ExpenseService {
             stmt.setInt(5, id);
 
             stmt.executeUpdate();
-            System.out.println("Ausgabe aktualisiert!");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("DB-Fehler in updateExpense(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Aktualisieren der Ausgabe", e);
         }
     }
 
@@ -90,8 +91,9 @@ public class ExpenseService {
 
             System.out.println("Ausgabe gelöscht!");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("DB-Fehler in deleteExpens(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Löschen der Ausgabe", e);
         }
     }
 

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,10 @@ public class IncomeService {
             stmt.setString(4, income.getNote());
 
             stmt.executeUpdate();
-            System.out.println("Einnahme gespeichert!");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("BD-Fehler in insertIncome(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Speichern der Einnahme!", e);
         }
     }
 
@@ -72,10 +73,10 @@ public class IncomeService {
             stmt.setInt(5, id);
 
             stmt.executeUpdate();
-            System.out.println("Einnahme aktualisiert!");
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("DB-Fehler in updateIncome(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Aktualisieren der Ausgabe", e);
         }
     }
 
@@ -88,10 +89,9 @@ public class IncomeService {
             stmt.setInt(1, id);
             stmt.executeUpdate();
 
-            System.out.println("Einnahme gelöscht!");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("DB-Fehler in deleteIncome(): " + e.getMessage());
+            throw new RuntimeException("Fehler beim Löschen der Ausgbe.", e);
         }
     }
 

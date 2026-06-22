@@ -31,9 +31,7 @@ public class MainController extends BaseController {
     @FXML
     private Label totalIncomeLabel, totalExpenseLabel, balanceLabel, entryCountLabel;
 
-    @Override
     protected void initialize() {
-        super.initialize();
         updateDashboard();
 
         rootContent.setMinSize(Region.USE_PREF_SIZE, Region.USE_PREF_SIZE);
@@ -66,7 +64,6 @@ public class MainController extends BaseController {
         balanceLabel.setText(String.format("%.2f €", balance));
         entryCountLabel.setText(String.valueOf(entryCount));
 
-        // Saldo farblich hervorheben
         if (balance < 0) {
             balanceLabel.setStyle("-fx-text-fill: red; -fx-font-weight: bold;");
         } else {

@@ -511,7 +511,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781955051903</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="22.06.2026 – 07:59 Uhr&#10;Nun 06 mache ich mit Validierungen und Fehlerbehandlung weiter">
+      <option name="closed" value="true" />
+      <created>1782108167783</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1782108167783</updated>
+    </task>
+    <task id="LOCAL-00048" summary="22.06.2026 – 07:59 Uhr&#10;Nun 06 mache ich mit Validierungen und Fehlerbehandlung weiter">
+      <option name="closed" value="true" />
+      <created>1782108206821</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1782108206821</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -558,7 +574,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ZOOM-bar und main angepasst, aktualisiert" />
     <MESSAGE value="ZOOM-bar, pann-bar und main angepasst, aktualisiert, als nxt:&#10;zentrle util-klsse erstelln&#10;&#10;In jeder FXML‑Seite ScrollPane + Group + VBox&#10;&#10;und je ctrlr initilizen: zoom root und pane scrollpne" />
     <MESSAGE value="3.6. 12:30 Die navi geht wieder - zurückbtn&#10;&#10;aber immer noch ein problem mit duplicte children - bei update (auch wenn er das update macht.. )" />
     <MESSAGE value="3.6. 13:12 nun geht es wieder! update ohne doppelchildren. Im IncomeController: createPage() - ich hatte hierrin die pagination.setPageFactory(this::createPage); gesetzt, obwohl es ja im initialize() schon drin war..." />
@@ -583,7 +598,8 @@
     <MESSAGE value="19.06.2026 – 13:09 Uhr&#10;zoom und pan ausgelagert und funzt. &#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
     <MESSAGE value="20.06.2026 – 12:37 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;bei zu extremem und schnellen zoomen crasht es = javafx bug&#10;- deswegen zoomPanUtil verbessert dass die GPU nicht in die Knie geht&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
     <MESSAGE value="20.06.2026 – 13:26 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;javafx bug gefixt&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
-    <option name="LAST_COMMIT_MESSAGE" value="20.06.2026 – 13:26 Uhr&#10;08-ordner. zoomandpanutil in anderem projekt eingebaut - aggregtion (Proj AggregTestZoomPan)&#10;javafx bug gefixt&#10;&#10;&#10;NXT: &#10;&#10;ein testproj, um diese z/panUtil einzubinden (aggregation)" />
+    <MESSAGE value="22.06.2026 – 07:59 Uhr&#10;Nun 06 mache ich mit Validierungen und Fehlerbehandlung weiter" />
+    <option name="LAST_COMMIT_MESSAGE" value="22.06.2026 – 07:59 Uhr&#10;Nun 06 mache ich mit Validierungen und Fehlerbehandlung weiter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
