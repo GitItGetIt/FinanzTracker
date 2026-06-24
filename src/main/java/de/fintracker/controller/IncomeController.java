@@ -44,6 +44,9 @@ public class IncomeController extends AbstractTableController<Income> {
     private final IncomeService incomeService = new IncomeService();
     private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
+    private final CSVService csvService = new CSVService();
+    private final XLSService xlsService = new XLSService();
+
     @FXML
     protected void initialize(){
 
@@ -153,87 +156,63 @@ public class IncomeController extends AbstractTableController<Income> {
     //filechooser f export
     @FXML
     private void onExportCSV() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
-        chooser.setInitialFileName("income_export.csv");
-
-        File file = chooser.showSaveDialog(null);
+        File file = chooseSaveFile("incomes_download.csv");
         if (file == null) return;
 
-        try {
-            List<Income> allIncome = incomeService.getAllIncome();
-
-            CSVService service = new CSVService();
-            service.exportIncomeCSV(file.getAbsolutePath(), allIncome);
-        } catch (RuntimeException e) {
-            showError("CSV-Datei konnte nicht runtergeladen werden.");
-        }
+        List<Income> incomes = incomeTable.getItems();
+        csvService.exportCsv(file, incomes);
     }
 
     @FXML
     private void onImportCSV() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
+      File file = chooseFile();
+      if (file == null) return;
 
-        File file = chooser.showOpenDialog(null);
-        if (file == null) return;
+      List<Income> incomes = csvService.importCsv(file, Income::new);
+      incomeTable.setItems(FXCollections.observableList(incomes));
 
-        try {
-            CSVService service = new CSVService();
-            List<Income> imported = service.importIncomeCSV(file.getAbsolutePath());
-
-            for (Income i : imported) {
-                incomeService.insertIncome(i);
-            }
-
-            incomeTable.setItems(incomeService.getAllIncome());
-        } catch (RuntimeException e) {
-            showError("Die CSV-Datei konnte nicht hochheladen werden");
-        }
     }
 
     @FXML
     private void onExportXLS() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
-        chooser.setInitialFileName("income_export.xlsx");
-
-        File file = chooser.showSaveDialog(null);
+        File file = chooseSaveFile("incomes_download.xlxs");
         if (file == null) return;
 
-        try {
-            List<Income> allIncome = incomeService.getAllIncome();
-
-            XLSService service = new XLSService();
-            service.exportIncomeXLS(file.getAbsolutePath(), allIncome);
-        } catch (RuntimeException e) {
-            showError("Excel-Datei konnte nicht runtergeladen werden");
-        }
+        List<Income> incomes = incomeTable.getItems();
+        xlsService.exportXls(file, incomes);
     }
 
     @FXML
     private void onImportXLS() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
-
-        File file = chooser.showOpenDialog(null);
+        File file = chooseFile();
         if (file == null) return;
 
-        try {
-            XLSService service = new XLSService();
-            List<Income> imported = service.importIncomeXLS(file.getAbsolutePath());
-
-            // In DB speichern
-            for (Income i : imported) {
-                incomeService.insertIncome(i);
-            }
-
-            // Tabelle aktualisieren
-            incomeTable.setItems(incomeService.getAllIncome());
-        } catch (RuntimeException e) {
-            showError("Excel-Datei konnte nicht hochgeladen werden.");
-        }
+        List<Income> incomes = xlsService.importXls(file, Income::new);
+        incomeTable.setItems(FXCollections.observableList(incomes));
     }
+
+    // --- FILE CHOOSER HELPERS ---
+    private File chooseFile() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Datei auswählen");
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
+                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
+        );
+        return chooser.showOpenDialog(null);
+    }
+
+    private File chooseSaveFile(String defaultName) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Datei speichern");
+        chooser.setInitialFileName(defaultName);
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
+                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
+        );
+        return chooser.showSaveDialog(null);
+    }
+
 
     @FXML
     private void saveIncome() {

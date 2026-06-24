@@ -3,7 +3,7 @@ package de.fintracker.model;
 import javafx.beans.property.*;
 import java.time.LocalDate;
 
-public class Expense {
+public class Expense implements RowConvertible {
 
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final DoubleProperty amount = new SimpleDoubleProperty();
@@ -26,6 +26,9 @@ public class Expense {
         this.note.set(note);
     }
 
+    public Expense() {
+    }
+
     public int getId() { return id.get(); }
     public double getAmount() { return amount.get(); }
     public String getCategory() { return category.get(); }
@@ -43,4 +46,25 @@ public class Expense {
     public void setCategory(String category) { this.category.set(category); }
     public void setDate(LocalDate date) { this.date.set(date); }
     public void setNote(String note) { this.note.set(note); }
+
+    @Override
+    public String[] toRow() {
+        return new String[] {
+                String.valueOf(getId()),
+                String.valueOf(getAmount()),
+                getCategory(),
+                getDate().toString(),
+                getNote()
+        };
+    }
+
+    @Override
+    public void fromRow(String[] row) {
+
+        setId(Integer.parseInt(row[0]));
+        setAmount(Double.parseDouble(row[1]));
+        setCategory(row[2]);
+        setDate(LocalDate.parse(row[3]));
+        setNote(row[4]);
+    }
 }

@@ -3,7 +3,7 @@ package de.fintracker.model;
 import javafx.beans.property.*;
 import java.time.LocalDate;
 
-public class Income {
+public class Income implements RowConvertible {
 
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final DoubleProperty amount = new SimpleDoubleProperty();
@@ -27,6 +27,9 @@ public class Income {
         this.note.set(note);
     }
 
+    public Income() {
+    }
+
     public int getId() { return id.get(); }
     public double getAmount() { return amount.get(); }
     public String getCategory() { return category.get(); }
@@ -44,4 +47,28 @@ public class Income {
     public void setCategory(String category) { this.category.set(category); }
     public void setDate(LocalDate date) { this.date.set(date); }
     public void setNote(String note) { this.note.set(note); }
+
+    @Override
+    public String[] toRow() {
+        return new String[] {
+                String.valueOf(getId()),
+                String.valueOf(getAmount()),
+                getCategory(),
+                getDate().toString(),
+                getNote()
+        };
+    }
+
+    @Override
+    public void fromRow(String[] row) {
+                //niemals auf die Property-Felder direkt zugreifen sondern immer mit getter/setter:
+                        // falsch:
+                    // this.note = row[4]; (=STringProperty)  oder this.date = LocalDate.parse(row[3]); (=ObjectProperty)
+                        // denn meine Felder sehen ja so aus: private final StringProperty note = new SimpleStringProperty();
+        setId(Integer.parseInt(row[0]));
+        setAmount(Double.parseDouble(row[1]));
+        setCategory(row[2]);
+        setDate(LocalDate.parse(row[3]));
+        setNote(row[4]);
+    }
 }

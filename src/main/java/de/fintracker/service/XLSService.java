@@ -2,78 +2,48 @@ package de.fintracker.service;
 
 import de.fintracker.model.Expense;
 import de.fintracker.model.Income;
+import de.fintracker.model.RowConvertible;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class XLSService {
 
-    public void exportIncomeXLS(String filePath, List<Income> list) {
-        try (Workbook workbook = new XSSFWorkbook()) {
+    public <T extends RowConvertible> List<T> importXls (
+            File file,
+            Supplier<T> factory
+    ) {
+        List<T> list = new ArrayList<>();
 
-            Sheet sheet = workbook.createSheet("Income");
-
-            // Header
-            Row header = sheet.createRow(0);
-            header.createCell(0).setCellValue("ID");
-            header.createCell(1).setCellValue("Amount");
-            header.createCell(2).setCellValue("Category");
-            header.createCell(3).setCellValue("Date");
-            header.createCell(4).setCellValue("Note");
-
-            // Data rows
-            int rowIndex = 1;
-            for (Income i : list) {
-                Row row = sheet.createRow(rowIndex++);
-                row.createCell(0).setCellValue(i.getId());
-                row.createCell(1).setCellValue(i.getAmount());
-                row.createCell(2).setCellValue(i.getCategory());
-                row.createCell(3).setCellValue(i.getDate().toString());
-                row.createCell(4).setCellValue(i.getNote());
-            }
-
-            // Autosize columns
-            for (int col = 0; col < 5; col++) {
-                sheet.autoSizeColumn(col);
-            }
-
-            FileOutputStream fos = new FileOutputStream(filePath);
-            workbook.write(fos);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public List<Income> importIncomeXLS(String filePath) {
-        List<Income> list = new ArrayList<>();
-
-        try (FileInputStream fis = new FileInputStream(filePath);
+        try (FileInputStream fis = new FileInputStream(file);
              Workbook workbook = new XSSFWorkbook(fis)) {
 
             Sheet sheet = workbook.getSheetAt(0);
 
-            // Header überspringen
             int rowIndex = 1;
 
             while (rowIndex <= sheet.getLastRowNum()) {
-                Row row = sheet.getRow(rowIndex++);
+               Row row = sheet.getRow(rowIndex++);
 
-                if (row == null) continue;
+               if (row == null)
+                   continue;
 
-                int id = (int) row.getCell(0).getNumericCellValue();
-                double amount = row.getCell(1).getNumericCellValue();
-                String category = row.getCell(2).getStringCellValue();
-                LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
-                String note = row.getCell(4).getStringCellValue();
+               String[] data = new String[0];
 
-                Income income = new Income(amount, category, date, note);
-                list.add(income);
+               for (int i = 0; i < 5; i++) {
+                   data[i] = row.getCell(i).getStringCellValue();
+               }
+
+               T item = factory.get();
+               item.fromRow(data);
+               list.add(item);
             }
 
         } catch (Exception e) {
@@ -83,12 +53,15 @@ public class XLSService {
         return list;
     }
 
-    public void exportExpenseXLS(String filePath, List<Expense> list) {
-        try (Workbook workbook = new XSSFWorkbook()) {
+    public <T extends RowConvertible> void exportXls (
+            File file,
+            List<T> items
+    ) {
+        try (Workbook workbook = new XSSFWorkbook()){
 
-            Sheet sheet = workbook.createSheet("Expense");
+            Sheet sheet = workbook.createSheet("Data");
 
-            // Header
+            // Header setzen
             Row header = sheet.createRow(0);
             header.createCell(0).setCellValue("ID");
             header.createCell(1).setCellValue("Amount");
@@ -96,60 +69,24 @@ public class XLSService {
             header.createCell(3).setCellValue("Date");
             header.createCell(4).setCellValue("Note");
 
-            // Data rows
             int rowIndex = 1;
-            for (Expense i : list) {
+
+            for (T item : items ) {
                 Row row = sheet.createRow(rowIndex++);
-                row.createCell(0).setCellValue(i.getId());
-                row.createCell(1).setCellValue(i.getAmount());
-                row.createCell(2).setCellValue(i.getCategory());
-                row.createCell(3).setCellValue(i.getDate().toString());
-                row.createCell(4).setCellValue(i.getNote());
+                String[] data = item.toRow();
+
+                for (int i = 0; i < data.length; i++) {
+                    row.createCell(i).setCellValue(data[i]);
+                }
             }
 
-            // Autosize columns
             for (int col = 0; col < 5; col++) {
-                sheet.autoSizeColumn(col);
+                FileOutputStream fos = new FileOutputStream(file);
+                workbook.write(fos);
             }
 
-            FileOutputStream fos = new FileOutputStream(filePath);
-            workbook.write(fos);
-
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-    public List<Expense> importExpenseXLS(String filePath) {
-        List<Expense> list = new ArrayList<>();
-
-        try (FileInputStream fis = new FileInputStream(filePath);
-             Workbook workbook = new XSSFWorkbook(fis)) {
-
-            Sheet sheet = workbook.getSheetAt(0);
-
-            // Header überspringen
-            int rowIndex = 1;
-
-            while (rowIndex <= sheet.getLastRowNum()) {
-                Row row = sheet.getRow(rowIndex++);
-
-                if (row == null) continue;
-
-                int id = (int) row.getCell(0).getNumericCellValue();
-                double amount = row.getCell(1).getNumericCellValue();
-                String category = row.getCell(2).getStringCellValue();
-                LocalDate date = LocalDate.parse(row.getCell(3).getStringCellValue());
-                String note = row.getCell(4).getStringCellValue();
-
-                Expense expense = new Expense(amount, category, date, note);
-                list.add(expense);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return list;
     }
 }

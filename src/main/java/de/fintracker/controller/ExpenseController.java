@@ -47,6 +47,9 @@ public class ExpenseController extends AbstractTableController<Expense> {
     private final ExpenseService expenseService = new ExpenseService();
     private final ZoomAndPanUtil zoomAndPanUtil = new ZoomAndPanUtil();
 
+    private final CSVService csvService = new CSVService();
+    private final XLSService xlsService = new XLSService();
+
     @FXML
     protected void initialize(){
 
@@ -159,89 +162,60 @@ public class ExpenseController extends AbstractTableController<Expense> {
     //filechooser f export
     @FXML
     private void onExportCSV() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
-        chooser.setInitialFileName("expense_export.csv");
-
-        File file = chooser.showSaveDialog(null);
+        File file = chooseSaveFile("expense_download.csv");
         if (file == null) return;
 
-        try {
-            List<Expense> allExpense = expenseService.getAllExpense();
-
-            CSVService service = new CSVService();
-            service.exportExpenseCSV(file.getAbsolutePath(), allExpense);
-        } catch (RuntimeException e) {
-            showError("CSV-Datei konnte nicht runtergeladen werden");
-        }
-
+        List<Expense> expenses = expenseTable.getItems();
+        csvService.exportCsv(file, expenses);
     }
 
     @FXML
     private void onImportCSV() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"));
-
-        File file = chooser.showOpenDialog(null);
+        File file = chooseFile();
         if (file == null) return;
 
-        try {
-            CSVService service = new CSVService();
-            List<Expense> imported = service.importExpenseCSV(file.getAbsolutePath());
-
-            for (Expense i : imported) {
-                expenseService.insertExpense(i);
-            }
-
-            expenseTable.setItems(expenseService.getAllExpense());
-        } catch (RuntimeException e) {
-            showError("CSV-Datei konnte nicht hochgeladen werden");
-        }
-
+        List<Expense> expenses = csvService.importCsv(file, Expense::new);
+        expenseTable.setItems(FXCollections.observableList(expenses));
     }
 
     @FXML
     private void onExportXLS() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
-        chooser.setInitialFileName("expense_export.xlsx");
-
-        File file = chooser.showSaveDialog(null);
+        File file = chooseSaveFile("expenses_download.xlxs");
         if (file == null) return;
-        try {
-            List<Expense> allExpense = expenseService.getAllExpense();
 
-            XLSService service = new XLSService();
-            service.exportExpenseXLS(file.getAbsolutePath(), allExpense);
-        } catch (RuntimeException e) {
-            showError("Excel-Datei konnte nicht runtergeladen werden");
-        }
-
-
+        List<Expense> expenses = expenseTable.getItems();
+        xlsService.exportXls(file, expenses);
     }
 
     @FXML
     private void onImportXLS() {
-        FileChooser chooser = new FileChooser();
-        chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx"));
-
-        File file = chooser.showOpenDialog(null);
+        File file = chooseFile();
         if (file == null) return;
 
-        try {
-            XLSService service = new XLSService();
-            List<Expense> imported = service.importExpenseXLS(file.getAbsolutePath());
+        List<Expense> expenses = xlsService.importXls(file, Expense::new);
+        expenseTable.setItems(FXCollections.observableList(expenses));
+    }
 
-            // In DB speichern
-            for (Expense i : imported) {
-                expenseService.insertExpense(i);
-            }
+    // --- FILE CHOOSER HELPERS ---
+    private File chooseFile() {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Datei auswählen");
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
+                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
+        );
+        return chooser.showOpenDialog(null);
+    }
 
-            // Tabelle aktualisieren
-            expenseTable.setItems(expenseService.getAllExpense());
-        } catch (RuntimeException e) {
-            showError("Excel-Datei konnte nicht hochgeladen werden");
-        }
+    private File chooseSaveFile(String defaultName) {
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Datei speichern");
+        chooser.setInitialFileName(defaultName);
+        chooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
+                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
+        );
+        return chooser.showSaveDialog(null);
     }
 
     @FXML
