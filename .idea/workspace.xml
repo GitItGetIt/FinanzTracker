@@ -144,14 +144,6 @@
       <option name="presentableId" value="Default" />
       <updated>1779182805704</updated>
     </task>
-    <task id="LOCAL-00003" summary="22.5. 9:25h - unter resources database ordner angelegt, worin die finanztracker.db automatisch per DBTest.java erfolgreich angelegt wurde. Ansonsten unter de.fintracker den ordner databse angelegt und DBConnector.java erstellt. zum nachvollziehen bitte auch ab 8:54 die änderungen nachvollziehen">
-      <option name="closed" value="true" />
-      <created>1779435014366</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1779435014366</updated>
-    </task>
     <task id="LOCAL-00004" summary="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)">
       <option name="closed" value="true" />
       <created>1779435785005</created>
@@ -536,7 +528,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782230253539</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="24.06.2026 – 08:31&#10;Version f hochladen">
+      <option name="closed" value="true" />
+      <created>1782282977719</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1782282977719</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -583,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="3.6. 14:39 Alles Bestens. Fehler gefunden... ich hatte beim ExpenseController bei int total vergessen in ExpenseService.countExpense() zu machen (war IncomeService.countExpense()..." />
     <MESSAGE value="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit" />
     <MESSAGE value="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)" />
     <MESSAGE value="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts." />
@@ -608,7 +607,8 @@
     <MESSAGE value="22.06.2026 – 13:23 bzw. 15:41 Uhr&#10;Nun 06 Validierungen und Fehlerbehandlung bis hier:&#10;- service und controller differnziert fehlerbehndlg,, so zb runtimeExceptions... try-catches... wann welche behandlung, try(...)=with ressources" />
     <MESSAGE value="23.06.2026 – 10:54 &#10;Die Redundanz bzgl XLS/CSV-Import/Export beheben und in utility auslagern 09&#10;zwar wollte ich Fehler und Validirg weitermachen, aber erstml Grundcode architektur verbessern/auslagern" />
     <MESSAGE value="23.06.2026 – 17:50 &#10;Die Redundanz bzgl XLS/CSV-Import/Export behOben und in utility ausgelagert per IF 09&#10;&#10;lade es morgen früh bei GitHub jetzt erstmal hoch bei GitHub&#10;&#10;zwar wollte ich noch Fehler und Validirg weitermachen, aber erstml Grundcode architektur verbessern/auslagern&#10;&#10;will noch BLOBs machen f Quittungen..." />
-    <option name="LAST_COMMIT_MESSAGE" value="23.06.2026 – 17:50 &#10;Die Redundanz bzgl XLS/CSV-Import/Export behOben und in utility ausgelagert per IF 09&#10;&#10;lade es morgen früh bei GitHub jetzt erstmal hoch bei GitHub&#10;&#10;zwar wollte ich noch Fehler und Validirg weitermachen, aber erstml Grundcode architektur verbessern/auslagern&#10;&#10;will noch BLOBs machen f Quittungen..." />
+    <MESSAGE value="24.06.2026 – 08:31&#10;Version f hochladen" />
+    <option name="LAST_COMMIT_MESSAGE" value="24.06.2026 – 08:31&#10;Version f hochladen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
