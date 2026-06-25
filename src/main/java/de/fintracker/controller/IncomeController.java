@@ -4,6 +4,7 @@ import de.fintracker.model.Income;
 import de.fintracker.service.CSVService;
 import de.fintracker.service.IncomeService;
 import de.fintracker.service.XLSService;
+import de.fintracker.util.FileChooserUtil;
 import de.fintracker.util.ZoomAndPanUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -156,7 +157,7 @@ public class IncomeController extends AbstractTableController<Income> {
     //filechooser f export
     @FXML
     private void onExportCSV() {
-        File file = chooseSaveFile("incomes_download.csv");
+        File file = FileChooserUtil.saveCSV("incomes_download.csv");
         if (file == null) return;
 
         List<Income> incomes = incomeTable.getItems();
@@ -165,7 +166,7 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @FXML
     private void onImportCSV() {
-      File file = chooseFile();
+      File file = FileChooserUtil.openCSV();
       if (file == null) return;
 
       List<Income> incomes = csvService.importCsv(file, Income::new);
@@ -175,7 +176,7 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @FXML
     private void onExportXLS() {
-        File file = chooseSaveFile("incomes_download.xlxs");
+        File file = FileChooserUtil.saveXLS("incomes_download.xlxs");
         if (file == null) return;
 
         List<Income> incomes = incomeTable.getItems();
@@ -184,35 +185,12 @@ public class IncomeController extends AbstractTableController<Income> {
 
     @FXML
     private void onImportXLS() {
-        File file = chooseFile();
+        File file = FileChooserUtil.openXLS();
         if (file == null) return;
 
         List<Income> incomes = xlsService.importXls(file, Income::new);
         incomeTable.setItems(FXCollections.observableList(incomes));
     }
-
-    // --- FILE CHOOSER HELPERS ---
-    private File chooseFile() {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Datei auswählen");
-        chooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
-                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
-        );
-        return chooser.showOpenDialog(null);
-    }
-
-    private File chooseSaveFile(String defaultName) {
-        FileChooser chooser = new FileChooser();
-        chooser.setTitle("Datei speichern");
-        chooser.setInitialFileName(defaultName);
-        chooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("CSV Dateien", "*.csv"),
-                new FileChooser.ExtensionFilter("Excel Dateien", "*.xlsx")
-        );
-        return chooser.showSaveDialog(null);
-    }
-
 
     @FXML
     private void saveIncome() {
