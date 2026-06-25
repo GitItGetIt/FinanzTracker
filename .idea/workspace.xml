@@ -144,14 +144,6 @@
       <option name="presentableId" value="Default" />
       <updated>1779182805704</updated>
     </task>
-    <task id="LOCAL-00004" summary="22.5. 9:40 h nun db tabellen definiert (dh nach ausführg) - nun als nächstes die inserts (werde wenn inserts da sind auch committen)">
-      <option name="closed" value="true" />
-      <created>1779435785005</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1779435785005</updated>
-    </task>
     <task id="LOCAL-00005" summary="22.5. 10:43 : die income und expense klassen so lassen wie ich sie bereits für fx gebaut hatte&#10;&#10;Nun geht es los mit den Serviceklassen - IncomeService.java und ExpenseService unter packg services erstellt und werde dort die Methoden als nxt eingeben">
       <option name="closed" value="true" />
       <created>1779439587249</created>
@@ -536,7 +528,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782282977719</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="25.06.2026 – 14:36 in Ordner 10:&#10;Fix: Dashboard initialize + FileChooser filters&#10;- initialize() in MainController korrigiert (public + @FXML)&#10;- FileChooserUtil added&#10;- CSV/XLS filters fixed in Income/Expense controllers">
+      <option name="closed" value="true" />
+      <created>1782393676813</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1782393676813</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -583,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="4.6. seit 11:20 will ich hier clean coden und aus beiden Controllern eine Abstrakte klasse erstellen.... aber haufenweise fehler... es hieß es liegt am &lt;Group&gt; tag im income.fxml... ok, nun evtl. eine lösung parat, aber wollte schnell ein commit machen, damit ich nächstes mal an solch einer stelle den fehler leichter beheben kann, indem ich vorher-nachher-vergleich mache. dh wenns funzt mach i neu commit" />
     <MESSAGE value="4.6. 16:29 immer noch fehler... ich vermute es liegt am initialize (zum einen hatte ich einen vertipper drin: intialize... ) zum anderen ist einiges noch nicht rund... ich wollte dennoch committen als zwischenstand, damit ich später die fehler schneller leichter erkennen kann - dh. mein nächster commit wird dann sein, wenn es sauber funzt, dh. ich überarbeite die BaseController, AbstractTableController, IncomeController und mache gleich als nächstes initialization anders, da steckt das problem (aus abstracttble komplett raus...)" />
     <MESSAGE value="4.6. 17:45 so, alles sauber gemacht, initialize nun direkt im IncomeController und die pagination als Parameter... aus abstrTbl komplett raus, überall die MethSigntrs geändert und nun läufts." />
     <MESSAGE value="5.6. Freitg 18:35 funzt! am ende habe ich auch diagrammseite von basecontroller extended..." />
@@ -608,7 +607,8 @@
     <MESSAGE value="23.06.2026 – 10:54 &#10;Die Redundanz bzgl XLS/CSV-Import/Export beheben und in utility auslagern 09&#10;zwar wollte ich Fehler und Validirg weitermachen, aber erstml Grundcode architektur verbessern/auslagern" />
     <MESSAGE value="23.06.2026 – 17:50 &#10;Die Redundanz bzgl XLS/CSV-Import/Export behOben und in utility ausgelagert per IF 09&#10;&#10;lade es morgen früh bei GitHub jetzt erstmal hoch bei GitHub&#10;&#10;zwar wollte ich noch Fehler und Validirg weitermachen, aber erstml Grundcode architektur verbessern/auslagern&#10;&#10;will noch BLOBs machen f Quittungen..." />
     <MESSAGE value="24.06.2026 – 08:31&#10;Version f hochladen" />
-    <option name="LAST_COMMIT_MESSAGE" value="24.06.2026 – 08:31&#10;Version f hochladen" />
+    <MESSAGE value="25.06.2026 – 14:36 in Ordner 10:&#10;Fix: Dashboard initialize + FileChooser filters&#10;- initialize() in MainController korrigiert (public + @FXML)&#10;- FileChooserUtil added&#10;- CSV/XLS filters fixed in Income/Expense controllers" />
+    <option name="LAST_COMMIT_MESSAGE" value="25.06.2026 – 14:36 in Ordner 10:&#10;Fix: Dashboard initialize + FileChooser filters&#10;- initialize() in MainController korrigiert (public + @FXML)&#10;- FileChooserUtil added&#10;- CSV/XLS filters fixed in Income/Expense controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

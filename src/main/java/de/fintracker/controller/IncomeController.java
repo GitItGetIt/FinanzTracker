@@ -49,7 +49,7 @@ public class IncomeController extends AbstractTableController<Income> {
     private final XLSService xlsService = new XLSService();
 
     @FXML
-    protected void initialize(){
+    public void initialize(){
 
         setupTable();
         setupPagination(pagination, incomeTable);
