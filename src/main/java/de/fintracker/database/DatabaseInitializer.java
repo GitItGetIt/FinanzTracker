@@ -9,7 +9,6 @@ public class DatabaseInitializer {
         try (Connection conn = DBConnector.getConnection();
              Statement stmt = conn.createStatement()) {
 
-            // Tabelle: income
             String incomeTable = """
                 CREATE TABLE IF NOT EXISTS income (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -20,7 +19,6 @@ public class DatabaseInitializer {
                 );
             """;
 
-            // Tabelle: expense
             String expenseTable = """
                 CREATE TABLE IF NOT EXISTS expense (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,

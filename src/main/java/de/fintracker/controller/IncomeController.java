@@ -14,8 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
@@ -154,7 +152,6 @@ public class IncomeController extends AbstractTableController<Income> {
         });
     }
 
-    //filechooser f export
     @FXML
     private void onExportCSV() {
         File file = FileChooserUtil.saveCSV("incomes_download.csv");

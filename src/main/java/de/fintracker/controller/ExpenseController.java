@@ -1,10 +1,8 @@
 package de.fintracker.controller;
 
 import de.fintracker.model.Expense;
-import de.fintracker.model.Income;
 import de.fintracker.service.CSVService;
 import de.fintracker.service.ExpenseService;
-import de.fintracker.service.IncomeService;
 import de.fintracker.service.XLSService;
 import de.fintracker.util.ZoomAndPanUtil;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,8 +14,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import org.apache.commons.math3.analysis.function.Exp;
-
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
@@ -159,7 +155,6 @@ public class ExpenseController extends AbstractTableController<Expense> {
         });
     }
 
-    //filechooser f export
     @FXML
     private void onExportCSV() {
         File file = chooseSaveFile("expense_download.csv");

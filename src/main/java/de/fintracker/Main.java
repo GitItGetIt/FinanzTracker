@@ -3,13 +3,9 @@ package de.fintracker;
 import de.fintracker.controller.MainController;
 import de.fintracker.database.DatabaseInitializer;
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.util.Objects;
 
 public class Main extends Application {

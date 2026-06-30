@@ -13,25 +13,18 @@
             fx:id="scrollPane"
             pannable="true">
 <content>
-    <!-- Group f zoom/pan -->
     <Group fx:id="zoomGroup">
-        <!-- eigentliche Fläche des zoom/pan -->
         <StackPane fx:id="zoomPane">
-
     <VBox fx:id="rootContent" spacing="20">
         <padding>
             <Insets top="20" right="20" bottom="20" left="20"/>
         </padding>
-
-        <!-- Überschrift -->
         <Label text="Einnahmen" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
-        <!-- Eingabebereich -->
         <GridPane hgap="10" vgap="10">
             <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" minWidth="120"/>
                 <ColumnConstraints hgrow="ALWAYS"/>
             </columnConstraints>
-
             <Label text="Betrag:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
             <TextField fx:id="amountField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -44,20 +37,15 @@
             <Label text="Notiz:" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.valignment="TOP"/>
             <TextArea fx:id="noteArea" prefRowCount="3" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
         </GridPane>
-
-        <!-- CRUD Buttons -->
         <HBox spacing="10">
             <Button text="Speichern" onAction="#saveIncome" prefWidth="120" styleClass="action-button"/>
             <Button text="Aktualisieren" onAction="#updateIncome" prefWidth="120" styleClass="action-button"/>
             <Button text="Löschen" onAction="#deleteIncome" prefWidth="120" styleClass="action-button"/>
             <Button text="Zurück" onAction="#goToMain" prefWidth="120" styleClass="action-button"/>
         </HBox>
-
         <TextField fx:id="searchField"
                    promptText="Suchen..."
                    style="-fx-background-radius: 6; -fx-padding: 6;"/>
-
-        <!-- Download- / Upload-BUTTONS -->
         <HBox spacing="10" alignment="CENTER_RIGHT">
             <Button text="Download CSV"
                     onAction="#onExportCSV"
@@ -72,8 +60,6 @@
                     onAction="#onImportXLS"
                     styleClass="action-button"/>
         </HBox>
-
-        <!-- Tabelle -->
         <TableView fx:id="incomeTable" prefHeight="250">
             <columns>
                 <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
@@ -83,10 +69,7 @@
                 <TableColumn fx:id="noteColumn" text="Notiz" prefWidth="200"/>
             </columns>
         </TableView>
-
-        <!-- Pagination -->
         <Pagination fx:id="pagination" prefWidth="600"/>
-
     </VBox>
         </StackPane>
     </Group>

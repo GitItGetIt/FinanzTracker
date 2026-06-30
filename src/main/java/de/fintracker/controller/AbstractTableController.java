@@ -34,7 +34,6 @@ public abstract class AbstractTableController<T> extends BaseController{
         return new Label(""); // Dummy Node
     }
 
-    // f Overrides in Income/ExpensCtrlrn
     protected abstract void setupTable();
     protected abstract List<T> loadPageData(int offset, int limit);
     protected abstract int getTotalItemCount();

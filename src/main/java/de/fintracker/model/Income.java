@@ -19,7 +19,6 @@ public class Income implements RowConvertible {
         this.note.set(note);
     }
 
-    // ctor o id f Inserts
     public Income(double amount, String category, LocalDate date, String note) {
         this.amount.set(amount);
         this.category.set(category);

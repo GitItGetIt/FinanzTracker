@@ -60,7 +60,6 @@ public class Expense implements RowConvertible {
 
     @Override
     public void fromRow(String[] row) {
-
         setId(Integer.parseInt(row[0]));
         setAmount(Double.parseDouble(row[1]));
         setCategory(row[2]);

@@ -25,8 +25,6 @@ public class ChartController extends BaseController{
 
     @FXML private PieChart expensePieChart;
     @FXML private BarChart<String, Number> monthlyBarChart;
-//    @FXML private CategoryAxis monthlyBarChartXAxis;
-//    @FXML private NumberAxis monthlyBarChartYAxis;
 
     @FXML private ScrollPane scrollPane;
     @FXML private Group zoomGroup;
