@@ -1,9 +1,9 @@
 # 💰 FinanzTracker – JavaFX Desktop App
 
-Ein moderner Desktop‑Finanzmanager zur Verwaltung von **Einnahmen** und **Ausgaben**.  
+Eine moderne Desktop‑**Buchhaltungs-Software** zur Verwaltung von **Einnahmen** und **Ausgaben**.  
 Erstellt mit **Java 17**, **JavaFX 21**, **SQLite** und einer klaren **MVC‑Struktur**.
 
-Die App bietet eine intuitive Oberfläche, modernes UI‑Styling, Pagination, Sortierung und eine Clean Code‑Architektur – als Lernprojekt und Portfolio‑Referenz bzw. Codebeispiel.
+Die App bietet eine intuitive Oberfläche, modernes UI/UX‑Styling, Pagination, Sortierung, dynamisches Suchen, Diagramme, XLS/CSV-Download/Upload-Funktionen mit Datenbankanbindung und eine Clean Code‑Architektur – als Lern-/Wiederholungsprojekt und Portfolio‑Referenz.
 
 ---
 
